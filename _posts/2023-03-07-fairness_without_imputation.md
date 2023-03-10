@@ -2,15 +2,16 @@
 layout: single
 title:  "[논문 리뷰] Fairness without Imputation: A Decision Tree Approach for Fair Prediction with Missing Values"
 categories: machine learning
-tag: [imputation,machine learning, missing values]
+tag: [imputation, machine learning, missing values]
 toc: true
+
 ---
 
 # Abstract & Introduction
 
 ## Abstract
 
-본 논문에서는 missing values가 있는 데이터셋에 대해서 머신러닝 모델을 적용할 때, 발생하는 Fairness concerns에 대해서 다루고 있다. 공정성에 개입하여 학습시키는 모델들이 여러 가지 제안되어 왔는데(MIP 모델 등 뒤에서 설명) , 이러한 모델들은 보통 완전한 학습 datasets을 가정하고 있다. 따라서 missing values가 있는 불완전한 datasets들에 대해 imputation(결측값 대치)를 한 뒤 공정성에 개입하는 머신러닝 방법들이 적용된다면, 불공정한 모델이 만들어질 수도 있다. 그 이유는  
+본 논문에서는 missing values가 있는 데이터셋에 대해서 머신러닝 모델을 적용할 때, 발생하는 Fairness concerns에 대해서 다루고 있다. 공정성에 개입하여 학습시키는 모델들이 여러 가지 제안되어 왔는데(MIP 모델 등 뒤에서 설명) , 이러한 모델들은 보통 완전한 학습 datasets을 가정하고 있다. 따라서 missing values가 있는 불완전한 datasets들에 대해 imputation(결측값 대치)를 한 뒤 공정성에 개입하는 머신러닝 방법들이 적용된다면, 불공정한 모델이 만들어질 수도 있다. 
 
 ***
 
@@ -36,5 +37,42 @@ abstract에서 이야기하였지만, 논문이 가장 중요하게 쳐다보고
 
 missing values를 임의의 값으로 대치함으로써 발생하는 잠재적인 discrimination risk에 대한 이론적인 분석은 다음과 같은 세 가지 요인을 중점으로 살펴보게 된다.
 
-1. imputation 방법의 성능이 각 group attributes마다 다르게 나타날 수 있다. (group attributes란 한 개인을 어떤 그룹으로 특정할 수 있게 해주는 속성들을 이야기한다. tabular data에서 봤을 때, 인종이나 성별, 연령 같은 columns의 attributes라고 볼 수 있다.) 그 결과 imputated data는 모델의 bias에 영향(Inherit and propogate)을 미치게 된다. 
-2. 
+1. imputation method의 성능이 각 group attributes마다 다르게 나타날 수 있다. (group attributes란 한 개인을 어떤 그룹으로 특정할 수 있게 해주는 속성들을 이야기한다. tabular data에서 봤을 때, 인종이나 성별, 연령 같은 columns의 attributes라고 볼 수 있다.) 그 결과 imputated data는 모델의 bias에 영향(Inherit and propogate)을 미치게 된다. 
+2. imputation method을 활용하여 훈련 과정에서 fairness하게, 즉 unbiased하게 학습되었다고 해도, 다른 Imputation 방법이 적용된 새로운 test data에 대해서는 그렇지 못할 수 도 있게 된다.
+3. 마지막으로 보편적으로 downstream에 적용될 수 있는 fairness한 모델 적절한 imputation method는 없다.
+
+위의 세 가지를 이론적 분석을 통해, 이를 극복하고자 하는 Imputation을 하지 않는, **Fair MIP Forest**라는 방법을 제시한다. 
+
+Introduction이니 이 방법에 대해 큰 틀에 대해서 잠깐만 언급하면, 
+
++ Missing values를 다루기 위한 MIA( missing incorporated as attribute) 방법
++ fairness를 규제하기 위한 목적 함수를 최적화하는 방법인 MIP(mixed integer programming)
+
+이 두 가지를 결합한 decision tree 모델이다. (구체적인 부분은 본문 내용에서 언급). 이 두 가지 방식을 결합하기에 fairness와 accuracy를 동시에 최적화하여 이 두가지 지표의 trade-off 측면에서 좋은 성능을 보여주게 된다. ( 본문에서 살펴보도록 한다.)
+
+## Related Works
+
+missing values를 다루는 방식에 대한 논문이다 보니 related works에서 이를 다루는 방식에 대해 개괄적으로 살펴 볼 필요가 있다.
+
+대표적인 방법으로는
+
++ 단일 대치법 (Single Imputation) : Inserting dummy values, mean-imputation, regression imputation( k-nearest neighbor regression). 더미 값이나 평균 값 또는 회귀적인 방법에 의한 값 하나로 대치.
++ 다중 대치법 (Multiple imputation) : Imputation method that draws a set of possible values to fill in missing values, as opposed to single imputation that substtitutes a missing entry with a single value. 단일 대치법을 여러 번 적용한 뒤 결과값을 추합하는 방식.
++ 행 삭제 (Dropping rows with missing entries)
+
+이 있다. (논문에서 소개하는 Fair MIP Forest 방법은 서로 다른 랜덤 미니 배치가 각각의 트리로 훈련되는데, 이 때 각각은 다르게 결측치를 처리하기 때문에 다중대치법에 해당한다.)
+
+더불어, 논문의 목적은 missing values를 decision trees 기반의 모델로 처리하게 된다. 그래서 decision trees 기반의 missing values 처리 방식에 대해 간단하게 살펴보자.
+
++ surrogate splits : 관련이 있는 attributes를 활용하여 missing values를 분리한다
+
+  (그림필요)
+
++ block propogation : loss가 최소가 되는 노드 방향으로 missing values를 보내게 된다.
+
+  (그림필요)
+
++ missing incorporated as attribute (MIA) : 특정 Threshold에 대해 3가지 경우의 Loss를 고려해서 missing values가 특정한 노드로 보내지도록 한다. (논문에 사용되는 기술이므로 구체적인 내용은 뒤에서 설명)
+
+
+

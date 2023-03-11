@@ -37,7 +37,7 @@ abstract에서 이야기하였지만, 논문이 가장 중요하게 쳐다보고
 
 missing values를 임의의 값으로 대치함으로써 발생하는 잠재적인 discrimination risk에 대한 이론적인 분석은 다음과 같은 세 가지 요인을 중점으로 살펴보게 된다.
 
-1. imputation method의 성능이 각 group attributes마다 다르게 나타날 수 있다. (group attributes란 한 개인을 어떤 그룹으로 특정할 수 있게 해주는 속성들을 이야기한다. tabular data에서 봤을 때, 인종이나 성별, 연령 같은 columns의 attributes라고 볼 수 있다.) 그 결과 imputated data는 모델의 bias에 영향(Inherit and propogate)을 미치게 된다. 
+1. imputation method의 성능이 각 group attributes마다 다르게 나타날 수 있다. (group attributes란 한 개인을 어떤 그룹으로 특정할 수 있게 해주는 속성들을 이야기한다. tabular data에서 봤을 때, 인종이나 성별, 연령 같은 columns의 attributes라고 볼 수 있다.) 그 결과 imputed data는 모델의 bias에 영향(Inherit and propogate)을 미치게 된다. 
 2. imputation method을 활용하여 훈련 과정에서 fairness하게, 즉 unbiased하게 학습되었다고 해도, 다른 Imputation 방법이 적용된 새로운 test data에 대해서는 그렇지 못할 수 도 있게 된다.
 3. 마지막으로 보편적으로 downstream에 적용될 수 있는 fairness한 모델 적절한 imputation method는 없다.
 
@@ -83,7 +83,7 @@ $$
 $$
 
 $$
-Disc(h)\triangleq\mid L_0(h) - L_1(h)\mid
+Disc(h)\triangleq\left | L_0(h) - L_1(h)\right |
 $$
 
 (1) 은 특정 모델 h에 대한 predicted output과 true output간의 loss를 계산한 부분이다. loss 에 해당하는 부분은 task에 따라 조금 씩 달라질 수 있다.(ex mean squred error )
@@ -93,8 +93,14 @@ $$
 L_s(h) \triangleq \mathbb E[l(h(X),Y)\mid S=s]
 $$
 
+Disc(h)에 대해서 조금 더 직관적으로 설명해보면, 모델의 Loss가 성별이 0(여자)일 때와 성별이 1(남자)일 때의 차이가 크다면 discrimination risk는 커지게 되는 것이다. (1)과 (2)를 조합하여 다음과 같은 식을 만들게 되면, 모델의 biased를 고려한 일반적인 fairness intervention method가 된다.
+$$
+\min_{h\in\mathcal{H}}{1\over n}\sum\limits_{i=1}^n l(h(\bold x_i),y_i)\\
+\mbox{subject to} \left | L_0(h) - L_1(h)\right | \leq \epsilon
+$$
 
-Disc(h)에 대해서 조금 더 직관적으로 설명해보면, 모델의 Loss가 성별이 0(남자)일 때와 성별이 1(여자)일 때의 차이가 크다면 discrimination risk는 커지게 되는 것이다. 
+
+
 
 + Data missingness
 
@@ -107,7 +113,7 @@ X_{ms}&\mbox{if }M = 0\\
 \end{cases}
 $$
 
-실제 데이터의 구성에 관해 notation은 위와 같다. 결측치가 없는 관측 변수 $X_{obs}$와 missing values가 포함된 $\tilde{x}_{ms}$ 변수로 이루어져 있다. missing values가 포함된 변수에서 missing values가 있는지 없는지 판단하기 위해 binary variables가 도입된다. binary variables $M=0$라면 missing values가 있는 것이고, 반대로 M = 1이라면 missing values가 없다는 의미이다. 
+실제 데이터의 구성에 관해 notation은 위와 같다. 결측치가 없는 관측 변수 $X_{obs}$와 missing values가 포함된 $\tilde{x}_{ms}$ 변수로 이루어져 있다. missing values가 포함된 변수에서 missing values가 있는지 없는지 판단하기 위해 binary variables가 도입된다. binary variables $M=0$라면 missing values가 없는 것이고, 반대로 M = 1이라면 missing values가 있다는 의미이다. 
 
 + Type of missing values
   + Missing completely at random(MCAR) if M is independent of $X$ : 관측 변수와 무관한 missing values 
@@ -122,13 +128,82 @@ $$
 f_{imp} : \tilde{\mathcal X} \rightarrow \mathcal X
 $$
 
-miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing values를 다른 값을 대치하는 mapping function을 위와 같이 표시한다.
+miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing values를 다른 값을 대치하는 mapping function을 위와 같이 표시한다. 
 
+## Risks of Training with Imputed Data
 
+본격적으로 이론적 분석을 통해 Introduction부분에서 이야기했던 imputed data가 가질 수 있는 세 가지 문제에 대해 주목한다.
 
+### Biased Imputation method
 
+첫번째는 Imputation method가 group attributes에 따라 어떻게 차별적인 성과를 보이는지에 관한 부분이다.
 
+그래서 imputation method에 관한 performance는 다음과 같이 표시할 수 있다.
+$$
+L_s(f_{imp})\triangleq \mathbb{E}\big[\|f_{imp}(\tilde{X})-X\|_2^2 \mid M = 1, S=s\big]
+$$
+위 수식은 group attribute $S$의 특정한 값이 $s$일 때 (ex. Race = 1) 결측값에 imputation을 한 $f_{imp}(\tilde{X})$와 실제 데이터 $X$간의 차이를 L2 norm한 것이다. 
 
+그리고 Dicrimination risk는 다음과 같이 정의할 수 있다.
+$$
+Disc(f_{imp}) \triangleq \left| L_0(f_{imp}) -L_1(f_{imp})\right|
+$$
+위와 같이 수식을 사용하면 Group attribute에 따른 performance를 구할 수 있게 되고, 이 차이를 통해서 얼마나 biased 되어 있는지를 계산할 수 있게 된다. (예를 들면, Race가 1일 때의 imputation method의 성능과 0일 때의 성능을 계산하여 차이를 빼서 계산할 수 있다.)
+
++ Theorem 1
+
+  가정을 최대한 단순화하여 각각의 그룹들은 MCAR(완전 랜덤하게 missing values가 존재)이고 관측변수가 없다고 가정하면 
+  $$
+  f_{imp}^* = \arg\min_{f_{imp}}\mathbb E\big[(f_{imp}(\tilde{X}) - X)^2 \mid M=1\big]
+  $$
+  로 표현할 수 있고, Discrimination risk는 다음과 같이 표현할 수 있고 이를 분해하면 다음과 같은 식을 얻을 수 있다.
+  $$
+  Disc(f_{imp}^*) = \left|L_0(f_{imp}^*) - L_1({f_{imp}^*)}\right|\\= \left|(p_1^{ms}-p_0^{ms})(m_1-m_0)^2 + Var[X\mid S=0] - Var[X|S=1]\right| \\
+  \mbox{where } p_s^{ms} \triangleq Pr(S = S \mid  M=1) \mbox{ and } m_s = \mathbb E[X\mid S=s] \mbox{ for } s \in {0,1}
+  $$
+  그리고 분해된 식으로부터 data imputation이 유발할 수 있는 discrimination 세 가지 얻을 수 있다.
+
+  + 두 그룹간의 missing values의 비율 차이 
+  + 두 그룹간의 평균의 차이 
+  + 두 그룹간의 분산의 차이 
+
+  결국 이 세 가지에 의해 그룹 간에 missing values의 비율 차이, 평균 또는 분산이 크게되면 결국 Discrimination risk는 커지게 되고 imputation에 의해 biased한 모델이 되게 된다.
+
+  결국 imputation method를 고려할 때는, 위와 같은 세 가지 factor들을 적절히 고려하여 조정하는 절차가 필요해질 수 있다. 
+
+### Mismatched Imputation Methods
+
+두번째 이론은 training time에서 적절한 Imputation이 적용되었다고 할지라도 testing time에서 test data에 적용되는 Imputation이  다른 Imputation이 적용되면 결국 discrimination risk가 증가된다는 것이다.
+
+> 여기서 한 가지 testing time에서 똑같은 training time과 동일한 imputation을 적용하면 되는 것 아닌가 하는 생각을 해볼 수 있다. 그런데 논문에서 실제로는 개인 정보 보호 문제로 인해 imputation 방법이 사용자에게 공개되지 않을 때도 있다고 이야기하고 있다.
+
+다음은 training time과 testing time에서 사용되는 Imputation method가 다를 때 발생하는 문제를 수식으로 정리한 내용이다.
+
++ Thorem 2
+
+  먼저 특정 group attribute $s$에 대해 imputation이 적용된 Predictive model $h$의 성능에 관한 수식은 다음과 같이 표현된다.
+  $$
+  L_s(h\circ f_{imp}) \triangleq \mathbb E\big[l(h\circ f_{imp}(\tilde{X}),Y)\mid S =s\big]
+  $$
+  그리고 group attributes s 가 0 또는 1 이면서 MCAR 이라고 가정하면
+  $$
+  \left|L_0(h\circ f_{imp}^{test}) - L_1(h\circ f_{imp}^{test})\right| \leq \left|L_0(h\circ f_{imp}^{train} - L_1(h\circ f_{imp}^{train})\right| + K\sum\limits_s p_sD_{TV}(P_s^{train}\|P_s^{test}
+  $$
+  
+
+  + 앞 쪽의 식은 imputation이 적용된 test data의 discrimination risk
+
+  + 뒤 쪽의 식은 imputation이 적용된 train data의 discrimination risk에 train data와 test data의 total variation distance의 총합에 해당한다. TV는 train data의 확률 분포와 test data의 확률 분포 간의 거리의 총합, 즉 두 분포의 차이의 절대값의 총합에 해당하고, 이 부분에 해당하는 만큼 다른 imputation을 적용했을 때 잠재적인 discrimination risk가 발생하게 된다.
+
+    ![Total_variation_distance.svg](../images/2023-03-07-fairness_without_imputation/Total_variation_distance.svg.png)
+
+### Imputation Without Being Aware of the Downstream Tasks
+
+마지막 Theorem은 어떤 머신러닝 Model을 적용하더라도 잘 작동하는 fairness intervention method가 존재하기 힘들다는 것이다.
+
+(1) 식에서 표현한대로, fairness intervention methods는 다음과 같이 나타낼 수 있다.
+
+$$ 
 
 
 

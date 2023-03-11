@@ -195,15 +195,23 @@ $$
 
   + 뒤 쪽의 식은 imputation이 적용된 train data의 discrimination risk에 train data와 test data의 total variation distance의 총합에 해당한다. TV는 train data의 확률 분포와 test data의 확률 분포 간의 거리의 총합, 즉 두 분포의 차이의 절대값의 총합에 해당하고, 이 부분에 해당하는 만큼 다른 imputation을 적용했을 때 잠재적인 discrimination risk가 발생하게 된다.
 
-    ![Total_variation_distance.svg](../images/2023-03-07-fairness_without_imputation/Total_variation_distance.svg.png)
+    ![Total_variation_distance.svg]({{site.url}}/images/2023-03-07-fairness_without_imputation/Total_variation_distance.svg.png)
 
 ### Imputation Without Being Aware of the Downstream Tasks
 
-마지막 Theorem은 어떤 머신러닝 Model을 적용하더라도 잘 작동하는 fairness intervention method가 존재하기 힘들다는 것이다.
+마지막 Theorem은 어떤 머신러닝 Model을 적용하더라도 잘 Fairness와 Accuracy 측면에서 잘 작동하는 fairness intervention method가 존재하기 힘들다는 것이다.
 
 (1) 식에서 표현한대로, fairness intervention methods는 다음과 같이 나타낼 수 있다.
+$$
+\min_{h\in\mathcal{H}}\mathbb{E}[L(h(X),Y)] \\
+\mbox{subject to} \left| \mathbb{E}[l(h(X),y)\mid S=0] - \mathbb{E}[l(h(X),Y\mid S = 1] \right| \leq \epsilon
+$$
+그러나 Imputed data에 대한 fairness inetervention methods는 다음과 같다.
+$$
+\min_{h\in\mathcal{H}}\mathbb{E}[L(h\circ f_{imp}(\tilde{X}),Y)] \\
+\mbox{subject to} \left| \mathbb{E}[l(h\circ f_{imp}(\tilde{X})\mid S=0] - \mathbb{E}[l(h\circ f_{imp}(\tilde{X}),Y\mid S = 1] \right| \leq \epsilon
+$$
 
-$$ 
 
 
 

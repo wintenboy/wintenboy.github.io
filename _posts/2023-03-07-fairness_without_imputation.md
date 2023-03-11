@@ -48,7 +48,7 @@ Introduction이니 이 방법에 대해 큰 틀에 대해서 잠깐만 언급하
 + Missing values를 다루기 위한 MIA( missing incorporated as attribute) 방법
 + fairness를 규제하기 위한 목적 함수를 최적화하는 방법인 MIP(mixed integer programming)
 
-이 두 가지를 결합한 decision tree 모델이다. (구체적인 부분은 본문 내용에서 언급). 이 두 가지 방식을 결합하기에 fairness와 accuracy를 동시에 최적화하여 이 두가지 지표의 trade-off 측면에서 좋은 성능을 보여주게 된다. ( 본문에서 살펴보도록 한다.)
+이 두 가지를 결합한 decision tree 모델이다. (구체적인 부분은 본문 내용에서 언급). 이 두 가지 방식을 결합하기에 fairness(fairness에 관련한 지표는 FPR / FNR / accuracy difference equalized odss를 사용)와 accuracy를 동시에 최적화하여 이 두가지 지표의 trade-off 측면에서 좋은 성능을 보여주게 된다. ( 본문에서 살펴보도록 한다.)
 
 ## Related Works
 
@@ -73,6 +73,62 @@ missing values를 다루는 방식에 대한 논문이다 보니 related works�
   (그림필요)
 
 + missing incorporated as attribute (MIA) : 특정 Threshold에 대해 3가지 경우의 Loss를 고려해서 missing values가 특정한 노드로 보내지도록 한다. (논문에 사용되는 기술이므로 구체적인 내용은 뒤에서 설명)
+
+## Framework
+
++ Supervised learning and disparate impact
+
+$$
+\min_{h\in\mathcal{H}}{1\over n}\sum\limits_{i=1}^n l(h(\bold x_i),y_i)
+$$
+
+$$
+Disc(h)\triangleq\mid L_0(h) - L_1(h)\mid
+$$
+
+(1) 은 특정 모델 h에 대한 predicted output과 true output간의 loss를 계산한 부분이다. loss 에 해당하는 부분은 task에 따라 조금 씩 달라질 수 있다.(ex mean squred error )
+
+(2)에 해당하는 식은 모델이 얼마 해당 모델이 group s에 따른 결과가 얼마나 차별적인 결과를 나타내는지를 보여주는 Discrimination risk이다. ((3)의 수식을 참고) 
+$$
+L_s(h) \triangleq \mathbb E[l(h(X),Y)\mid S=s]
+$$
+
+
+Disc(h)에 대해서 조금 더 직관적으로 설명해보면, 모델의 Loss가 성별이 0(남자)일 때와 성별이 1(여자)일 때의 차이가 크다면 discrimination risk는 커지게 되는 것이다. 
+
++ Data missingness
+
+$$
+\tilde{X} = (X_{obs}, \tilde{X}_{ms}) \in \tilde{\mathcal X} \\
+\tilde{X}_{ms} =
+\begin{cases}
+X_{ms}&\mbox{if }M = 0\\
+* & otherwise.
+\end{cases}
+$$
+
+실제 데이터의 구성에 관해 notation은 위와 같다. 결측치가 없는 관측 변수 $X_{obs}$와 missing values가 포함된 $\tilde{x}_{ms}$ 변수로 이루어져 있다. missing values가 포함된 변수에서 missing values가 있는지 없는지 판단하기 위해 binary variables가 도입된다. binary variables $M=0$라면 missing values가 있는 것이고, 반대로 M = 1이라면 missing values가 없다는 의미이다. 
+
++ Type of missing values
+  + Missing completely at random(MCAR) if M is independent of $X$ : 관측 변수와 무관한 missing values 
+  + Missing completely at random (MAR) if M depends only on the obsereved variables $X_{obs}$ : 관측 변수들과 관련이 있는 missing values
+  + Missing not at random (MNAR) if neither MCAR nor MAR holds : 관측 변수와 관련이 없는 변수(모르는 변수)와 관련이 있는 missing values
+
+real-world에서는 대부분의 missing values가 MNAR를 따르고 있지만 이론적인 연구를 위해 위와 같은 세 가지 type으로 missing values이 가질 수 있는 data distribution 구분하고 있다.
+
++ Data Imputation
+
+$$
+f_{imp} : \tilde{\mathcal X} \rightarrow \mathcal X
+$$
+
+miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing values를 다른 값을 대치하는 mapping function을 위와 같이 표시한다.
+
+
+
+
+
+
 
 
 

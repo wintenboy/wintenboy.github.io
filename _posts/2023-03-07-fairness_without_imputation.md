@@ -4,6 +4,7 @@ title:  "[논문 리뷰] Fairness without Imputation: A Decision Tree Approach f
 categories: machine learning
 tag: [imputation, machine learning, missing values]
 toc: true
+use_math: true
 
 ---
 

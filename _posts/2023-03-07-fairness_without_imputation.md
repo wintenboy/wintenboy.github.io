@@ -5,6 +5,7 @@ categories: machine learning
 tag: [imputation, machine learning, missing values]
 toc: true
 use_math: true
+typora-root-url: ../
 
 ---
 
@@ -77,12 +78,13 @@ missing values를 다루는 방식에 대한 논문이다 보니 related works�
 
 ## Framework
 
-+ Supervised learning and disparate impact
++ Supervised learning and disparate impact![image-20230312130413832](./images/2023-03-07-fairness_without_imputation/image-20230312130413832.png)
 
 $$
 \min_{h\in\mathcal{H}}{1\over n}\sum\limits_{i=1}^n l(h(\bold x_i),y_i)
 $$
 
+![image-20230312130441554](./images/2023-03-07-fairness_without_imputation/image-20230312130441554.png)
 $$
 Disc(h)\triangleq\left | L_0(h) - L_1(h)\right |
 $$
@@ -90,11 +92,15 @@ $$
 (1) 은 특정 모델 h에 대한 predicted output과 true output간의 loss를 계산한 부분이다. loss 에 해당하는 부분은 task에 따라 조금 씩 달라질 수 있다.(ex mean squred error )
 
 (2)에 해당하는 식은 모델이 얼마 해당 모델이 group s에 따른 결과가 얼마나 차별적인 결과를 나타내는지를 보여주는 Discrimination risk이다. ((3)의 수식을 참고) 
+
+![image-20230312130357221](./images/2023-03-07-fairness_without_imputation/image-20230312130357221.png)
 $$
 L_s(h) \triangleq \mathbb E[l(h(X),Y)\mid S=s]
 $$
 
 Disc(h)에 대해서 조금 더 직관적으로 설명해보면, 모델의 Loss가 성별이 0(여자)일 때와 성별이 1(남자)일 때의 차이가 크다면 discrimination risk는 커지게 되는 것이다. (1)과 (2)를 조합하여 다음과 같은 식을 만들게 되면, 모델의 biased를 고려한 일반적인 fairness intervention method가 된다.
+
+![image-20230312130349640](./images/2023-03-07-fairness_without_imputation/image-20230312130349640.png)
 $$
 \min_{h\in\mathcal{H}}{1\over n}\sum\limits_{i=1}^n l(h(\bold x_i),y_i)\\
 \mbox{subject to} \left | L_0(h) - L_1(h)\right | \leq \epsilon
@@ -105,6 +111,8 @@ $$
 
 + Data missingness
 
+  ![image-20230312130341243](./images/2023-03-07-fairness_without_imputation/image-20230312130341243.png)
+
 $$
 \tilde{X} = (X_{obs}, \tilde{X}_{ms}) \in \tilde{\mathcal X} \\
 \tilde{X}_{ms} =
@@ -114,7 +122,7 @@ X_{ms}&\mbox{if }M = 0\\
 \end{cases}
 $$
 
-실제 데이터의 구성에 관해 notation은 위와 같다. 결측치가 없는 관측 변수 $X_{obs}$와 missing values가 포함된 $\tilde{x}_{ms}$ 변수로 이루어져 있다. missing values가 포함된 변수에서 missing values가 있는지 없는지 판단하기 위해 binary variables가 도입된다. binary variables $M=0$라면 missing values가 없는 것이고, 반대로 M = 1이라면 missing values가 있다는 의미이다. 
+실제 데이터의 구성에 관해 notation은 위와 같다. 결측치가 없는 관측 변수 $X_{obs}$와 missing values가 포함된 $\tilde{X}_{ms}$ 변수로 이루어져 있다. missing values가 포함된 변수에서 missing values가 있는지 없는지 판단하기 위해 binary variables가 도입된다. binary variables $M=0$라면 missing values가 없는 것이고, 반대로 M = 1이라면 missing values가 있다는 의미이다. 
 
 + Type of missing values
   + Missing completely at random(MCAR) if M is independent of $X$ : 관측 변수와 무관한 missing values 
@@ -124,6 +132,8 @@ $$
 real-world에서는 대부분의 missing values가 MNAR를 따르고 있지만 이론적인 연구를 위해 위와 같은 세 가지 type으로 missing values이 가질 수 있는 data distribution 구분하고 있다.
 
 + Data Imputation
+
+  ![image-20230312130331830](./images/2023-03-07-fairness_without_imputation/image-20230312130331830.png)
 
 $$
 f_{imp} : \tilde{\mathcal X} \rightarrow \mathcal X
@@ -140,12 +150,16 @@ miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing val
 첫번째는 Imputation method가 group attributes에 따라 어떻게 차별적인 성과를 보이는지에 관한 부분이다.
 
 그래서 imputation method에 관한 performance는 다음과 같이 표시할 수 있다.
+
+![image-20230312130320668](./images/2023-03-07-fairness_without_imputation/image-20230312130320668.png)
 $$
 L_s(f_{imp})\triangleq \mathbb{E}\big[\|f_{imp}(\tilde{X})-X\|_2^2 \mid M = 1, S=s\big]
 $$
 위 수식은 group attribute $S$의 특정한 값이 $s$일 때 (ex. Race = 1) 결측값에 imputation을 한 $f_{imp}(\tilde{X})$와 실제 데이터 $X$간의 차이를 L2 norm한 것이다. 
 
 그리고 Dicrimination risk는 다음과 같이 정의할 수 있다.
+
+![image-20230312130314328](./images/2023-03-07-fairness_without_imputation/image-20230312130314328.png)
 $$
 Disc(f_{imp}) \triangleq \left| L_0(f_{imp}) -L_1(f_{imp})\right|
 $$
@@ -154,10 +168,14 @@ $$
 + Theorem 1
 
   가정을 최대한 단순화하여 각각의 그룹들은 MCAR(완전 랜덤하게 missing values가 존재)이고 관측변수가 없다고 가정하면 
+
+  ![image-20230312130305569](./images/2023-03-07-fairness_without_imputation/image-20230312130305569.png)
   $$
   f_{imp}^* = \arg\min_{f_{imp}}\mathbb E\big[(f_{imp}(\tilde{X}) - X)^2 \mid M=1\big]
   $$
   로 표현할 수 있고, Discrimination risk는 다음과 같이 표현할 수 있고 이를 분해하면 다음과 같은 식을 얻을 수 있다.
+
+  ![image-20230312130258813](./images/2023-03-07-fairness_without_imputation/image-20230312130258813.png)
   $$
   Disc(f_{imp}^*) = \left|L_0(f_{imp}^*) - L_1({f_{imp}^*)}\right|\\= \left|(p_1^{ms}-p_0^{ms})(m_1-m_0)^2 + Var[X\mid S=0] - Var[X|S=1]\right| \\
   \mbox{where } p_s^{ms} \triangleq Pr(S = S \mid  M=1) \mbox{ and } m_s = \mathbb E[X\mid S=s] \mbox{ for } s \in {0,1}
@@ -183,12 +201,16 @@ $$
 + Thorem 2
 
   먼저 특정 group attribute $s$에 대해 imputation이 적용된 Predictive model $h$의 성능에 관한 수식은 다음과 같이 표현된다.
+
+  ![image-20230312130242691](./images/2023-03-07-fairness_without_imputation/image-20230312130242691.png)
   $$
   L_s(h\circ f_{imp}) \triangleq \mathbb E\big[l(h\circ f_{imp}(\tilde{X}),Y)\mid S =s\big]
   $$
   그리고 group attributes s 가 0 또는 1 이면서 MCAR 이라고 가정하면
+
+  ![image-20230312130232752](./images/2023-03-07-fairness_without_imputation/image-20230312130232752.png)
   $$
-  \left|L_0(h\circ f_{imp}^{test}) - L_1(h\circ f_{imp}^{test})\right| \leq \left|L_0(h\circ f_{imp}^{train} - L_1(h\circ f_{imp}^{train})\right| + K\sum\limits_s p_sD_{TV}(P_s^{train}\|P_s^{test}
+  \left|L_0(h\circ f_{imp}^{test}) - L_1(h\circ f_{imp}^{test})\right| \leq \left|L_0(h\circ f_{imp}^{train} - L_1(h\circ f_{imp}^{train})\right|\\ + K\sum\limits_s p_sD_{TV}(P_s^{train}\|P_s^{test})
   $$
   
 
@@ -196,18 +218,22 @@ $$
 
   + 뒤 쪽의 식은 imputation이 적용된 train data의 discrimination risk에 train data와 test data의 total variation distance의 총합에 해당한다. TV는 train data의 확률 분포와 test data의 확률 분포 간의 거리의 총합, 즉 두 분포의 차이의 절대값의 총합에 해당하고, 이 부분에 해당하는 만큼 다른 imputation을 적용했을 때 잠재적인 discrimination risk가 발생하게 된다.
 
-    ![Total_variation_distance.svg]({{site.url}}/images/2023-03-07-fairness_without_imputation/Total_variation_distance.svg.png)
+    ![Total_variation_distance.svg](/images/2023-03-07-fairness_without_imputation/Total_variation_distance.svg-8593167.png)
 
 ### Imputation Without Being Aware of the Downstream Tasks
 
 마지막 Theorem은 어떤 머신러닝 Model을 적용하더라도 잘 Fairness와 Accuracy 측면에서 잘 작동하는 fairness intervention method가 존재하기 힘들다는 것이다.
 
 (1) 식에서 표현한대로, fairness intervention methods는 다음과 같이 나타낼 수 있다.
+
+![image-20230312130006413](./images/2023-03-07-fairness_without_imputation/image-20230312130006413.png)
 $$
 \min_{h\in\mathcal{H}}\mathbb{E}[L(h(X),Y)] \\
 \mbox{subject to} \left| \mathbb{E}[l(h(X),y)\mid S=0] - \mathbb{E}[l(h(X),Y\mid S = 1] \right| \leq \epsilon
 $$
 그러나 Imputed data에 대한 fairness inetervention methods는 다음과 같다.
+
+![image-20230312130036112](./images/2023-03-07-fairness_without_imputation/image-20230312130036112.png)
 $$
 \min_{h\in\mathcal{H}}\mathbb{E}[L(h\circ f_{imp}(\tilde{X}),Y)] \\
 \mbox{subject to} \left| \mathbb{E}[l(h\circ f_{imp}(\tilde{X})\mid S=0] - \mathbb{E}[l(h\circ f_{imp}(\tilde{X}),Y\mid S = 1] \right| \leq \epsilon

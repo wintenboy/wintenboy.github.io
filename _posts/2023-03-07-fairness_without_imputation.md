@@ -332,7 +332,7 @@ $z_i$는 데이터 포인트가 도달할 leaf node를 나타내고 $z_{i,l}=1$�
 + Setup 
 
   + Hyperparmeters 
-    + tree depth : 3
+    + tree depths : 3
     + ![스크린샷 2023-03-12 오후 8.18.30](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 8.18.30.png)
 
   + Comparison model

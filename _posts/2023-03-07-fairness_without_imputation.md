@@ -255,6 +255,8 @@ $$
 MIA란 결측값을 의사결정나무에서 특정한 방식인데, 다음과 같은 세 가지 경우를 고려해서 오류가 최소가 되는 방향으로 결측값을 노드로 향하게 한다.
 
 <img src="/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 8.55.36.png" alt="스크린샷 2023-03-12 오후 8.55.36" style="zoom:150%;" />
+
+![image-20230313020407259](/images/2023-03-07-fairness_without_imputation/image-20230313020407259.png)
 $$
 \{X_j \leq q \mbox{ or } X_j= *\} \mbox{ vs } \{X_j > q\}, \\
 \{X_j \leq q\} \mbox{ vs } \{X_j > q \mbox{ or } X_j = *\}, \\
@@ -263,6 +265,8 @@ let, q = -\infty, \\
 $$
 
 + **Mixed integer programming (MIP)**
+
+  ![image-20230313020423085](/images/2023-03-07-fairness_without_imputation/image-20230313020423085.png)
 
 $$
 \mathcal{T} : \mbox{Decision Tree}\\
@@ -273,6 +277,7 @@ D : \mbox{Fixed depth} \\
 \mathcal{l} : \mbox{leaf node}
 $$
 
+![image-20230313020455560](/images/2023-03-07-fairness_without_imputation/image-20230313020455560.png)
 $$
 \mathcal{T} \triangleq (P,q,c,u) \\
 P : \mbox{missing values가 포함된 variables를 One-hot encoding한 행렬} \\
@@ -280,16 +285,21 @@ q : \mbox{splitting threshold} \\
 c : \mbox{missing values가 보내지는 branch node에 대한 이진 값 }( c_{\mathcal{v}} = 1 \mbox{이면 왼쪽 0 이면 오른쪽}) \\
 u : \mbox{leaf nodes에서의 예측 벡터}
 $$
-
 기본적으로 missing values가 있는 data에 대한 Decison tree는 위와 같이 표현할 수 있고, 
+
+![image-20230313020513791](/images/2023-03-07-fairness_without_imputation/image-20230313020513791.png)
 $$
 (\bold{x_i},y_i) \in \mathcal{D}
 $$
 에 대한 예측 모델을 표현하기 위해 $w_i$ 와 $z_i$ 변수를 추가한다. 
+
+![image-20230313020532448](/images/2023-03-07-fairness_without_imputation/image-20230313020532448.png)
 $$
 w_i \in \{0,1\}^{\left|\mathcal{V}\right|}
 $$
 $w_i$는 데이터 포인트가 각 branch node에서 어떤 방향으로 움직일지를 나타내는 값으로 1일 경우, 왼쪽 branch 로 이동하게 된다. (반대는 0으로 이동)
+
+![image-20230313020543207](/images/2023-03-07-fairness_without_imputation/image-20230313020543207.png)
 $$
 z_i \in \{0,1\}^\left|\mathcal{L}\right|
 $$

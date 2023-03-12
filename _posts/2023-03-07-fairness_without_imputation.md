@@ -1,8 +1,8 @@
 ---
 layout: single
 title:  "[논문 리뷰] Fairness without Imputation: A Decision Tree Approach for Fair Prediction with Missing Values"
-categories: machine learning
-tag: [imputation, machine learning, missing values]
+categories: ML
+tag: [imputation, ML]
 toc: true
 use_math: true
 typora-root-url: ../
@@ -78,13 +78,13 @@ missing values를 다루는 방식에 대한 논문이다 보니 related works�
 
 ## Framework
 
-+ Supervised learning and disparate impact![image-20230312130413832](./images/2023-03-07-fairness_without_imputation/image-20230312130413832.png)
++ Supervised learning and disparate impact![image-20230312130413832](/images/2023-03-07-fairness_without_imputation/image-20230312130413832.png)
 
 $$
 \min_{h\in\mathcal{H}}{1\over n}\sum\limits_{i=1}^n l(h(\bold x_i),y_i)
 $$
 
-![image-20230312130441554](./images/2023-03-07-fairness_without_imputation/image-20230312130441554.png)
+![image-20230312130441554](/images/2023-03-07-fairness_without_imputation/image-20230312130441554.png)
 $$
 Disc(h)\triangleq\left | L_0(h) - L_1(h)\right |
 $$
@@ -93,14 +93,14 @@ $$
 
 (2)에 해당하는 식은 모델이 얼마 해당 모델이 group s에 따른 결과가 얼마나 차별적인 결과를 나타내는지를 보여주는 Discrimination risk이다. ((3)의 수식을 참고) 
 
-![image-20230312130357221](./images/2023-03-07-fairness_without_imputation/image-20230312130357221.png)
+![image-20230312130357221](/images/2023-03-07-fairness_without_imputation/image-20230312130357221.png)
 $$
 L_s(h) \triangleq \mathbb E[l(h(X),Y)\mid S=s]
 $$
 
 Disc(h)에 대해서 조금 더 직관적으로 설명해보면, 모델의 Loss가 성별이 0(여자)일 때와 성별이 1(남자)일 때의 차이가 크다면 discrimination risk는 커지게 되는 것이다. (1)과 (2)를 조합하여 다음과 같은 식을 만들게 되면, 모델의 biased를 고려한 일반적인 fairness intervention method가 된다.
 
-![image-20230312130349640](./images/2023-03-07-fairness_without_imputation/image-20230312130349640.png)
+![image-20230312130349640](/images/2023-03-07-fairness_without_imputation/image-20230312130349640.png)
 $$
 \min_{h\in\mathcal{H}}{1\over n}\sum\limits_{i=1}^n l(h(\bold x_i),y_i)\\
 \mbox{subject to} \left | L_0(h) - L_1(h)\right | \leq \epsilon
@@ -111,7 +111,7 @@ $$
 
 + Data missingness
 
-  ![image-20230312130341243](./images/2023-03-07-fairness_without_imputation/image-20230312130341243.png)
+  ![image-20230312130341243](/images/2023-03-07-fairness_without_imputation/image-20230312130341243.png)
 
 $$
 \tilde{X} = (X_{obs}, \tilde{X}_{ms}) \in \tilde{\mathcal X} \\
@@ -133,7 +133,7 @@ real-world에서는 대부분의 missing values가 MNAR를 따르고 있지만 �
 
 + Data Imputation
 
-  ![image-20230312130331830](./images/2023-03-07-fairness_without_imputation/image-20230312130331830.png)
+  ![image-20230312130331830](/images/2023-03-07-fairness_without_imputation/image-20230312130331830.png)
 
 $$
 f_{imp} : \tilde{\mathcal X} \rightarrow \mathcal X
@@ -151,7 +151,7 @@ miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing val
 
 그래서 imputation method에 관한 performance는 다음과 같이 표시할 수 있다.
 
-![image-20230312130320668](./images/2023-03-07-fairness_without_imputation/image-20230312130320668.png)
+![image-20230312130320668](/images/2023-03-07-fairness_without_imputation/image-20230312130320668.png)
 $$
 L_s(f_{imp})\triangleq \mathbb{E}\big[\|f_{imp}(\tilde{X})-X\|_2^2 \mid M = 1, S=s\big]
 $$
@@ -159,7 +159,7 @@ $$
 
 그리고 Dicrimination risk는 다음과 같이 정의할 수 있다.
 
-![image-20230312130314328](./images/2023-03-07-fairness_without_imputation/image-20230312130314328.png)
+![image-20230312130314328](/images/2023-03-07-fairness_without_imputation/image-20230312130314328.png)
 $$
 Disc(f_{imp}) \triangleq \left| L_0(f_{imp}) -L_1(f_{imp})\right|
 $$
@@ -169,13 +169,13 @@ $$
 
   가정을 최대한 단순화하여 각각의 그룹들은 MCAR(완전 랜덤하게 missing values가 존재)이고 관측변수가 없다고 가정하면 
 
-  ![image-20230312130305569](./images/2023-03-07-fairness_without_imputation/image-20230312130305569.png)
+  ![image-20230312130305569](/images/2023-03-07-fairness_without_imputation/image-20230312130305569.png)
   $$
   f_{imp}^* = \arg\min_{f_{imp}}\mathbb E\big[(f_{imp}(\tilde{X}) - X)^2 \mid M=1\big]
   $$
   로 표현할 수 있고, Discrimination risk는 다음과 같이 표현할 수 있고 이를 분해하면 다음과 같은 식을 얻을 수 있다.
 
-  ![image-20230312130258813](./images/2023-03-07-fairness_without_imputation/image-20230312130258813.png)
+  ![image-20230312130258813](/images/2023-03-07-fairness_without_imputation/image-20230312130258813.png)
   $$
   Disc(f_{imp}^*) = \left|L_0(f_{imp}^*) - L_1({f_{imp}^*)}\right|\\= \left|(p_1^{ms}-p_0^{ms})(m_1-m_0)^2 + Var[X\mid S=0] - Var[X|S=1]\right| \\
   \mbox{where } p_s^{ms} \triangleq Pr(S = S \mid  M=1) \mbox{ and } m_s = \mathbb E[X\mid S=s] \mbox{ for } s \in {0,1}
@@ -202,13 +202,13 @@ $$
 
   먼저 특정 group attribute $s$에 대해 imputation이 적용된 Predictive model $h$의 성능에 관한 수식은 다음과 같이 표현된다.
 
-  ![image-20230312130242691](./images/2023-03-07-fairness_without_imputation/image-20230312130242691.png)
+  ![image-20230312130242691](/images/2023-03-07-fairness_without_imputation/image-20230312130242691.png)
   $$
   L_s(h\circ f_{imp}) \triangleq \mathbb E\big[l(h\circ f_{imp}(\tilde{X}),Y)\mid S =s\big]
   $$
   그리고 group attributes s 가 0 또는 1 이면서 MCAR 이라고 가정하면
 
-  ![image-20230312130232752](./images/2023-03-07-fairness_without_imputation/image-20230312130232752.png)
+  ![image-20230312130232752](/images/2023-03-07-fairness_without_imputation/image-20230312130232752.png)
   $$
   \left|L_0(h\circ f_{imp}^{test}) - L_1(h\circ f_{imp}^{test})\right| \leq \left|L_0(h\circ f_{imp}^{train} - L_1(h\circ f_{imp}^{train})\right|\\ + K\sum\limits_s p_sD_{TV}(P_s^{train}\|P_s^{test})
   $$
@@ -218,27 +218,148 @@ $$
 
   + 뒤 쪽의 식은 imputation이 적용된 train data의 discrimination risk에 train data와 test data의 total variation distance의 총합에 해당한다. TV는 train data의 확률 분포와 test data의 확률 분포 간의 거리의 총합, 즉 두 분포의 차이의 절대값의 총합에 해당하고, 이 부분에 해당하는 만큼 다른 imputation을 적용했을 때 잠재적인 discrimination risk가 발생하게 된다.
 
+  + Total Variation distance 예시 이미지
+  
     ![Total_variation_distance.svg](/images/2023-03-07-fairness_without_imputation/Total_variation_distance.svg-8593167.png)
 
 ### Imputation Without Being Aware of the Downstream Tasks
 
-마지막 Theorem은 어떤 머신러닝 Model을 적용하더라도 잘 Fairness와 Accuracy 측면에서 잘 작동하는 fairness intervention method가 존재하기 힘들다는 것이다.
+마지막 Theorem은 어떤 머신러닝 Model을 적용하더라도 missing values가 존재하게 되면,  Fairness와 Accuracy 측면에서 잘 작동하는 fairness intervention method가 존재하기 힘들다는 것이다.
 
 (1) 식에서 표현한대로, fairness intervention methods는 다음과 같이 나타낼 수 있다.
 
-![image-20230312130006413](./images/2023-03-07-fairness_without_imputation/image-20230312130006413.png)
+![image-20230312130006413](/images/2023-03-07-fairness_without_imputation/image-20230312130006413.png)
 $$
 \min_{h\in\mathcal{H}}\mathbb{E}[L(h(X),Y)] \\
 \mbox{subject to} \left| \mathbb{E}[l(h(X),y)\mid S=0] - \mathbb{E}[l(h(X),Y\mid S = 1] \right| \leq \epsilon
 $$
 그러나 Imputed data에 대한 fairness inetervention methods는 다음과 같다.
 
-![image-20230312130036112](./images/2023-03-07-fairness_without_imputation/image-20230312130036112.png)
+![image-20230312130036112](/images/2023-03-07-fairness_without_imputation/image-20230312130036112.png)
 $$
 \min_{h\in\mathcal{H}}\mathbb{E}[L(h\circ f_{imp}(\tilde{X}),Y)] \\
 \mbox{subject to} \left| \mathbb{E}[l(h\circ f_{imp}(\tilde{X})\mid S=0] - \mathbb{E}[l(h\circ f_{imp}(\tilde{X}),Y\mid S = 1] \right| \leq \epsilon
 $$
+(13)의 식을 따르는 predictive models $\mathcalc{H}$는 존재할 수 있다. 그러나 missing values가 존재하는 상황에서 데이터 셋과 missing values의 특징에 따라 imputation을 다르게 적용해야 한다. 더불어, 예측 모델 자체가 Imputation 방법에 의존적인 상황에서, 이 들을 모두 만족하는 predictive models $\mathcalc{H}$가 존재하기 힘들다는 것이다. 결국 (14) 식처럼 식의 조건을 만족시키기란 쉽지 않다는 이야기이다.
+
+## Fair Decision Tree with Missing Values
+
+앞서 이론적으로 imputation method 자체의 한계를 살펴보았다. 논문에서는 그래서 imputation process를 거치지 않기 위해 <u>missing incorpoarted in attribute</u> 와 <u>mixed integer programming</u>을 결합한 decision tree 기반의 모델을 제시한다.
+
+### Fair MIP Forest Algorithm
+
+앞서 설명한 두 가지 방법의 background는 다음과 같다.
+
++ **Missing Incorporated in Attribute (MIA)** 
+
+MIA란 결측값을 의사결정나무에서 특정한 방식인데, 다음과 같은 세 가지 경우를 고려해서 오류가 최소가 되는 방향으로 결측값을 노드로 향하게 한다.
+
+<img src="/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 8.55.36.png" alt="스크린샷 2023-03-12 오후 8.55.36" style="zoom:150%;" />
+$$
+\{X_j \leq q \mbox{ or } X_j= *\} \mbox{ vs } \{X_j > q\}, \\
+\{X_j \leq q\} \mbox{ vs } \{X_j > q \mbox{ or } X_j = *\}, \\
+let, q = -\infty, \\
+\{X_j = *\} = \{X_j \neq *\}
+$$
+
++ **Mixed integer programming (MIP)**
+
+$$
+\mathcal{T} : \mbox{Decision Tree}\\
+D : \mbox{Fixed depth} \\
+\mathcal{V} : \mbox{branch nodes} \\
+\mathcal{L} : \mbox{leaf nodes} \\
+\mathcal{v} : \mbox{branch node} \\
+\mathcal{l} : \mbox{leaf node}
+$$
+
+$$
+\mathcal{T} \triangleq (P,q,c,u) \\
+P : \mbox{missing values가 포함된 variables를 One-hot encoding한 행렬} \\
+q : \mbox{splitting threshold} \\
+c : \mbox{missing values가 보내지는 branch node에 대한 이진 값 }( c_{\mathcal{v}} = 1 \mbox{이면 왼쪽 0 이면 오른쪽}) \\
+u : \mbox{leaf nodes에서의 예측 벡터}
+$$
+
+기본적으로 missing values가 있는 data에 대한 Decison tree는 위와 같이 표현할 수 있고, 
+$$
+(\bold{x_i},y_i) \in \mathcal{D}
+$$
+에 대한 예측 모델을 표현하기 위해 $w_i$ 와 $z_i$ 변수를 추가한다. 
+$$
+w_i \in \{0,1\}^{\left|\mathcal{V}\right|}
+$$
+$w_i$는 데이터 포인트가 각 branch node에서 어떤 방향으로 움직일지를 나타내는 값으로 1일 경우, 왼쪽 branch 로 이동하게 된다. (반대는 0으로 이동)
+$$
+z_i \in \{0,1\}^\left|\mathcal{L}\right|
+$$
+$z_i$는 데이터 포인트가 도달할 leaf node를 나타내고 $z_{i,l}=1$일 경우 데이터 포인가 leaf node $l$에 도달하게 되고, 이 때의 예측값은 $u_l$이 된다.
+
+![스크린샷 2023-03-13 오전 1.00.42](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-13 오전 1.00.42.png)
+
+<img src="./images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-13 오전 1.01.53.png" alt="스크린샷 2023-03-13 오전 1.01.53" style="zoom:67%;" />
+
+식을 간략하게 요약하면,  mixed integer programming (혼합정수계획법)을 사용하여 decision tree를 학습시키는데, user loss function에 Fairness regularizer( Statistical parity, Equalized oods, Accuracy parity )를 더한 loss function을 최적화 시키게 된다. 여기서 decision tree의 노드 분리 시 사용했던  binary variables를 integer variable라고 보고, threshold $q$의 경우 continous variables로 보기 때문에 mixed integer programming이 된다. MIP는 보다시피 많은 notation을 포함하고 있기 때문에 computational cost가 굉장히 높다.
+
++ **Fair MIP Forest**
+
+그러나 우리가 학습시키는 ensemble method는 각각의 tree에 대한 optimum을 찾을 필요없이 훈련된 tree에 대한 결과를 합침으로써 좋은 결과를 얻을 수 있다.
+
+## Experimental Results
+
++ Dataset 
+  + COMPAS, Adult, high school longitudinal study(HSLS)
+  + COMPAS, Adult dataset의 경우 원래 missing values가 없기 때문에 다음과 같은 비율로 missing values를 생성함.
+  + ![스크린샷 2023-03-12 오후 7.20.16](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 7.20.16.png)
+  + Adult dataset는 성별(0 : 여성, 1 : 남성) 을 sensitive attribute로 사용함
+  + COMPAS dataset는 인종(0 : 흑인, 1 : 백인) 을 sensitive attribute로 사용함.
+  + HSLS dataset은 어떤 특정 group attribute에 따라 missing values가 있는 것이 아닌, 불규칙적으로 missing values의 pattern들을 가짐.
+  + 다음은 HSLS의 data description이다.
+  + ![스크린샷 2023-03-12 오후 8.08.18](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 8.08.18.png)
 
 
 
++ Setup 
+
+  + Hyperparmeters 
+    + tree depth : 3
+    + ![스크린샷 2023-03-12 오후 8.18.30](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 8.18.30.png)
+
+  + Comparison model
+
+    + mean imputation method based forest
+    + knn imputation method based forest
+
+    논문에서는 아래의 Fairness ML을 비교 모델로 삼고 있는데, 첫번째 저자의 이름을 따서 부름.
+
+    + exponentiated gradient algorithm(Agarwal) 
+    + disparate mistreatment algorithm(Zafar)
+    + equalized odss algorithm(Hardt)
+
++ Fairness regularization
+
+  + COMPAS, HSLS dataset는 FPR의 차이가 거의 없어서 FNR의 차이를 규제함.
+  + 반대로 Adult dataset에서는 FNR 차이가 무시해도 될 정도여서 FPR의 차이만을 규제함.
+
++ Discussion
+
+![스크린샷 2023-03-12 오후 9.38.25](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 9.38.25.png)
+
+COMPAS dataset의 경우 기존의 fairness ML에 imputation method를 적용했을 때보다, Accuracy-FNR Difference 측면에서 FairMIPForest가 가장 좋은 결과를 보임.
+
+![스크린샷 2023-03-12 오후 9.46.48](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 9.46.48.png)
+
+
+
+![스크린샷 2023-03-12 오후 10.56.27](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 10.56.27.png)
+
+일반적으로 Accuracy와FNR Difference 측면에서 FairMIPForest가 좋은 성과를 보였고, 다른 Fairness ML의 경우 dataset과 imputation method에 따라 일관되지 못한 성과를 보이고 있다.
+
+## Future Work
+
++ Desining fair imputation methods
++ Decision tree 기반의 모델 외에 imputation 방법을 사용하지 않는 other ML models
++ Other fairness metrics
+
+등 과 관련한 연구들이 더 필요할 것으로 생각된다.
 

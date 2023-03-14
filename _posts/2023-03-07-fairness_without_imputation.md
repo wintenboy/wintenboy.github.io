@@ -344,7 +344,7 @@ $z_i$는 데이터 포인트가 도달할 leaf node를 나타내고 $z_{i,l}=1$�
 
     + exponentiated gradient algorithm(Agarwal) 
     + disparate mistreatment algorithm(Zafar)
-    + equalized odss algorithm(Hardt)
+    + equalized oods algorithm(Hardt)
 
 + Fairness regularization
 

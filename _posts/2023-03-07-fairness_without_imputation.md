@@ -80,23 +80,15 @@ missing values를 다루는 방식에 대한 논문이다 보니 related works�
 
 + Supervised learning and disparate impact![image-20230312130413832](/images/2023-03-07-fairness_without_imputation/image-20230312130413832.png)
 
-$$
-\min_{h\in\mathcal{H}}{1\over n}\sum\limits_{i=1}^n l(h(\bold x_i),y_i)
-$$
+
 
 ![image-20230312130441554](/images/2023-03-07-fairness_without_imputation/image-20230312130441554.png)
-$$
-Disc(h)\triangleq\left | L_0(h) - L_1(h)\right |
-$$
 
 (1) 은 특정 모델 h에 대한 predicted output과 true output간의 loss를 계산한 부분이다. loss 에 해당하는 부분은 task에 따라 조금 씩 달라질 수 있다.(ex mean squred error )
 
 (2)에 해당하는 식은 모델이 얼마 해당 모델이 group s에 따른 결과가 얼마나 차별적인 결과를 나타내는지를 보여주는 Discrimination risk이다. ((3)의 수식을 참고) 
 
 ![image-20230312130357221](/images/2023-03-07-fairness_without_imputation/image-20230312130357221.png)
-$$
-L_s(h) \triangleq \mathbb E[l(h(X),Y)\mid S=s]
-$$
 
 Disc(h)에 대해서 조금 더 직관적으로 설명해보면, 모델의 Loss가 성별이 0(여자)일 때와 성별이 1(남자)일 때의 차이가 크다면 discrimination risk는 커지게 되는 것이다. (1)과 (2)를 조합하여 다음과 같은 식을 만들게 되면, 모델의 biased를 고려한 일반적인 fairness intervention method가 된다.
 
@@ -113,15 +105,6 @@ $$
 
   ![image-20230312130341243](/images/2023-03-07-fairness_without_imputation/image-20230312130341243.png)
 
-$$
-\tilde{X} = (X_{obs}, \tilde{X}_{ms}) \in \tilde{\mathcal X} \\
-\tilde{X}_{ms} =
-\begin{cases}
-X_{ms}&\mbox{if }M = 0\\
-* & otherwise.
-\end{cases}
-$$
-
 실제 데이터의 구성에 관해 notation은 위와 같다. 결측치가 없는 관측 변수 $X_{obs}$와 missing values가 포함된 $\tilde{X}_{ms}$ 변수로 이루어져 있다. missing values가 포함된 변수에서 missing values가 있는지 없는지 판단하기 위해 binary variables가 도입된다. binary variables $M=0$라면 missing values가 없는 것이고, 반대로 M = 1이라면 missing values가 있다는 의미이다. 
 
 + Type of missing values
@@ -134,10 +117,6 @@ real-world에서는 대부분의 missing values가 MNAR를 따르고 있지만 �
 + Data Imputation
 
   ![image-20230312130331830](/images/2023-03-07-fairness_without_imputation/image-20230312130331830.png)
-
-$$
-f_{imp} : \tilde{\mathcal X} \rightarrow \mathcal X
-$$
 
 miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing values를 다른 값을 대치하는 mapping function을 위와 같이 표시한다. 
 
@@ -152,17 +131,13 @@ miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing val
 그래서 imputation method에 관한 performance는 다음과 같이 표시할 수 있다.
 
 ![image-20230312130320668](/images/2023-03-07-fairness_without_imputation/image-20230312130320668.png)
-$$
-L_s(f_{imp})\triangleq \mathbb{E}\big[\|f_{imp}(\tilde{X})-X\|_2^2 \mid M = 1, S=s\big]
-$$
+
 위 수식은 group attribute $S$의 특정한 값이 $s$일 때 (ex. Race = 1) 결측값에 imputation을 한 $f_{imp}(\tilde{X})$와 실제 데이터 $X$간의 차이를 L2 norm한 것이다. 
 
 그리고 Dicrimination risk는 다음과 같이 정의할 수 있다.
 
 ![image-20230312130314328](/images/2023-03-07-fairness_without_imputation/image-20230312130314328.png)
-$$
-Disc(f_{imp}) \triangleq \left| L_0(f_{imp}) -L_1(f_{imp})\right|
-$$
+
 위와 같이 수식을 사용하면 Group attribute에 따른 performance를 구할 수 있게 되고, 이 차이를 통해서 얼마나 biased 되어 있는지를 계산할 수 있게 된다. (예를 들면, Race가 1일 때의 imputation method의 성능과 0일 때의 성능을 계산하여 차이를 빼서 계산할 수 있다.)
 
 + Theorem 1
@@ -170,24 +145,19 @@ $$
   가정을 최대한 단순화하여 각각의 그룹들은 MCAR(완전 랜덤하게 missing values가 존재)이고 관측변수가 없다고 가정하면 
 
   ![image-20230312130305569](/images/2023-03-07-fairness_without_imputation/image-20230312130305569.png)
-  $$
-  f_{imp}^* = \arg\min_{f_{imp}}\mathbb E\big[(f_{imp}(\tilde{X}) - X)^2 \mid M=1\big]
-  $$
+  
   로 표현할 수 있고, Discrimination risk는 다음과 같이 표현할 수 있고 이를 분해하면 다음과 같은 식을 얻을 수 있다.
-
+  
   ![image-20230312130258813](/images/2023-03-07-fairness_without_imputation/image-20230312130258813.png)
-  $$
-  Disc(f_{imp}^*) = \left|L_0(f_{imp}^*) - L_1({f_{imp}^*)}\right|\\= \left|(p_1^{ms}-p_0^{ms})(m_1-m_0)^2 + Var[X\mid S=0] - Var[X|S=1]\right| \\
-  \mbox{where } p_s^{ms} \triangleq Pr(S = S \mid  M=1) \mbox{ and } m_s = \mathbb E[X\mid S=s] \mbox{ for } s \in {0,1}
-  $$
-  그리고 분해된 식으로부터 data imputation이 유발할 수 있는 discrimination 세 가지 얻을 수 있다.
 
+  그리고 분해된 식으로부터 data imputation이 유발할 수 있는 discrimination 세 가지 얻을 수 있다.
+  
   + 두 그룹간의 missing values의 비율 차이 
   + 두 그룹간의 평균의 차이 
   + 두 그룹간의 분산의 차이 
-
+  
   결국 이 세 가지에 의해 그룹 간에 missing values의 비율 차이, 평균 또는 분산이 크게되면 결국 Discrimination risk는 커지게 되고 imputation에 의해 biased한 모델이 되게 된다.
-
+  
   결국 imputation method를 고려할 때는, 위와 같은 세 가지 factor들을 적절히 고려하여 조정하는 절차가 필요해질 수 있다. 
 
 ### Mismatched Imputation Methods
@@ -203,23 +173,17 @@ $$
   먼저 특정 group attribute $s$에 대해 imputation이 적용된 Predictive model $h$의 성능에 관한 수식은 다음과 같이 표현된다.
 
   ![image-20230312130242691](/images/2023-03-07-fairness_without_imputation/image-20230312130242691.png)
-  $$
-  L_s(h\circ f_{imp}) \triangleq \mathbb E\big[l(h\circ f_{imp}(\tilde{X}),Y)\mid S =s\big]
-  $$
-  그리고 group attributes s 가 0 또는 1 이면서 MCAR 이라고 가정하면
-
-  ![image-20230312130232752](/images/2023-03-07-fairness_without_imputation/image-20230312130232752.png)
-  $$
-  \left|L_0(h\circ f_{imp}^{test}) - L_1(h\circ f_{imp}^{test})\right| \leq \left|L_0(h\circ f_{imp}^{train} - L_1(h\circ f_{imp}^{train})\right|\\ + K\sum\limits_s p_sD_{TV}(P_s^{train}\|P_s^{test})
-  $$
   
+  그리고 group attributes s 가 0 또는 1 이면서 MCAR 이라고 가정하면
+  
+  ![image-20230312130232752](/images/2023-03-07-fairness_without_imputation/image-20230312130232752.png)
 
   + 앞 쪽의 식은 imputation이 적용된 test data의 discrimination risk
-
-  + 뒤 쪽의 식은 imputation이 적용된 train data의 discrimination risk에 train data와 test data의 total variation distance의 총합에 해당한다. TV는 train data의 확률 분포와 test data의 확률 분포 간의 거리의 총합, 즉 두 분포의 차이의 절대값의 총합에 해당하고, 이 부분에 해당하는 만큼 다른 imputation을 적용했을 때 잠재적인 discrimination risk가 발생하게 된다.
-
-  + Total Variation distance 예시 이미지
   
+  + 뒤 쪽의 식은 imputation이 적용된 train data의 discrimination risk에 train data와 test data의 total variation distance의 총합에 해당한다. TV는 train data의 확률 분포와 test data의 확률 분포 간의 거리의 총합, 즉 두 분포의 차이의 절대값의 총합에 해당하고, 이 부분에 해당하는 만큼 다른 imputation을 적용했을 때 잠재적인 discrimination risk가 발생하게 된다.
+  
+  + Total Variation distance 예시 이미지
+
     ![Total_variation_distance.svg](/images/2023-03-07-fairness_without_imputation/Total_variation_distance.svg-8593167.png)
 
 ### Imputation Without Being Aware of the Downstream Tasks
@@ -229,17 +193,11 @@ $$
 (1) 식에서 표현한대로, fairness intervention methods는 다음과 같이 나타낼 수 있다.
 
 ![image-20230312130006413](/images/2023-03-07-fairness_without_imputation/image-20230312130006413.png)
-$$
-\min_{h\in\mathcal{H}}\mathbb{E}[L(h(X),Y)] \\
-\mbox{subject to} \left| \mathbb{E}[l(h(X),y)\mid S=0] - \mathbb{E}[l(h(X),Y\mid S = 1] \right| \leq \epsilon
-$$
+
 그러나 Imputed data에 대한 fairness inetervention methods는 다음과 같다.
 
 ![image-20230312130036112](/images/2023-03-07-fairness_without_imputation/image-20230312130036112.png)
-$$
-\min_{h\in\mathcal{H}}\mathbb{E}[L(h\circ f_{imp}(\tilde{X}),Y)] \\
-\mbox{subject to} \left| \mathbb{E}[l(h\circ f_{imp}(\tilde{X})\mid S=0] - \mathbb{E}[l(h\circ f_{imp}(\tilde{X}),Y\mid S = 1] \right| \leq \epsilon
-$$
+
 (13)의 식을 따르는 predictive models $\mathcalc{H}$는 존재할 수 있다. 그러나 missing values가 존재하는 상황에서 데이터 셋과 missing values의 특징에 따라 imputation을 다르게 적용해야 한다. 더불어, 예측 모델 자체가 Imputation 방법에 의존적인 상황에서, 이 들을 모두 만족하는 predictive models $\mathcalc{H}$가 존재하기 힘들다는 것이다. 결국 (14) 식처럼 식의 조건을 만족시키기란 쉽지 않다는 이야기이다.
 
 ## Fair Decision Tree with Missing Values
@@ -257,52 +215,24 @@ MIA란 결측값을 의사결정나무에서 특정한 방식인데, 다음과 �
 ![스크린샷 2023-03-12 오후 8.55.36](./images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 8.55.36.png)
 
 ![image-20230313020407259](/images/2023-03-07-fairness_without_imputation/image-20230313020407259.png)
-$$
-\{X_j \leq q \mbox{ or } X_j= *\} \mbox{ vs } \{X_j > q\}, \\
-\{X_j \leq q\} \mbox{ vs } \{X_j > q \mbox{ or } X_j = *\}, \\
-let, q = -\infty, \\
-\{X_j = *\} = \{X_j \neq *\}
-$$
-
 + **Mixed integer programming (MIP)**
 
   ![image-20230313020423085](/images/2023-03-07-fairness_without_imputation/image-20230313020423085.png)
 
-$$
-\mathcal{T} : \mbox{Decision Tree}\\
-D : \mbox{Fixed depth} \\
-\mathcal{V} : \mbox{branch nodes} \\
-\mathcal{L} : \mbox{leaf nodes} \\
-\mathcal{v} : \mbox{branch node} \\
-\mathcal{l} : \mbox{leaf node}
-$$
-
 ![image-20230313020455560](/images/2023-03-07-fairness_without_imputation/image-20230313020455560.png)
-$$
-\mathcal{T} \triangleq (P,q,c,u) \\
-P : \mbox{missing values가 포함된 variables를 One-hot encoding한 행렬} \\
-q : \mbox{splitting threshold} \\
-c : \mbox{missing values가 보내지는 branch node에 대한 이진 값 }( c_{\mathcal{v}} = 1 \mbox{이면 왼쪽 0 이면 오른쪽}) \\
-u : \mbox{leaf nodes에서의 예측 벡터}
-$$
+
 기본적으로 missing values가 있는 data에 대한 Decison tree는 위와 같이 표현할 수 있고, 
 
 ![image-20230313020513791](/images/2023-03-07-fairness_without_imputation/image-20230313020513791.png)
-$$
-(\bold{x_i},y_i) \in \mathcal{D}
-$$
+
 에 대한 예측 모델을 표현하기 위해 $w_i$ 와 $z_i$ 변수를 추가한다. 
 
 ![image-20230313020532448](/images/2023-03-07-fairness_without_imputation/image-20230313020532448.png)
-$$
-w_i \in \{0,1\}^{\left|\mathcal{V}\right|}
-$$
+
 $w_i$는 데이터 포인트가 각 branch node에서 어떤 방향으로 움직일지를 나타내는 값으로 1일 경우, 왼쪽 branch 로 이동하게 된다. (반대는 0으로 이동)
 
 ![image-20230313020543207](/images/2023-03-07-fairness_without_imputation/image-20230313020543207.png)
-$$
-z_i \in \{0,1\}^\left|\mathcal{L}\right|
-$$
+
 $z_i$는 데이터 포인트가 도달할 leaf node를 나타내고 $z_{i,l}=1$일 경우 데이터 포인가 leaf node $l$에 도달하게 되고, 이 때의 예측값은 $u_l$이 된다.
 
 ![스크린샷 2023-03-13 오전 1.00.42](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-13 오전 1.00.42.png)

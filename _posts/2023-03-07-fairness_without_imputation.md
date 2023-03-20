@@ -222,7 +222,7 @@ miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing val
 
 MIA란 결측값을 의사결정나무에서 특정한 방식인데, 다음과 같은 세 가지 경우를 고려해서 오류가 최소가 되는 방향으로 결측값을 노드로 향하게 한다.
 
-
+![MIA](/images/2023-03-07-fairness_without_imputation/MIA.png)
 
 ![image-20230313020407259](/images/2023-03-07-fairness_without_imputation/image-20230313020407259.png)
 + **Mixed integer programming (MIP)**
@@ -258,12 +258,12 @@ $z_i$는 데이터 포인트가 도달할 leaf node를 나타내고 $z_{i,l}=1$�
 + Dataset 
   + COMPAS, Adult, high school longitudinal study(HSLS)
   + COMPAS, Adult dataset의 경우 원래 missing values가 없기 때문에 다음과 같은 비율로 missing values를 생성함.
-  + ![스크린샷 2023-03-12 오후 7.20.16](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 7.20.16.png)
+  + ![ms_values](/images/2023-03-07-fairness_without_imputation/ms_values.png)
   + Adult dataset는 성별(0 : 여성, 1 : 남성) 을 sensitive attribute로 사용함
   + COMPAS dataset는 인종(0 : 흑인, 1 : 백인) 을 sensitive attribute로 사용함.
   + HSLS dataset은 어떤 특정 group attribute에 따라 missing values가 있는 것이 아닌, 불규칙적으로 missing values의 pattern들을 가짐.
   + 다음은 HSLS의 data description이다.
-  + ![스크린샷 2023-03-12 오후 8.08.18](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 8.08.18.png)
+  + ![data_decription](/images/2023-03-07-fairness_without_imputation/data_decription.png)
 
 
 
@@ -271,8 +271,9 @@ $z_i$는 데이터 포인트가 도달할 leaf node를 나타내고 $z_{i,l}=1$�
 
   + Hyperparmeters 
     + tree depths : 3
-    + ![스크린샷 2023-03-12 오후 8.18.30](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 8.18.30.png)
-
+    + Model의 computational cos가 높기 때문에 tree의 깊이와 training time을 60초로 설정하는 등의 규제를 사용하였음.
+    + ![hyperparameters](/images/2023-03-07-fairness_without_imputation/hyperparameters.png)
+    
   + Comparison model
 
     + mean imputation method based forest
@@ -291,15 +292,13 @@ $z_i$는 데이터 포인트가 도달할 leaf node를 나타내고 $z_{i,l}=1$�
 
 + Discussion
 
-![스크린샷 2023-03-12 오후 9.38.25](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 9.38.25.png)
-
 COMPAS dataset의 경우 기존의 fairness ML에 imputation method를 적용했을 때보다, Accuracy-FNR Difference 측면에서 FairMIPForest가 가장 좋은 결과를 보임.
 
-![스크린샷 2023-03-12 오후 9.46.48](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 9.46.48.png)
+![Reesult](/images/2023-03-07-fairness_without_imputation/Reesult.png)
 
 
 
-![스크린샷 2023-03-12 오후 10.56.27](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 10.56.27.png)
+![result2](/images/2023-03-07-fairness_without_imputation/result2.png)
 
 일반적으로 Accuracy와FNR Difference 측면에서 FairMIPForest가 좋은 성과를 보였고, 다른 Fairness ML의 경우 dataset과 imputation method에 따라 일관되지 못한 성과를 보이고 있다.
 

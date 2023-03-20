@@ -33,13 +33,19 @@ abstract에서 이야기하였지만, 논문이 가장 중요하게 쳐다보고
 
 > 이러한 경우, 상식적으로 어떤 값을 임의로 대치해서 모델 학습 (training model) 또는 데이터 분석(data analysis)을 수행하는 것은 적절하지 않아보인다 !
 
-머신러닝의 기본적인 pipline을 생각해보자. 데이터가 모델로 들어가기 전에 먼저 전처리 단계를 거치게 된다. 그리고 전처리 단계 내에는 우리가 다루고자 하는 missing values들을 다른 값으로 대치(performing imputation)하거나 삭제(dropping missing values) 하는 단계가 있다. 하지만, 앞서 이야기했듯이, 이러한 전처리 방식은 모델의 성능을 떠나서 편향된(biased) 모델, 즉 공정하지 못한 모델이 만들어질 수 있다. 본질적으로, 이렇게 편향된 결과가 나올 수 있는 우려가 있는 데이터를 가지고 앞서 잠깐 언급한 Fairness한 머신러닝 모델들을 적용한다면, 어떻게 될까? 
+머신러닝의 기본적인 pipline을 생각해보자. 데이터가 모델로 들어가기 전에 먼저 전처리 단계를 거치게 된다. 그리고 전처리 단계 내에는 우리가 다루고자 하는 missing values들을 다른 값으로 대치(performing imputation)하거나 삭제(dropping missing values) 하는 단계가 있다. 하지만, 앞서 이야기했듯이, 이러한 전처리 방식은 모델의 성능을 떠나서 편향된(biased) 모델, 즉 공정하지 못한 모델이 만들어질 수 있다.
 
-논문에서는 이러한 문제에 해결하기 위해서 missing values 처리와 fairness한 머신러닝 모델들을 연결하여 해결책을 제시하고 있다. 이 때, missing values의 처리 방식이 fairness에 어떠한 영향을 미치는지 이론적으로 분석하고, real-world datasets들을 활용해서 제시하고 있다.
+> '자주 사용되는 mean imputation, median imputation은 각 attriubtes가 평균 또는 중위값 근처 있다'라는 데이터 분포에 대한 강력한 가정을 하고 있다. 
+
+ 본질적으로, 이렇게 편향된 결과가 나올 수 있는 우려가 있는 데이터를 가지고 앞서 잠깐 언급한 Fairness한 머신러닝 모델들을 적용한다면, 어떻게 될까? 
+
+논문에서는 이러한 문제에 해결하기 위해서 missing values 처리와 fairness한 머신러닝 모델들을 연결하여 해결책을 제시하고 있다. 이 때, missing values의 처리 방식이 fairness에 어떠한 영향을 미치는지 이론적으로 분석하고 있다.
 
 missing values를 임의의 값으로 대치함으로써 발생하는 잠재적인 discrimination risk에 대한 이론적인 분석은 다음과 같은 세 가지 요인을 중점으로 살펴보게 된다.
 
-1. imputation method의 성능이 각 group attributes마다 다르게 나타날 수 있다. (group attributes란 한 개인을 어떤 그룹으로 특정할 수 있게 해주는 속성들을 이야기한다. tabular data에서 봤을 때, 인종이나 성별, 연령 같은 columns의 attributes라고 볼 수 있다.) 그 결과 imputed data는 모델의 bias에 영향(Inherit and propogate)을 미치게 된다. 
+> discrimination risk라는 용어가 등장하는데 논문에서는 Fairness한 정도를 측정하는 지표정도로 보면 될 듯 하다.
+
+1. imputation method의 성능이 각 group attributes마다 다르게 나타날 수 있다. 그 결과 imputed data는 모델의 bias에 영향(Inherit and propogate)을 미치게 된다. ( 직관적으로 이해하자면 imputation method로 인해 남성:0, 여성:1 일 때의 정확도(또는 FPR,FNR)의 차이가 크게 벌어진다는 뜻이다.) 
 2. imputation method을 활용하여 훈련 과정에서 fairness하게, 즉 unbiased하게 학습되었다고 해도, 다른 Imputation 방법이 적용된 새로운 test data에 대해서는 그렇지 못할 수 도 있게 된다.
 3. 마지막으로 보편적으로 downstream에 적용될 수 있는 fairness한 모델 적절한 imputation method는 없다.
 
@@ -50,7 +56,7 @@ Introduction이니 이 방법에 대해 큰 틀에 대해서 잠깐만 언급하
 + Missing values를 다루기 위한 MIA( missing incorporated as attribute) 방법
 + fairness를 규제하기 위한 목적 함수를 최적화하는 방법인 MIP(mixed integer programming)
 
-이 두 가지를 결합한 decision tree 모델이다. (구체적인 부분은 본문 내용에서 언급). 이 두 가지 방식을 결합하기에 fairness(fairness에 관련한 지표는 FPR / FNR / accuracy difference equalized odss를 사용)와 accuracy를 동시에 최적화하여 이 두가지 지표의 trade-off 측면에서 좋은 성능을 보여주게 된다. ( 본문에서 살펴보도록 한다.)
+이 두 가지를 결합한 decision tree 모델이다. 이 두 가지 방식을 결합하기에 fairness와 accuracy를 동시에 최적화하여 이 두가지 지표의 trade-off 측면에서 좋은 성능을 보여주게 된다.
 
 ## Related Works
 
@@ -59,22 +65,26 @@ missing values를 다루는 방식에 대한 논문이다 보니 related works�
 대표적인 방법으로는
 
 + 단일 대치법 (Single Imputation) : Inserting dummy values, mean-imputation, regression imputation( k-nearest neighbor regression). 더미 값이나 평균 값 또는 회귀적인 방법에 의한 값 하나로 대치.
-+ 다중 대치법 (Multiple imputation) : Imputation method that draws a set of possible values to fill in missing values, as opposed to single imputation that substtitutes a missing entry with a single value. 단일 대치법을 여러 번 적용한 뒤 결과값을 추합하는 방식.
++ 다중 대치법 (Multiple imputation) : Imputation method that draws a set of possible values to fill in missing values, as opposed to single imputation that substtitutes a missing entry with a single value. 단일 대치법을 여러 번 적용한 뒤 결과값을 추합하는 방식. (Ensemble 방법에서 일반적으로 사용된다.)
 + 행 삭제 (Dropping rows with missing entries)
 
-이 있다. (논문에서 소개하는 Fair MIP Forest 방법은 서로 다른 랜덤 미니 배치가 각각의 트리로 훈련되는데, 이 때 각각은 다르게 결측치를 처리하기 때문에 다중대치법에 해당한다.)
+이 있다. (논문에서 소개하는 Fair MIP Forest 방법은 서로 다른 랜덤 미니 배치가 각각의 트리로 훈련되는데, 이 때 각각은 다르게 결측치를 처리하기 때문에 다중대치법(Multiple imputation)에 해당한다.)
 
 더불어, 논문의 목적은 missing values를 decision trees 기반의 모델로 처리하게 된다. 그래서 decision trees 기반의 missing values 처리 방식에 대해 간단하게 살펴보자.
 
-+ surrogate splits : 관련이 있는 attributes를 활용하여 missing values를 분리한다
++ surrogate splits : 관련이 있는 attributes를 활용하여 missing values를 분리한다![surrogate_splits](/images/2023-03-07-fairness_without_imputation/surrogate_splits.png)
 
-  (그림필요)
+  
 
-+ block propogation : loss가 최소가 되는 노드 방향으로 missing values를 보내게 된다.
++ block propogation : loss가 최소가 되는 노드 방향으로 missing values를 보내게 된다.![block_propogation](/images/2023-03-07-fairness_without_imputation/block_propogation.png)
 
-  (그림필요)
+  ![block_propogation2](/images/2023-03-07-fairness_without_imputation/block_propogation2.png)
 
-+ missing incorporated as attribute (MIA) : 특정 Threshold에 대해 3가지 경우의 Loss를 고려해서 missing values가 특정한 노드로 보내지도록 한다. (논문에 사용되는 기술이므로 구체적인 내용은 뒤에서 설명)
++ missing incorporated as attribute (MIA) : 특정 Threshold와 feature에 대해 3가지 경우의 Loss를 고려해서 missing values가 특정한 노드로 보내지도록 한다.
+
+  <img src="/../../Desktop/MIA.png" alt="MIA" style="zoom:67%;" />
+
+  
 
 ## Framework
 
@@ -84,7 +94,7 @@ missing values를 다루는 방식에 대한 논문이다 보니 related works�
 
 ![image-20230312130441554](/images/2023-03-07-fairness_without_imputation/image-20230312130441554.png)
 
-(1) 은 특정 모델 h에 대한 predicted output과 true output간의 loss를 계산한 부분이다. loss 에 해당하는 부분은 task에 따라 조금 씩 달라질 수 있다.(ex mean squred error )
+(1) 은 특정 모델 h에 대한 predicted output과 true output간의 loss를 계산한 부분이다. loss 에 해당하는 부분은 task에 따라 조금 씩 달라질 수 있다.(ex mean squred error)
 
 (2)에 해당하는 식은 모델이 얼마 해당 모델이 group s에 따른 결과가 얼마나 차별적인 결과를 나타내는지를 보여주는 Discrimination risk이다. ((3)의 수식을 참고) 
 
@@ -93,10 +103,8 @@ missing values를 다루는 방식에 대한 논문이다 보니 related works�
 Disc(h)에 대해서 조금 더 직관적으로 설명해보면, 모델의 Loss가 성별이 0(여자)일 때와 성별이 1(남자)일 때의 차이가 크다면 discrimination risk는 커지게 되는 것이다. (1)과 (2)를 조합하여 다음과 같은 식을 만들게 되면, 모델의 biased를 고려한 일반적인 fairness intervention method가 된다.
 
 ![image-20230312130349640](/images/2023-03-07-fairness_without_imputation/image-20230312130349640.png)
-$$
-\min_{h\in\mathcal{H}}{1\over n}\sum\limits_{i=1}^n l(h(\bold x_i),y_i)\\
-\mbox{subject to} \left | L_0(h) - L_1(h)\right | \leq \epsilon
-$$
+
+
 
 
 
@@ -105,7 +113,7 @@ $$
 
   ![image-20230312130341243](/images/2023-03-07-fairness_without_imputation/image-20230312130341243.png)
 
-실제 데이터의 구성에 관해 notation은 위와 같다. 결측치가 없는 관측 변수 $X_{obs}$와 missing values가 포함된 $\tilde{X}_{ms}$ 변수로 이루어져 있다. missing values가 포함된 변수에서 missing values가 있는지 없는지 판단하기 위해 binary variables가 도입된다. binary variables $M=0$라면 missing values가 없는 것이고, 반대로 M = 1이라면 missing values가 있다는 의미이다. 
+실제 데이터의 구성에 관한 notation은 위와 같다. 결측치가 없는 관측 변수 $X_{obs}$와 missing values가 포함된 $\tilde{X}_{ms}$ 변수로 이루어져 있다. missing values가 포함된 변수에서 missing values가 있는지 없는지 판단하기 위해 binary variables가 도입된다. binary variables $M=0$라면 missing values가 없는 것이고, 반대로 M = 1이라면 missing values가 있다는 의미이다. 
 
 + Type of missing values
   + Missing completely at random(MCAR) if M is independent of $X$ : 관측 변수와 무관한 missing values 
@@ -126,19 +134,19 @@ miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing val
 
 ### Biased Imputation method
 
-첫번째는 Imputation method가 group attributes에 따라 어떻게 차별적인 성과를 보이는지에 관한 부분이다.
+첫번째는 Imputation method가 group attributes에 따라 어떻게 차별적인 performance를 보이는지에 관한 부분이다.
 
 그래서 imputation method에 관한 performance는 다음과 같이 표시할 수 있다.
 
 ![image-20230312130320668](/images/2023-03-07-fairness_without_imputation/image-20230312130320668.png)
 
-위 수식은 group attribute $S$의 특정한 값이 $s$일 때 (ex. Race = 1) 결측값에 imputation을 한 $f_{imp}(\tilde{X})$와 실제 데이터 $X$간의 차이를 L2 norm한 것이다. 
+위 수식은 group attribute $S$의 특정한 값이 $s$일 때 (ex. Race = 1) 결측값에 imputation을 한 $f_{imp}(\tilde{X})$와 실제 데이터 $X$간의 차이를 2norm의 제곱을 한 형태이다. (실제 데이터 $X$가 주어지는데  이는 이론적인 분석을 위한 가정인 것 같다.)
 
 그리고 Dicrimination risk는 다음과 같이 정의할 수 있다.
 
 ![image-20230312130314328](/images/2023-03-07-fairness_without_imputation/image-20230312130314328.png)
 
-위와 같이 수식을 사용하면 Group attribute에 따른 performance를 구할 수 있게 되고, 이 차이를 통해서 얼마나 biased 되어 있는지를 계산할 수 있게 된다. (예를 들면, Race가 1일 때의 imputation method의 성능과 0일 때의 성능을 계산하여 차이를 빼서 계산할 수 있다.)
+위와 같이 수식을 사용하면 Group attribute에 따른 performance를 구할 수 있게 되고, 이 차이를 통해서 얼마나 한 그룹으로 biased 되어 있는지를 계산할 수 있게 된다.
 
 + Theorem 1
 
@@ -156,7 +164,7 @@ miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing val
   + 두 그룹간의 평균의 차이 
   + 두 그룹간의 분산의 차이 
   
-  결국 이 세 가지에 의해 그룹 간에 missing values의 비율 차이, 평균 또는 분산이 크게되면 결국 Discrimination risk는 커지게 되고 imputation에 의해 biased한 모델이 되게 된다.
+  결국 **이 세 가지에 의해 그룹 간에 missing values의 비율 차이, 평균 또는 분산이 크게되면 결국 Discrimination risk는 커지게 되고 imputation에 의해 biased한 모델이 되게 된다.**
   
   결국 imputation method를 고려할 때는, 위와 같은 세 가지 factor들을 적절히 고려하여 조정하는 절차가 필요해질 수 있다. 
 
@@ -178,13 +186,15 @@ miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing val
   
   ![image-20230312130232752](/images/2023-03-07-fairness_without_imputation/image-20230312130232752.png)
 
-  + 앞 쪽의 식은 imputation이 적용된 test data의 discrimination risk
+  + 앞 쪽의 식은 imputation이 적용된 test data가 사용된 모델의 discrimination risk
   
-  + 뒤 쪽의 식은 imputation이 적용된 train data의 discrimination risk에 train data와 test data의 total variation distance의 총합에 해당한다. TV는 train data의 확률 분포와 test data의 확률 분포 간의 거리의 총합, 즉 두 분포의 차이의 절대값의 총합에 해당하고, 이 부분에 해당하는 만큼 다른 imputation을 적용했을 때 잠재적인 discrimination risk가 발생하게 된다.
+  + 뒤 쪽의 식은 imputation이 적용된 train data가 사용된 모델의 discrimination risk과 train data와 test data의 total variation distance의 총합에 해당한다. TV는 train data의 확률 분포와 test data의 확률 분포 간의 거리의 총합, 즉 두 분포의 차이의 절대값의 총합에 해당한다. 
   
+  + 그리고 **결국 training time과 testing time에서 서로 다른 imputation이 적용되면, 두 데이터 간의 확률 분포 차이의 절대값에 총합만큼 잠재적인 loss가 발생한다.**
+
   + Total Variation distance 예시 이미지
 
-    ![Total_variation_distance.svg](/images/2023-03-07-fairness_without_imputation/Total_variation_distance.svg-8593167.png)
+    <img src="/images/2023-03-07-fairness_without_imputation/Total_variation_distance.svg-8593167.png" alt="Total_variation_distance.svg" style="zoom:67%;" />
 
 ### Imputation Without Being Aware of the Downstream Tasks
 
@@ -198,7 +208,7 @@ miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing val
 
 ![image-20230312130036112](/images/2023-03-07-fairness_without_imputation/image-20230312130036112.png)
 
-(13)의 식을 따르는 predictive models $\mathcalc{H}$는 존재할 수 있다. 그러나 missing values가 존재하는 상황에서 데이터 셋과 missing values의 특징에 따라 imputation을 다르게 적용해야 한다. 더불어, 예측 모델 자체가 Imputation 방법에 의존적인 상황에서, 이 들을 모두 만족하는 predictive models $\mathcalc{H}$가 존재하기 힘들다는 것이다. 결국 (14) 식처럼 식의 조건을 만족시키기란 쉽지 않다는 이야기이다.
+(13)의 식을 따르는 predictive models $\mathcalc{H}$는 존재할 수 있다. 그러나 missing values가 존재하는 상황에서 데이터 셋과 missing values의 특징에 따라 imputation을 다르게 적용해야 한다. 더불어, 예측 모델 자체가 Imputation 방법에 의존적인 상황에서, 이 들을 모두 만족하는 predictive models $\mathcalc{H}$가 존재하기 힘들다는 것이다. 결국 (14) 식처럼 식의 조건을 만족시키기란 쉽지 않다는 이야기이다. 사실 이에 대한 example case를 설명해주고 있는데 잘 이해하지 못하였다.)
 
 ## Fair Decision Tree with Missing Values
 
@@ -212,7 +222,7 @@ miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing val
 
 MIA란 결측값을 의사결정나무에서 특정한 방식인데, 다음과 같은 세 가지 경우를 고려해서 오류가 최소가 되는 방향으로 결측값을 노드로 향하게 한다.
 
-![스크린샷 2023-03-12 오후 8.55.36](./images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-12 오후 8.55.36.png)
+
 
 ![image-20230313020407259](/images/2023-03-07-fairness_without_imputation/image-20230313020407259.png)
 + **Mixed integer programming (MIP)**
@@ -221,11 +231,11 @@ MIA란 결측값을 의사결정나무에서 특정한 방식인데, 다음과 �
 
 ![image-20230313020455560](/images/2023-03-07-fairness_without_imputation/image-20230313020455560.png)
 
-기본적으로 missing values가 있는 data에 대한 Decison tree는 위와 같이 표현할 수 있고, 
+기본적으로 missing values가 있는 data에 대한 Decison tree는 위와 같이 표현할 수 있고, 여러 개의 binary(integer) variables와 continous variables(threshold)가 등장한다. (여러 개의 binary variables가 등장하는 이유는 Mixed integer programming을 풀 때, binary variables가 부등식 제약조건으로 포함되기 때문이다. 
 
 ![image-20230313020513791](/images/2023-03-07-fairness_without_imputation/image-20230313020513791.png)
 
-에 대한 예측 모델을 표현하기 위해 $w_i$ 와 $z_i$ 변수를 추가한다. 
+더불어, 예측 모델을 표현하기 위해 $w_i$ 와 $z_i$ 변수를 추가되는데 핵심적인 binary variables로 보여진다. 
 
 ![image-20230313020532448](/images/2023-03-07-fairness_without_imputation/image-20230313020532448.png)
 
@@ -233,17 +243,15 @@ $w_i$는 데이터 포인트가 각 branch node에서 어떤 방향으로 움직
 
 ![image-20230313020543207](/images/2023-03-07-fairness_without_imputation/image-20230313020543207.png)
 
-$z_i$는 데이터 포인트가 도달할 leaf node를 나타내고 $z_{i,l}=1$일 경우 데이터 포인가 leaf node $l$에 도달하게 되고, 이 때의 예측값은 $u_l$이 된다.
+$z_i$는 데이터 포인트가 도달할 leaf node를 나타내고 $z_{i,l}=1$일 경우 데이터 포인가 leaf node $l$에 도달하게 되고, 이 때의 예측값은 $u_l$이 된다. 결국 골자는 이 두 가지에 제약을 걸어둠으로써 Fairness를 유지하도록 하는 것에 있다.
 
-![스크린샷 2023-03-13 오전 1.00.42](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-13 오전 1.00.42.png)
+![MIP1](/images/2023-03-07-fairness_without_imputation/MIP1.png)![MIP2](/images/2023-03-07-fairness_without_imputation/MIP2.png)
 
-![스크린샷 2023-03-13 오전 1.01.53](/images/2023-03-07-fairness_without_imputation/스크린샷 2023-03-13 오전 1.01.53.png)
-
-식을 간략하게 요약하면,  mixed integer programming (혼합정수계획법)을 사용하여 decision tree를 학습시키는데, user loss function에 Fairness regularizer( Statistical parity, Equalized oods, Accuracy parity )를 더한 loss function을 최적화 시키게 된다. 여기서 decision tree의 노드 분리 시 사용했던  binary variables를 integer variable라고 보고, threshold $q$의 경우 continous variables로 보기 때문에 mixed integer programming이 된다. MIP는 보다시피 많은 notation을 포함하고 있기 때문에 computational cost가 굉장히 높다.
+식을 간략하게 요약하면,  mixed integer programming (혼합정수계획법)을 사용하여 decision tree를 학습시키는데, user loss function에 Fairness regularizer( Statistical parity, Equalized oods, Accuracy parity )를 더한 loss function을 최적화 시키게 된다. MIP는 보다시피 많은 Integer형태의 부등식 제약 조건들이 많이 포함되어 있다. 그래서 이러한 MIP(혼합정수계획법)을 푸는 것은 computational cost가 굉장히 높다.
 
 + **Fair MIP Forest**
 
-그러나 우리가 학습시키는 ensemble method는 각각의 tree에 대한 optimum을 찾을 필요없이 훈련된 tree에 대한 결과를 합침으로써 좋은 결과를 얻을 수 있다.
+그러나 우리가 학습시키는 ensemble method는 각각의 tree에 대한 optimum을 찾는 부담을 갖지 않아도 된다. 왜냐하면 약한 분류기를 여러 개 만든 뒤, 합치는 bagging 방법을 사용하면 되기 때문이다. 
 
 ## Experimental Results
 

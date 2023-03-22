@@ -9,6 +9,8 @@ typora-root-url: ../
 
 ---
 
+*:bulb: **: 본 게시글은 개인적인 공부를 위해서 작성된 글이니 비약적인 내용 또는 틀린 내용이 포함되어 있을 수 있습니다***
+
 # Abstract & Introduction
 
 ## Abstract
@@ -86,7 +88,7 @@ missing values를 다루는 방식에 대한 논문이다 보니 related works�
 
   
 
-## Framework
+# Framework
 
 + Supervised learning and disparate impact![image-20230312130413832](/images/2023-03-07-fairness_without_imputation/image-20230312130413832.png)
 
@@ -128,7 +130,7 @@ real-world에서는 대부분의 missing values가 MNAR를 따르고 있지만 �
 
 miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing values를 다른 값을 대치하는 mapping function을 위와 같이 표시한다. 
 
-## Risks of Training with Imputed Data
+# Risks of Training with Imputed Data
 
 본격적으로 이론적 분석을 통해 Introduction부분에서 이야기했던 imputed data가 가질 수 있는 세 가지 문제에 대해 주목한다.
 
@@ -210,7 +212,7 @@ miss values가 포함된 feature vector에  $\tilde{X}$에 대해서 missing val
 
 (13)의 식을 따르는 predictive models $\mathcalc{H}$는 존재할 수 있다. 그러나 missing values가 존재하는 상황에서 데이터 셋과 missing values의 특징에 따라 imputation을 다르게 적용해야 한다. 더불어, 예측 모델 자체가 Imputation 방법에 의존적인 상황에서, 이 들을 모두 만족하는 predictive models $\mathcalc{H}$가 존재하기 힘들다는 것이다. 결국 (14) 식처럼 식의 조건을 만족시키기란 쉽지 않다는 이야기이다. 사실 이에 대한 example case를 설명해주고 있는데 잘 이해하지 못하였다.)
 
-## Fair Decision Tree with Missing Values
+# Fair Decision Tree with Missing Values
 
 앞서 이론적으로 imputation method 자체의 한계를 살펴보았다. 논문에서는 그래서 imputation process를 거치지 않기 위해 <u>missing incorpoarted in attribute</u> 와 <u>mixed integer programming</u>을 결합한 decision tree 기반의 모델을 제시한다.
 

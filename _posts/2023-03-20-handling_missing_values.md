@@ -52,7 +52,7 @@ decision tree는 machine learning model 들 중에서도 가장 각광받는 모
 
 $\bold{x}^m ~ p(\bold{X}^m \mid \bold{x}^o)$ 에 해당하는 부분이 논문에서 제시하고 있는 non-parametic한 분포 추정을 통해 missing values를 처리하는 부분이다. 논문에서는 non-parmetic한 방법으로 추정한 분포로부터의 값을 활용하여 missing values를 imputation을 하고 있는데, Probabilistic Circuits(PCs)라는 방법을 활용하고 있는데, 논문 밖의 내용이라 간단히 설명하면 이렇다. 다른 변수들 $x^o$와 $x^m$를 활용하여non-parametic하게 분포를 추정하고, 이를 적절하게 결합하게 된다.(이때 회로(circuits)처럼 graphical하게 결합된다.논문에서는 이해를 돕기 위해 **deep version of classical mixture model**이라고 표현하고 있다.) 그림으로 표현하면 다음과 같다. 
 
-(그림)
+![probabilistic_circuit](/images/2023-03-20-handling_missing_values/probabilistic_circuit.png)
 
 결국, 다른 변수들을 활용하여 non-parametic하게 분포를 추정하고, 이로부터의 값으로 대치하는 것으로 이해할 수 있다. 
 

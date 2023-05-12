@@ -84,7 +84,7 @@ expectation의 개념이 훈련과정에서도 반복된다. PCs를 통해서 �
 
 실험은 데이터 셋이 deployment time에 missing values가 존재하는 경우와 learning time에도 missing values가 존재하는 경우로 나뉘어진다. 그리고 데이터에 존재하는 Missing values들은 MCAR(완전히 랜덤하게 존재하는 missing values)라고 가정한다. 논문의 Method에서는 Decision trees로 설명을 했는데, 실제 성과를 측정할 때는 XGBoost를 base line으로 사용하였다.
 
-실험할 때는 RMSE를 활용하여 성과를 측정하였고, missing values의 비율 또한 0.1~0.9까지 다르게 세팅하여 독립적으로 시행하였다.![스크린샷 2023-03-29 오후 11.50.11](/images/2023-03-20-handling_missing_values/스크린샷 2023-03-29 오후 11.50.11.png)
+실험할 때는 RMSE를 활용하여 성과를 측정하였고, missing values의 비율 또한 0.1~0.9까지 다르게 세팅하여 독립적으로 시행하였다.![result](/images/2023-03-20-handling_missing_values/스크린샷 2023-03-29 오후 11.50.11.png)
 
 그리고 오른쪽 그림과 같이 Expected Loss로 fine tuning을 진행하고 Expected prediction으로 성과를 측정하였다.
 

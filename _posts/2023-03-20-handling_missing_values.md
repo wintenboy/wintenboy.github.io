@@ -64,7 +64,7 @@ $\bold{x}^m ~ p(\bold{X}^m \mid \bold{x}^o)$ 에 해당하는 부분이 논문�
 
 이를 수식으로 표현하면,
 
-<img src="/images/2023-03-20-handling_missing_values/스크린샷 2023-03-28 오후 7.00.49.png" alt="스크린샷 2023-03-28 오후 7.00.49" style="zoom:50%;" />
+![expected_prediction](/images/2023-03-20-handling_missing_values/expected_prediction.png)
 
 기본적으로 expected prediction을 하기 때문에 논문에서는 tree의 깊이를 비교적 얕게 설정해서 overfitting을 방지하고자 한다. 
 

@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "BYOL"
+title:  "Clean Code1"
 categories: Python
 tag: [basic]
 toc: true

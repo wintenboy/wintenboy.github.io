@@ -3,6 +3,7 @@ title: About Me
 permalink: /about/
 author_profile: ture
 sidebar_main: ture
+toc: true
 ---
 <center>
 # Introduction 

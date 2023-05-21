@@ -1,6 +1,7 @@
 ---
 title: About Me
 permalink: /about/
+layout: single
 author_profile: ture
 sidebar_main: ture
 toc: true

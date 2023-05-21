@@ -7,6 +7,7 @@ sidebar_main: ture
 toc: true
 ---
 <center>
+
 # Introduction 
 안녕하세요. 머신러닝, 딥러닝, 데이터분석을 공부하고 있는 대학생입니다.
 # Skill

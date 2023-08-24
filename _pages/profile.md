@@ -7,7 +7,7 @@ sidebar_main: ture
 toc: true
 ---
 # Introduction
-안녕하세요. 머신러닝, 딥러닝, 데이터분석을 공부하고 있는 대학생입니다.
+가톨릭대학교 산업인공지능연구실 학부연구생.
 
 # Skill
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=Python&logoColor=white"/>

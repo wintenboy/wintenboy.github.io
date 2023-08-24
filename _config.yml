@@ -16,11 +16,11 @@ minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "n
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : "winten_boy의 blog"
+title                    : "wintenboy의 blog"
 title_separator          : "|"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "winten_boy"
-description              : "winten_boy의 블로그입니다."
+name                     : "wintenboy"
+description              : "wintenboy의 블로그입니다."
 url                      : "https://wintenboy.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -106,7 +106,7 @@ analytics:
 author:
   name             : "winten_boy"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "머신러닝과 딥러닝 공부하는 문과생"
+  bio              : "가톨릭대학교 산업인공지능연구실 학부연구생"
   location         : "Bucheon,South Korea"
   email            : 
   links:

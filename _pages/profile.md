@@ -9,6 +9,11 @@ toc: true
 # Introduction
 가톨릭대학교 산업인공지능연구실 학부연구생.
 
+# Research Interest
++ Representation learning
++ Contrastive learning
++ Anomaly detection
+
 # Skill
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=Python&logoColor=white"/>
 <img src="https://img.shields.io/badge/R-276DC3?style=flat&logo=R&logoColor=white"/>

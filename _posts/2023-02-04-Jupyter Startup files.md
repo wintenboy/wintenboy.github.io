@@ -1,8 +1,8 @@
 ---
 layout: single
 title:  "Jupyter Notebook Startup files"
-categories: DL
-tag: [Settings]
+categories: Settings
+tag: [Setting]
 toc: true
 use_math: true
 typora-root-url: ../

@@ -7,7 +7,7 @@ sidebar_main: ture
 toc: true
 ---
 # Introduction
-가톨릭대학교 산업인공지능연구실 학부연구생.
++ Undergraduate research student at Industrial AI lab, The department of  Data Science,The Catholic University of Korea (Apr. 2022 ~ Present)
 
 # Research Interest
 + Representation learning

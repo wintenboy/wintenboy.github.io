@@ -2,7 +2,7 @@
 layout: single
 title:  "Jupyter Notebook Startup files"
 categories: DL
-tag: [Deeplearning, Self-supervised learning]
+tag: [Settings]
 toc: true
 use_math: true
 typora-root-url: ../

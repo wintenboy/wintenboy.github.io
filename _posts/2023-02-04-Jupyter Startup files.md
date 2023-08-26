@@ -9,7 +9,6 @@ typora-root-url: ../
 sidebar:
   nav: "counts"
 ---
-
 # Startup files setting 
 
 + Jupyter notebook 실행 시 미리 실행되는 코드

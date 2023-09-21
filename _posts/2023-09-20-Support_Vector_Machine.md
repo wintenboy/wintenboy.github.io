@@ -13,6 +13,6 @@ sidebar:
 
 # Support Vector Machine
 
-![svm_1](/images/2023-09-20-Support_Vector_Machine/svm_1-5228119.jpg)
+<img src="/images/2023-09-20-Support_Vector_Machine/svm_1-5228119.jpg" alt="svm_1" />
 
-![svm_2](/images/2023-09-20-Support_Vector_Machine/svm_2.jpg)
+<img src="/images/2023-09-20-Support_Vector_Machine/svm_2.jpg" alt="svm_2" />

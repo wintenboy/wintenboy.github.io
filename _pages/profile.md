@@ -19,6 +19,7 @@ toc: true
 <img src="https://img.shields.io/badge/R-276DC3?style=flat&logo=R&logoColor=white"/>
 
 # Tools
+<img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=white"/>
 <img src="https://img.shields.io/badge/Overleaf-47A141?style=flat&logo=Overleaf&logoColor=white"/>
 
 # Frameworks

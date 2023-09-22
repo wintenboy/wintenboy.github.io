@@ -40,3 +40,6 @@ toc: true
     + National Research Foundation of Korea (NRF) and Code Blossom (PI)
 + (Oct 22 ~ Dec 22) 2022 가톨릭대학교 데이터분석 경진대회, The Catholic University of Korea 
 + (Aug 22 ~ Oct 22) 2022 빅콘테스트 데이터분석분야 퓨쳐스 부문 참여, 빅콘테스트 
+
+# Miscellaneous
++ TOEIC : 860

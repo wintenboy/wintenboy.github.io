@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Support Vector Machine (1)"
+title:  "Support Vector Machine"
 categories: ML
 tag: [SVM]
 toc: true
@@ -15,6 +15,6 @@ sidebar:
 
 support vector machine formulation
 
-<img src="/images/2023-09-20-Support_Vector_Machine/svm_1-5228119.jpg" alt="svm_1" />
+![svm_1](/images/2023-09-20-Support_Vector_Machine/svm_1-5228119.jpg)
 
-<img src="/images/2023-09-20-Support_Vector_Machine/svm_2.jpg" alt="svm_2" />
+![svm_2](/images/2023-09-20-Support_Vector_Machine/svm_2.jpg)

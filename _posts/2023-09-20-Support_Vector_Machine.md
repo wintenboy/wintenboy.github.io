@@ -14,7 +14,3 @@ sidebar:
 # Support Vector Machine
 
 support vector machine formulation
-
-![svm_1](/images/2023-09-20-Support_Vector_Machine/svm_1-5228119.jpg)
-
-![svm_2](/images/2023-09-20-Support_Vector_Machine/svm_2.jpg)

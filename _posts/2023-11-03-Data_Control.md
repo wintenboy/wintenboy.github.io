@@ -363,7 +363,7 @@ parquet_list
 
 # Parquet data 불러오기
 
-+ csv로 불러왔을 때보다 훨씬 빠르고, 메모리도 효율적임.<img src="./images/2023-11-3-Data_Control/parquet_view.png" alt="parquet_view" style="zoom: 67%;" />
++ csv로 불러왔을 때보다 훨씬 빠르고, 메모리도 효율적임.<img src="/images/2023-11-3-Data_Control/parquet_view.png" alt="parquet_view" style="zoom: 67%;" />
 
 
 ```python

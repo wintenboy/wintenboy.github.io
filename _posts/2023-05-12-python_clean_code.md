@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Clean Code1"
+title:  "python code"
 categories: Python
 tag: [basic]
 toc: true

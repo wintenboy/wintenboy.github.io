@@ -38,7 +38,7 @@
       "details": "Vol. 14, pp. 177782–177797",
       "credit": "Seungyeol Ryu, Geonwoo Kim, and Jaeyeon Jang",
       "role": "First author",
-      "summary": "I studied how to detect surface defects when the training images include defective samples.",
+      "summary": "A training set labeled normal can already contain defects. I studied how to train an image-level detector under those conditions.",
       "href": "https://doi.org/10.1109/ACCESS.2026.3752900",
       "link_label": "Read the paper",
       "featured": true
@@ -52,7 +52,7 @@
       "details": "San Francisco, CA, November 2026",
       "credit": "Seungyeol Ryu",
       "role": "Presenter",
-      "summary": "We used a language model to choose which classifier to apply to each time series.",
+      "summary": "The classifier with the best average accuracy on a dataset can still be a poor choice for an individual time series.",
       "href": "https://www.informs.org/Meetings-Conferences/INFORMS-Conference-Calendar/2026-INFORMS-Annual-Meeting",
       "link_label": "Conference information",
       "featured": true
@@ -86,6 +86,7 @@
       "id": "caregiver-patient-matching",
       "name": "Caregiver–patient matching",
       "title": "Method for training and using a caregiver–patient matching model",
+      "detail_title": "Method for training caregiver-patient matching model that infers matching information between caregiver and patient and matching caregiver-patient using caregiver-patient matching model",
       "number": "KR 10-2635315",
       "status": "Granted patent",
       "period": "2024",

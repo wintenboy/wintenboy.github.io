@@ -11,7 +11,9 @@ An English and Korean portfolio and a Typst CV built from the same records. The 
 
 `site/index.template.html` defines the shared layout, `site/home.template.html` defines the homepage, `docs/assets/site.css` controls the styles, and `cv/cv.typ` controls the PDF layout.
 
-For a project, `summary` is the short CV entry and `case_study` is the project-list description. Put the screenshot or figure in `docs/assets/projects/` and record its `file`, pixel `width` and `height`, and `alt` description under `visual`. Describe its source in `caption`.
+For a project, `summary` is the short entry used in the project list and CV. `case_study` provides the detail page's metadata description. Put the screenshot or figure in `docs/assets/projects/` and record its `file`, pixel `width` and `height`, and `alt` description under `visual`. Describe its source in `caption`.
+
+For a patent, `name` is the short listing label. The detail page uses `detail_title` when provided, with the bibliographic `title` as its default. Copy a detail title from the patent document in the appropriate language.
 
 ## GitHub Pages
 

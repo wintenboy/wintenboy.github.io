@@ -33,16 +33,15 @@
     </header>
 
     <main id="main">
-      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Projects</a><h1>Predicting steel plate curvature after rolling</h1><p class="metadata">Dec 2024–Nov 2025 · Researcher, POSCO</p><p class="summary">I worked on selecting usable frames from rolling-line images, segmenting the plate, and extracting its lower edge. We used the outline to measure curvature and predict whether the plate tip would bend up or down in a later pass.</p></header>
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Projects</a><h1>Predicting steel plate curvature after rolling</h1><p class="metadata">Dec 2024–Nov 2025 · Researcher, POSCO</p></header>
           <figure class="project-figure">
             <a class="project-visual" href="../../assets/projects/posco-analysis-pipeline.png">
               <img src="../../assets/projects/posco-analysis-pipeline.png" alt="The steel plate analysis workflow with example frames for labeling, segmentation, contour extraction, and prediction." width="1419" height="638" loading="lazy" decoding="async">
               <span class="project-visual-action">View full size</span>
             </a>
             <figcaption>Original pipeline figure from the POSCO project presentation in my portfolio.</figcaption>
-          </figure><div class="article-body"><section><h2 data-motion-title="words">From rolling-line frames to a measure of curvature</h2><p>I helped select usable frames, build the segmentation workflow, and extract the plate contours. The work included mask cleanup, edge extraction, and curve fitting. Once we had a reliable outline, we could use it to quantify how much the plate tip bent upward or downward.</p></section>
-<section><h2 data-motion-title="words">Forecasting a later pass</h2><p>We paired the image-derived warping index with measurements from roughing and finishing passes. I helped develop a support vector regression model to predict warping two passes ahead. Current warping, rolling speed, and plate thickness were among the process features we examined.</p></section>
-<section><h2 data-motion-title="words">What the pipeline made possible</h2><p>The project connected visual annotation and segmentation to an interpretable process quantity and a subsequent regression task. The project figure shows those stages in order.</p></section></div></article>
+          </figure><div class="article-body"><section><h2 data-motion-title="words">Keeping the direction of the bend</h2><p>I worked on the image preparation, plate segmentation, and contour extraction. We segmented the plate with SAM2 and extracted the lower edge because the cameras look at the plate from an angle. Entry and exit cameras face opposite directions, so we flipped the entry images before calculating curvature. We kept the sign of the curvature to record whether the tip bent up or down.</p></section>
+<section><h2 data-motion-title="words">Why we predicted two passes ahead</h2><p>The entry and exit images were collected on different dates. We could pair images two passes apart from the same side of the line. We joined the image-derived warping index to process measurements from roughing and finishing, then used support vector regression to predict the later pass. The inputs we examined included the current warping index, rolling speed, and plate thickness.</p></section></div></article>
     </main>
     <footer>
       <a href="#top">Back to top</a>

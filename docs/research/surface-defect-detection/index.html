@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="I studied how to detect surface defects when the training images include defective samples.">
+  <meta name="description" content="A training set labeled normal can already contain defects. I studied how to train an image-level detector under those conditions.">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#faf9f6">
   <title>An Adaptive Contrastive Learning-Based Robust Surface Defect Detection Model for Noisy Datasets | Seungyeol Ryu</title>
@@ -33,9 +33,9 @@
     </header>
 
     <main id="main">
-      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Research</a><h1>An Adaptive Contrastive Learning-Based Robust Surface Defect Detection Model for Noisy Datasets</h1><p class="metadata">2026 · IEEE Access · Vol. 14, pp. 177782–177797 · First author</p><p class="summary">I studied how to detect surface defects when the training images include defective samples.</p><p class="source-link"><a href="https://doi.org/10.1109/ACCESS.2026.3752900">Read the paper</a></p></header><div class="article-body"><section><h2 data-motion-title="words">Why training data matters</h2><p>Surface inspection data collected on a factory line can contain subtle defects even when it is assembled as a normal training set. A model trained on that mixture can learn to treat some defects as examples of normal appearance. This study tested image-level detection under controlled contamination.</p></section>
-<section><h2 data-motion-title="words">Adaptive contrastive learning</h2><p>As first author, I worked on a self-supervised contrastive approach that tests individual samples using a one-sample t-test. The p-value feeds an adjustment to the temperature of the contrastive loss. That changes how strongly the learning objective treats similarities when the training examples are less trustworthy.</p></section>
-<section><h2 data-motion-title="words">What we evaluated</h2><p>We varied the share of defective training images and evaluated the detector on Surface Crack, Magnetic Tile, and KolektorSDD2. We compared the method with self-supervised and patch-based baselines under the same contamination conditions. The IEEE Access article reports the full setup and results.</p></section></div></article>
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Research</a><h1>An Adaptive Contrastive Learning-Based Robust Surface Defect Detection Model for Noisy Datasets</h1><p class="metadata">2026 · IEEE Access · Vol. 14, pp. 177782–177797 · First author</p><p class="summary">A training set labeled normal can already contain defects. I studied how to train an image-level detector under those conditions.</p><p class="source-link"><a href="https://doi.org/10.1109/ACCESS.2026.3752900">Read the paper</a></p></header><div class="article-body"><section><h2 data-motion-title="words">Choosing a temperature for each positive pair</h2><p>We generate two views of each training image and compare how similar they are with the cosine similarities those views have to the other samples in the mini-batch. We use a two-sided one-sample t-test to decide whether InfoNCE should use a low or high temperature for that pair. The low setting increases the influence of hard negatives during training.</p></section>
+<section><h2 data-motion-title="words">Scoring new images with nearest neighbors</h2><p>After training, we use the encoder features before the projection layer to score new images with k-nearest neighbors. The detector assigns a score to the whole image. Finding the exact location of a defect would require a separate evaluation at the pixel or patch level.</p></section>
+<section><h2 data-motion-title="words">Fixed, random, and adaptive settings</h2><p>On Surface Crack and Magnetic Tile, the rule gave a higher mean ROC AUC than holding the temperature fixed or switching randomly. The paper also evaluates image-level detection on KolektorSDD2. Similarities computed from the same mini-batch share samples, so we use the p-value as a training rule.</p></section></div></article>
     </main>
     <footer>
       <a href="#top">Back to top</a>

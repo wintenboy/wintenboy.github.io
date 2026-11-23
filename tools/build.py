@@ -308,9 +308,12 @@ def render_detail(item, labels, language, section, details):
     route = f'{section}/{item["id"]}'
     page = page_path(language, route)
     title, date, meta, lead, reference = entry_info(section, item, labels)
+    if section == "patents":
+        title = item.get("detail_title", item["title"])
     back_url = escape(page_link(page, language, section))
     back = f'<a class="back-link" href="{back_url}">← {escape(labels[section + "_label"])}</a>'
-    heading = route_heading(title, f"{date} · {meta}", lead, reference, back)
+    intro = lead if section == "research" else ""
+    heading = route_heading(title, f"{date} · {meta}", intro, reference, back)
     figure = figure_for(item, "../" * len(page.parent.parts), labels["full_size_label"])
     body = f'<article class="detail-page">{heading}{figure}<div class="article-body">{article_sections(details[item["id"]])}</div></article>'
     return route, title, lead, body

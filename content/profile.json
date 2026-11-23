@@ -124,6 +124,7 @@
   ],
   "projects": [
     {
+      "id": "solideo",
       "name": "AI assistance for local government administration",
       "organization": "Solideo",
       "role": "Project manager",
@@ -140,6 +141,7 @@
       "caption": "Original demo capture from the Solideo project submission."
     },
     {
+      "id": "ecopro",
       "name": "Metal contamination detection in battery cathode materials",
       "organization": "EcoPro BM",
       "role": "Researcher",
@@ -155,6 +157,7 @@
       "caption": "Feature importance chart from the original virtual metrology analysis."
     },
     {
+      "id": "posco",
       "name": "Predicting steel plate curvature after rolling",
       "organization": "POSCO",
       "role": "Researcher",
@@ -170,6 +173,7 @@
       "caption": "Original pipeline figure from the POSCO project presentation in my portfolio."
     },
     {
+      "id": "care-products",
       "name": "Care product recommendation system",
       "organization": "National Research Foundation of Korea",
       "role": "Research assistant",
@@ -190,6 +194,7 @@
       }
     },
     {
+      "id": "care-matching",
       "name": "Personalized information for patients and caregivers",
       "organization": "National Research Foundation of Korea",
       "role": "Research assistant",

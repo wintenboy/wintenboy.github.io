@@ -3,11 +3,31 @@
   const progressBar = document.querySelector(".reading-progress");
   const intro = document.querySelector(".intro");
   const name = intro.querySelector("h1");
+  const motionButton = document.querySelector(".motion-toggle");
+  const motionKey = "portfolio-motion";
+  let motionPreference;
+  let motionEnabled = false;
   let frame = 0;
+
+  try {
+    motionPreference = localStorage.getItem(motionKey);
+  } catch {
+    // The switch still works for this page when storage is unavailable.
+  }
+
+  const languageLink = document.querySelector(".language-switch a:not([aria-current])");
+  const otherLanguageUrl = new URL(languageLink.href);
+  function keepSection() {
+    otherLanguageUrl.hash = window.location.hash;
+    languageLink.href = otherLanguageUrl.href;
+  }
+
+  keepSection();
+  window.addEventListener("hashchange", keepSection);
 
   function draw() {
     frame = 0;
-    if (reduce.matches) {
+    if (!motionEnabled) {
       progressBar.style.removeProperty("transform");
       name.style.removeProperty("--name-drift");
       return;
@@ -28,27 +48,23 @@
   window.addEventListener("scroll", scheduleDraw, { passive: true });
   window.addEventListener("resize", scheduleDraw);
   window.addEventListener("load", scheduleDraw, { once: true });
-  reduce.addEventListener("change", scheduleDraw);
-  scheduleDraw();
 
-  if (!("IntersectionObserver" in window)) return;
-
+  const canObserve = "IntersectionObserver" in window;
   let nameLeftView = false;
-  const nameObserver = new IntersectionObserver(([entry]) => {
-    if (entry.intersectionRatio === 0) nameLeftView = true;
-    if (entry.intersectionRatio < .7 || !nameLeftView) return;
-    nameLeftView = false;
-    if (reduce.matches) return;
+  if (canObserve) {
+    const nameObserver = new IntersectionObserver(([entry]) => {
+      if (entry.intersectionRatio === 0) nameLeftView = true;
+      if (entry.intersectionRatio < .7 || !nameLeftView) return;
+      nameLeftView = false;
+      if (!motionEnabled) return;
 
-    intro.classList.add("reset-name");
-    // Resolve the reset before starting the same CSS animation again.
-    void name.offsetWidth;
-    intro.classList.remove("reset-name");
-  }, { threshold: [0, .7] });
-
-  nameObserver.observe(name);
-
-  if (!Element.prototype.animate) return;
+      intro.classList.add("reset-name");
+      // Resolve the reset before starting the same CSS animation again.
+      void name.offsetWidth;
+      intro.classList.remove("reset-name");
+    }, { threshold: [0, .7] });
+    nameObserver.observe(name);
+  }
 
   const titleTokens = new WeakMap();
 
@@ -98,19 +114,42 @@
   }
 
   const headings = [...document.querySelectorAll(".content-section > h2, .project-copy > h3")];
-  const observer = new IntersectionObserver((entries) => {
-    if (reduce.matches) return;
-    for (const { target, isIntersecting, intersectionRatio } of entries) {
-      if (isIntersecting && intersectionRatio >= .18) animateTitle(target);
+  const observer = canObserve && Element.prototype.animate
+    ? new IntersectionObserver((entries) => {
+      if (!motionEnabled) return;
+      for (const { target, isIntersecting, intersectionRatio } of entries) {
+        if (isIntersecting && intersectionRatio >= .18) animateTitle(target);
+      }
+    }, { threshold: .18, rootMargin: "0px 0px -12% 0px" })
+    : null;
+
+  function updateMotion() {
+    motionEnabled = motionPreference === "on" || (motionPreference !== "off" && !reduce.matches);
+    document.documentElement.classList.toggle("motion-enabled", motionEnabled);
+    motionButton.setAttribute("aria-pressed", String(motionEnabled));
+    scheduleDraw();
+
+    if (!observer) return;
+    if (motionEnabled) {
+      headings.forEach((heading) => observer.observe(heading));
+    } else {
+      observer.disconnect();
+      headings.forEach((heading) => {
+        heading.getAnimations({ subtree: true }).forEach((animation) => animation.cancel());
+      });
     }
-  }, { threshold: .18, rootMargin: "0px 0px -12% 0px" });
+  }
 
-  headings.forEach((heading) => observer.observe(heading));
-
-  reduce.addEventListener("change", ({ matches }) => {
-    if (!matches) return;
-    headings.forEach((heading) => {
-      heading.getAnimations({ subtree: true }).forEach((animation) => animation.cancel());
-    });
+  motionButton.addEventListener("click", () => {
+    motionPreference = motionEnabled ? "off" : "on";
+    try {
+      localStorage.setItem(motionKey, motionPreference);
+    } catch {
+      // A browser can block storage on local files or in private mode.
+    }
+    updateMotion();
   });
+  reduce.addEventListener("change", updateMotion);
+  motionButton.hidden = false;
+  updateMotion();
 })();

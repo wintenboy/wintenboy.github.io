@@ -1,0 +1,152 @@
+{
+  "labels": {
+    "language_label": "언어",
+    "sections_label": "목차",
+    "skip_label": "본문 바로가기",
+    "projects_label": "프로젝트",
+    "research_label": "연구",
+    "patents_label": "특허",
+    "teaching_label": "수업 조교",
+    "education_label": "학력",
+    "experience_label": "연구 경력",
+    "cv_label": "영문 CV",
+    "portrait_label": "류승열 프로필 사진",
+    "full_size_label": "원본 크기로 보기",
+    "top_label": "맨 위로",
+    "motion_label": "모션"
+  },
+  "profile": {
+    "role": "산업공학과 대학원 연구원",
+    "university": "연세대학교",
+    "bio": "UNNEST에서 사내망용 AI 에이전트를 개발합니다. 연세대학교에서는 노이즈가 섞인 데이터로도 모델이 안정적으로 학습하는 방법을 연구합니다."
+  },
+  "professional_experience": {
+    "UNNEST": {
+      "detail": "최고기술책임자(CTO)"
+    }
+  },
+  "research": {
+    "https://doi.org/10.1109/ACCESS.2026.3752900": {
+      "title": "노이즈가 섞인 데이터에 강건한 적응형 대조 학습 기반 표면 결함 탐지",
+      "details": "14권, 177782–177797쪽",
+      "role": "제1저자",
+      "summary": "결함 이미지가 학습 데이터에 섞여 있어도 표면 결함을 탐지할 수 있는 방법을 연구했습니다.",
+      "link_label": "논문 보기"
+    },
+    "https://www.informs.org/Meetings-Conferences/INFORMS-Conference-Calendar/2026-INFORMS-Annual-Meeting": {
+      "title": "언어 모델을 활용한 시계열 분류 모델의 적응적 선택",
+      "details": "미국 샌프란시스코, 2026년 11월",
+      "role": "발표자",
+      "summary": "언어 모델로 각 시계열 데이터에 어떤 분류 모델을 적용할지 선택하는 방법을 발표했습니다.",
+      "link_label": "학회 정보"
+    }
+  },
+  "patents": {
+    "KR 10-2972642": {
+      "name": "마케터를 위한 데이터 분석 지원",
+      "status": "등록 특허"
+    },
+    "KR 10-2635315": {
+      "name": "간병인과 환자 매칭",
+      "status": "등록 특허"
+    },
+    "KR 10-2023-0185772": {
+      "name": "간병 용품 추천",
+      "period": "2023년 출원",
+      "status": "공개된 특허 출원"
+    }
+  },
+  "projects": {
+    "solideo": {
+      "name": "지방자치단체 행정 업무를 돕는 AI 에이전트",
+      "organization": "솔리데오",
+      "role": "프로젝트 매니저",
+      "period": "2026년 3월~현재",
+      "case_study": "AI 에이전트 프로토타입 개발을 관리했습니다. 요청에 필요한 정보가 빠져 있으면 다시 묻고, 관련 행정 안내를 찾아 출처와 함께 답변을 작성하도록 대화 흐름을 설계했습니다.",
+      "visual_alt": "답변의 근거 조항과 신청서 링크, 관련 법령 그래프가 표시된 에이전트 데모 화면.",
+      "caption": "솔리데오 프로젝트 제출 당시의 데모 화면."
+    },
+    "ecopro": {
+      "name": "이차전지 양극재의 금속 이물 검출",
+      "organization": "에코프로비엠",
+      "role": "연구원",
+      "period": "2025년 1~5월",
+      "case_study": "공정 센서 측정값과 금속 이물 검사 결과를 분석했습니다. 두 데이터를 생산 로트 기준으로 연결해 검출 모델의 학습 데이터를 구성하는 방법을 검토했습니다.",
+      "visual_alt": "가상 계측 분석에 사용한 공정 변수의 중요도 순위를 보여 주는 막대그래프.",
+      "caption": "가상 계측 분석에서 산출한 공정 변수 중요도."
+    },
+    "posco": {
+      "name": "압연 후 후판의 휨 예측",
+      "organization": "포스코",
+      "role": "연구원",
+      "period": "2024년 12월~2025년 11월",
+      "case_study": "압연 라인 영상에서 분석할 프레임을 고르고, 후판을 분할해 아래쪽 윤곽선을 추출하는 작업에 참여했습니다. 이 윤곽선으로 곡률을 측정해 이후 압연 과정에서 후판 끝이 어느 방향으로 휘는지 예측했습니다.",
+      "visual_alt": "후판 영상 라벨링, 영역 분할, 윤곽선 추출, 휨 예측을 순서대로 보여 주는 분석 흐름도.",
+      "caption": "포스코 프로젝트 발표 자료에 사용한 분석 흐름도."
+    },
+    "care-products": {
+      "name": "환자 맞춤형 간병 용품 추천",
+      "organization": "한국연구재단",
+      "role": "연구보조원",
+      "period": "2023년 7~12월",
+      "case_study": "환자에게 필요한 돌봄, 간병 환경, 상품 정보를 바탕으로 용품을 추천하는 시스템 개발에 참여했습니다. 관련 공개 출원에 공동 발명자로 등재되어 있습니다.",
+      "visual_alt": "환자와 간병인의 단말기를 추천 서버 및 데이터베이스와 연결한 특허 도면.",
+      "caption": "국내 특허 출원 10-2023-0185772의 시스템 도면.",
+      "source_label": "공개 출원 보기"
+    },
+    "care-matching": {
+      "name": "환자와 간병인을 위한 맞춤형 정보 제공",
+      "organization": "한국연구재단",
+      "role": "연구보조원",
+      "period": "2022년 9월~2023년 1월",
+      "case_study": "환자와 간병인을 연결하는 모델 개발에 참여했습니다. 팀은 환자·간병인 프로필, 위치, 과거 만족도를 활용해 적합한 간병인을 추천하도록 모델을 설계했습니다. 관련 등록 특허의 공동 발명자입니다.",
+      "visual_alt": "위치 매칭, 만족도 예측, 간병인 추천 단계를 보여 주는 특허 흐름도.",
+      "caption": "국내 등록 특허 10-2635315의 추천 흐름도.",
+      "source_label": "특허 정보"
+    }
+  },
+  "teaching": {
+    "DSS6003": {
+      "name": "머신러닝 1",
+      "institution": "연세대학교",
+      "role": "수업 조교",
+      "period": "2025년 2학기"
+    },
+    "IIE3104-01": {
+      "name": "머신러닝과 산업 응용",
+      "institution": "연세대학교",
+      "role": "수업 조교",
+      "period": "2025년 2학기"
+    },
+    "DSS6017": {
+      "name": "머신러닝 2",
+      "institution": "연세대학교",
+      "role": "수업 조교",
+      "period": "2025년 1학기"
+    }
+  },
+  "education": {
+    "Yonsei University": {
+      "name": "연세대학교",
+      "detail": "산업공학과 석·박사 통합과정",
+      "period": "2024년~현재"
+    },
+    "The Catholic University of Korea": {
+      "name": "가톨릭대학교",
+      "detail": "국제학·경영학(데이터사이언스 트랙) 학사",
+      "period": "2018~2024년"
+    }
+  },
+  "experience": {
+    "System Intelligence Lab, Yonsei University": {
+      "name": "연세대학교 System Intelligence Lab",
+      "detail": "대학원 연구원",
+      "period": "2024년~현재"
+    },
+    "Applied AI Lab, The Catholic University of Korea": {
+      "name": "가톨릭대학교 Applied AI Lab",
+      "detail": "학부 연구원",
+      "period": "2022~2024년"
+    }
+  }
+}

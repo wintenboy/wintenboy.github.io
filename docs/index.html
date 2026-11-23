@@ -7,9 +7,11 @@
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#f8f9fa">
   <title>Seungyeol Ryu</title>
-  <link rel="stylesheet" href="assets/site.css">
-  <link rel="stylesheet" href="assets/projects.css">
-  <script src="assets/site.js" defer></script>
+  <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/">
+  <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/">
+  <link rel="stylesheet" href="assets/site.css?v=e72a23a7cdb8">
+  <link rel="stylesheet" href="assets/projects.css?v=e72a23a7cdb8">
+  <script src="assets/site.js?v=e72a23a7cdb8" defer></script>
 </head>
 <body id="top">
   <div class="reading-progress" aria-hidden="true"></div>
@@ -17,6 +19,10 @@
   <div class="page">
     <header class="masthead">
       <a class="wordmark" href="#top" lang="ko">류승열</a>
+      <nav class="language-switch" aria-label="Language">
+        <a href="index.html" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a>
+        <a href="ko/index.html" lang="ko" hreflang="ko">한국어</a>
+      </nav>
       <nav class="site-nav" aria-label="Sections">
         <a href="#projects">Projects</a>
         <a href="#research">Research</a>
@@ -28,7 +34,7 @@
 
     <main id="main">
       <section class="intro" aria-labelledby="name">
-        <h1 id="name"><span class="name-word" style="--word-index: 0"><span>Seungyeol</span></span> <span class="name-word" style="--word-index: 1"><span>Ryu</span></span></h1>
+        <h1 id="name" aria-label="Seungyeol Ryu"><span class="name-word" style="--word-index: 0"><span>Seungyeol</span></span> <span class="name-word" style="--word-index: 1"><span>Ryu</span></span></h1>
         <div class="intro-profile">
           <div class="intro-details">
             <ul class="roles"><li>Chief Technology Officer (CTO) at <a href="https://www.unnest.co.kr/">UNNEST</a></li>
@@ -238,6 +244,7 @@
 
         <footer>
           <a href="#top">Back to top</a>
+          <button type="button" class="motion-toggle" aria-pressed="false" hidden>Motion</button>
         </footer>
       </div>
     </main>

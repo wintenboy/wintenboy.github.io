@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="$language">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,73 +7,80 @@
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#f8f9fa">
   <title>$name</title>
-  <link rel="stylesheet" href="assets/site.css">
-  <link rel="stylesheet" href="assets/projects.css">
-  <script src="assets/site.js" defer></script>
+  <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/">
+  <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/">
+  <link rel="stylesheet" href="${asset_prefix}assets/site.css?v=$asset_version">
+  <link rel="stylesheet" href="${asset_prefix}assets/projects.css?v=$asset_version">
+  <script src="${asset_prefix}assets/site.js?v=$asset_version" defer></script>
 </head>
 <body id="top">
   <div class="reading-progress" aria-hidden="true"></div>
-  <a class="skip" href="#main">Skip to content</a>
+  <a class="skip" href="#main">$skip_label</a>
   <div class="page">
     <header class="masthead">
       <a class="wordmark" href="#top" lang="ko">$korean_name</a>
-      <nav class="site-nav" aria-label="Sections">
-        <a href="#projects">Projects</a>
-        <a href="#research">Research</a>
-        <a href="#patents">Patents</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#profile">Education</a>
+      <nav class="language-switch" aria-label="$language_label">
+        <a href="$english_path" lang="en" hreflang="en" aria-label="English"$english_current>EN</a>
+        <a href="$korean_path" lang="ko" hreflang="ko"$korean_current>한국어</a>
+      </nav>
+      <nav class="site-nav" aria-label="$sections_label">
+        <a href="#projects">$projects_label</a>
+        <a href="#research">$research_label</a>
+        <a href="#patents">$patents_label</a>
+        <a href="#teaching">$teaching_label</a>
+        <a href="#profile">$education_label</a>
       </nav>
     </header>
 
     <main id="main">
       <section class="intro" aria-labelledby="name">
-        <h1 id="name">$animated_name</h1>
+        <h1 id="name" aria-label="$name">$animated_name</h1>
         <div class="intro-profile">
           <div class="intro-details">
             <ul class="roles">$current_roles</ul>
             <p class="bio">$bio</p>
             <div class="profile-links">
-              <a class="cv-link" href="cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">CV <span>(PDF)</span></a>
+              <a class="cv-link" href="${asset_prefix}cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">$cv_label <span>(PDF)</span></a>
               $social_links
             </div>
           </div>
-          <img class="portrait" src="assets/portrait.webp" alt="Portrait of $name" width="354" height="472">
+          <img class="portrait" src="${asset_prefix}assets/portrait.webp" alt="$portrait_label" width="354" height="472">
         </div>
       </section>
 
       <div class="content">
         <section id="projects" class="content-section projects-section" aria-labelledby="projects-title">
-          <h2 id="projects-title">Projects</h2>
+          <h2 id="projects-title">$projects_label</h2>
           <ul class="project-records">$projects</ul>
         </section>
 
         <section id="research" class="content-section" aria-labelledby="research-title">
-          <h2 id="research-title">Research</h2>
+          <h2 id="research-title">$research_label</h2>
           <ul class="records">$research</ul>
         </section>
 
         <section id="patents" class="content-section" aria-labelledby="patents-title">
-          <h2 id="patents-title">Patents</h2>
+          <h2 id="patents-title">$patents_label</h2>
           <ul class="records">$patents</ul>
         </section>
 
         <section id="teaching" class="content-section" aria-labelledby="teaching-title">
-          <h2 id="teaching-title">Teaching</h2>
+          <h2 id="teaching-title">$teaching_label</h2>
           <ul class="records">$teaching</ul>
         </section>
 
         <section id="profile" class="content-section" aria-labelledby="education-title">
-          <h2 id="education-title">Education</h2>
+          <h2 id="education-title">$education_label</h2>
           <div class="education-records">
             <ul class="records">$education</ul>
-            <h3 id="experience">Research experience</h3>
+            <h3 id="experience">$experience_label</h3>
             <ul class="records">$experience</ul>
           </div>
         </section>
 
         <footer>
-          <a href="#top">Back to top</a>
+          <a href="#top">$top_label</a>
+          <button type="button" class="motion-toggle" aria-pressed="false" hidden>$motion_label</button>
         </footer>
       </div>
     </main>

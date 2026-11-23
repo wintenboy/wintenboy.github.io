@@ -80,9 +80,9 @@
 
 .project-visual[data-preview="top"] img { object-position: center top; }
 
-@media (prefers-reduced-motion: no-preference) and (hover: hover) {
-  .project-visual img { transition: transform 220ms cubic-bezier(.22, 1, .36, 1); }
-  .project-visual:hover img { transform: scale(1.018); }
+@media (hover: hover) {
+  .motion-enabled .project-visual img { transition: transform 220ms cubic-bezier(.22, 1, .36, 1); }
+  .motion-enabled .project-visual:hover img { transform: scale(1.018); }
 }
 
 @media (min-width: 850px) {

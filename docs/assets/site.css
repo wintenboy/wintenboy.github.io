@@ -335,6 +335,7 @@ html[lang="ko"] .name-word + .name-word { margin-inline-start: 0; }
 }
 
 .home-index h2 a {
+  display: inline-block;
   color: inherit;
   text-decoration-color: #6772896b;
 }
@@ -355,7 +356,7 @@ html[lang="ko"] .name-word + .name-word { margin-inline-start: 0; }
 .index-list li:first-child { padding-top: 0; }
 .index-list li:last-child { border-bottom: 0; padding-bottom: 0; }
 .index-list a, .index-list strong { font-weight: 620; }
-.index-list a { color: var(--ink); }
+.index-list a { display: inline-block; color: var(--ink); }
 .index-list p { margin-top: 2px; color: var(--muted); font-size: .92rem; }
 .index-more { margin-top: 12px; font-size: .92rem; }
 .index-more a { color: var(--accent); }
@@ -408,6 +409,7 @@ h2 {
 }
 
 .record h2 a, .project-copy h2 a {
+  display: inline-block;
   color: inherit;
   text-decoration-color: #6772896b;
 }

@@ -5,75 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="$description">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#102748">
-  <title>$name | Research and portfolio</title>
+  <meta name="theme-color" content="#f1f4f6">
+  <title>$name</title>
   <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="hero" id="top">
-    <div class="wrap">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="wordmark" href="#top" lang="ko">$korean_name</a>
-        <div class="nav-links">
-          <a href="#research">Research</a>
-          <a href="#projects">Projects</a>
-          <a href="#profile">Profile</a>
-          <a href="cv/seungyeol-ryu-cv.pdf" class="nav-cv">CV <span>PDF</span></a>
-        </div>
+<body id="top">
+  <a class="skip" href="#research">Skip to research</a>
+  <div class="page">
+    <header class="masthead">
+      <a class="wordmark" href="#top" lang="ko">$korean_name</a>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="#research">Research</a>
+        <a href="#patents">Patents</a>
+        <a href="#projects">Projects</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#profile">Education</a>
       </nav>
-      <div class="hero-main">
-        <div class="hero-copy">
-          <h1>$name</h1>
-          <p class="affiliation">$role at $university</p>
-          <p class="bio">$bio</p>
-          <div class="hero-links">
-            <a class="primary" href="cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">Download CV <span aria-hidden="true">↓</span></a>
-            $social_links
-          </div>
-        </div>
-        <figure class="portrait">
-          <img src="assets/portrait.webp" alt="Portrait of $name" width="354" height="472" fetchpriority="high">
-          <figcaption>$lab</figcaption>
-        </figure>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <main id="main">
-    <section id="research" class="wrap section">
-      <div class="section-title">
-        <h2>Research</h2>
-        <ul class="topics" aria-label="Research interests">$topics</ul>
-      </div>
-      <div class="research-list">$research</div>
-    </section>
-    <section id="projects" class="projects-section">
-      <div class="wrap section">
-        <div class="section-title"><h2>Selected projects</h2></div>
-        <div class="projects">$projects</div>
-      </div>
-    </section>
-    <section id="profile" class="wrap section profile">
-      <div class="section-title"><h2>Profile</h2></div>
-      <div class="profile-grid">
-        <div>
-          <h3>Education</h3>
-          <dl class="timeline">$education</dl>
+    <main class="site-layout">
+      <section class="intro" aria-labelledby="name">
+        <img class="portrait" src="assets/portrait.webp" alt="Portrait of $name" width="354" height="472">
+        <div class="intro-text">
+          <h1 id="name">$name</h1>
+          <p class="affiliation">$role<br>$university</p>
+          <p class="lab">$lab</p>
         </div>
-        <div>
-          <h3>Research experience</h3>
-          <dl class="timeline">$experience</dl>
+        <p class="bio">$bio</p>
+        <div class="profile-links">
+          <a class="cv-link" href="cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">Download CV <span>(PDF)</span></a>
+          <div class="external-links">$social_links</div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer>
-    <div class="wrap footer-inner">
-      <span>$name</span>
-      <div class="footer-links">$social_links <a href="cv/seungyeol-ryu-cv.pdf">CV (PDF)</a></div>
-    </div>
-  </footer>
+      <div class="content">
+        <section id="research" class="content-section" aria-labelledby="research-title">
+          <h2 id="research-title">Research</h2>
+          <ul class="records research-records">$research</ul>
+        </section>
+
+        <section id="patents" class="content-section" aria-labelledby="patents-title">
+          <h2 id="patents-title">Patents</h2>
+          <ul class="records">$patents</ul>
+        </section>
+
+        <section id="projects" class="content-section" aria-labelledby="projects-title">
+          <h2 id="projects-title">Projects</h2>
+          <ul class="records">$projects</ul>
+        </section>
+
+        <section id="teaching" class="content-section" aria-labelledby="teaching-title">
+          <h2 id="teaching-title">Teaching</h2>
+          <ul class="records">$teaching</ul>
+        </section>
+
+        <section id="profile" class="content-section" aria-labelledby="education-title">
+          <h2 id="education-title">Education</h2>
+          <ul class="records">$education</ul>
+        </section>
+
+        <section id="experience" class="content-section" aria-labelledby="experience-title">
+          <h2 id="experience-title">Research experience</h2>
+          <ul class="records">$experience</ul>
+        </section>
+
+        <footer>
+          <a href="#top">Back to top</a>
+        </footer>
+      </div>
+    </main>
+  </div>
 </body>
 </html>

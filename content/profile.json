@@ -4,7 +4,7 @@
   "role": "Graduate researcher in industrial engineering",
   "university": "Yonsei University",
   "lab": "System Intelligence Lab",
-  "bio": "I study how machine learning models can handle noisy industrial data, choose the right model for a time-series input, and learn from data held across different systems.",
+  "bio": "I work on surface defect detection with noisy training data, classifier selection for time series, and federated learning for industrial data.",
   "topics": [
     "Industrial AI",
     "Time-series classification",
@@ -29,7 +29,17 @@
       "details": "Vol. 14, pp. 177782–177797",
       "credit": "Seungyeol Ryu, Geonwoo Kim, and Jaeyeon Jang",
       "role": "First author",
-      "summary": "Adaptive contrastive learning for image-level surface defect detection when abnormal samples are mixed into the training data.",
+      "summary": "The method uses a t-test to adjust the contrastive loss temperature when defective images are mixed into the training set.",
+      "benchmark": {
+        "label": "Results with 10% defective training images",
+        "caption": "Mean ROC AUC across Surface Crack, Magnetic Tile, and KolektorSDD2",
+        "scores": [
+          {"method": "Adaptive contrastive learning", "score": "0.906"},
+          {"method": "SoftPatch", "score": "0.891"},
+          {"method": "PatchCore", "score": "0.887"},
+          {"method": "SimCLR", "score": "0.817"}
+        ]
+      },
       "href": "https://doi.org/10.1109/ACCESS.2026.3752900",
       "link_label": "Read the paper",
       "featured": true
@@ -42,7 +52,7 @@
       "details": "San Francisco, CA, November 2026",
       "credit": "Seungyeol Ryu",
       "role": "Presenter",
-      "summary": "A language-model router selects a classifier for each time-series input. The presentation evaluates the approach on 18 selected UCR 2019 datasets.",
+      "summary": "A language model chooses a classifier for each input. We tested it on 18 time-series datasets from the UCR archive.",
       "href": "https://www.informs.org/Meetings-Conferences/INFORMS-Conference-Calendar/2026-INFORMS-Annual-Meeting",
       "link_label": "Conference information",
       "featured": true
@@ -59,6 +69,35 @@
       "href": "",
       "link_label": "",
       "featured": false
+    }
+  ],
+  "patents": [
+    {
+      "name": "Data analysis assistance for marketers",
+      "title": "Method for assisting marketers in data analysis and electronic device for performing the same",
+      "number": "KR 10-2972642",
+      "status": "Granted patent",
+      "period": "2026",
+      "inventors": "Jaeyeon Jang, Geon Woo Kim, Hyeoni Kim, Chae Won Yun, and Seungyeol Ryu",
+      "href": "https://patents.google.com/patent/KR102972642B1/en"
+    },
+    {
+      "name": "Caregiver–patient matching",
+      "title": "Method for training and using a caregiver–patient matching model",
+      "number": "KR 10-2635315",
+      "status": "Granted patent",
+      "period": "2024",
+      "inventors": "Jaeyeon Jang, Hong Joo Lee, Minsik Kim, Seungyeol Ryu, and Ju Won Min",
+      "href": "https://patents.google.com/patent/KR102635315B1/en"
+    },
+    {
+      "name": "Care product recommendations",
+      "title": "Care product recommendation system to improve nursing service quality",
+      "number": "KR 10-2023-0185772",
+      "status": "Published application",
+      "period": "Filed 2023",
+      "inventors": "Jaeyeon Jang, Hong Joo Lee, Minsik Kim, Geon Woo Kim, Seungyeol Ryu, and Hyeoni Kim",
+      "href": "https://app.rndcircle.io/patent/019c1ef7-5f39-70af-9fb0-16dedef649be"
     }
   ],
   "education": [
@@ -87,42 +126,79 @@
   ],
   "projects": [
     {
-      "name": "Detecting contamination in battery materials",
+      "name": "AI assistance for local government administration",
+      "organization": "Solideo",
+      "role": "Project manager",
+      "period": "Mar 2026–present",
+      "summary": "Managed development of an AI assistant that retrieves information for public-service workflows and asks follow-up questions to clarify requests."
+    },
+    {
+      "name": "Metal contamination detection in battery cathode materials",
       "organization": "EcoPro BM",
       "role": "Researcher",
-      "period": "2025",
-      "summary": "Worked on models that use process data to detect metal contamination in cathode material manufacturing."
+      "period": "Jan–May 2025",
+      "summary": "Worked on models that use manufacturing process data to detect metal contamination."
     },
     {
       "name": "Predicting steel plate curvature after rolling",
       "organization": "POSCO",
       "role": "Researcher",
-      "period": "2024–2025",
+      "period": "Dec 2024–Nov 2025",
       "summary": "Worked on image segmentation and contour analysis to predict upward or downward deformation in thick steel plates."
     },
     {
-      "name": "AI assistance for local government services",
-      "organization": "Solideo",
-      "role": "Project manager",
-      "period": "From 2026",
-      "summary": "Managed development of an AI agent for public-service workflows, including retrieval and questions that clarify user requests."
+      "name": "Care product recommendation system",
+      "organization": "National Research Foundation of Korea",
+      "role": "Research assistant",
+      "period": "Jul–Dec 2023",
+      "summary": "Contributed to a system that recommends care products based on patient needs."
+    },
+    {
+      "name": "Personalized information for patients and caregivers",
+      "organization": "National Research Foundation of Korea",
+      "role": "Research assistant",
+      "period": "Sep 2022–Jan 2023",
+      "summary": "Contributed to an information system for patients, guardians, and caregivers."
     }
   ],
   "teaching": [
     {
-      "name": "Yonsei University",
-      "detail": "Teaching assistant for Machine Learning 1, Machine Learning 2, and Machine Learning & Industrial Applications",
-      "period": "2025"
+      "name": "Machine Learning 1",
+      "code": "DSS6003",
+      "institution": "Yonsei University",
+      "role": "Teaching assistant",
+      "period": "Fall 2025"
     },
     {
-      "name": "SK hynix DSS Program",
-      "detail": "Mentor for the 6th and 7th cohorts",
-      "period": "2024–2026"
+      "name": "ML & Industrial Applications",
+      "code": "IIE3104-01",
+      "institution": "Yonsei University",
+      "role": "Teaching assistant",
+      "period": "Fall 2025"
     },
     {
-      "name": "Hyundai Department Store Group",
-      "detail": "Mentor for the Citizen Data Scientist program",
-      "period": "2026"
+      "name": "Machine Learning 2",
+      "code": "DSS6017",
+      "institution": "Yonsei University",
+      "role": "Teaching assistant",
+      "period": "Spring 2025"
+    }
+  ],
+  "mentoring": [
+    {
+      "name": "Citizen Data Scientist program",
+      "detail": "Hyundai Department Store Group",
+      "period": "Feb–Mar 2026"
+    },
+    {
+      "name": "DSS program, 7th cohort",
+      "detail": "SK hynix",
+      "period": "Sep 2024–Aug 2026"
+    },
+    {
+      "name": "DSS program, 6th cohort",
+      "detail": "SK hynix",
+      "period": "Dec 2024–Aug 2025"
     }
   ],
   "recognition": [

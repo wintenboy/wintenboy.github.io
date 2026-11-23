@@ -1,6 +1,6 @@
 #let d = json("../content/profile.json")
 #let ink = rgb("#142942")
-#let blue = rgb("#2546b2")
+#let blue = rgb("#215479")
 #let muted = rgb("#425671")
 #let rule-color = rgb("#a9bad7")
 #set document(title: d.name + " | Curriculum Vitae", author: d.name)
@@ -27,6 +27,18 @@
   #emph(item.venue), #item.year. #item.details. #item.role.
   #if item.href != "" { [ #link(item.href)[#item.link_label]] }
 ]
+#let patent(item) = block(above: 8pt, below: 8pt, breakable: false)[
+  #text(weight: "bold", item.title)
+  #linebreak()
+  #item.inventors
+  #linebreak()
+  #item.status, #link(item.href)[#item.number]. #item.period.
+]
+#let course(item) = entry((
+  name: item.name + " (" + item.code + ")",
+  detail: item.role + ", " + item.institution,
+  period: item.period,
+))
 #let project(item) = block(above: 9pt, below: 9pt, breakable: false, stack(
   spacing: 3pt,
   grid(columns: (1fr, auto), column-gutter: 8pt,
@@ -50,12 +62,16 @@
 #d.topics.join(" / ")
 #section("Publications and presentations")
 #records(d.research, research-entry)
+#section("Patents")
+#records(d.patents, patent)
 
 #pagebreak()
 
-#section("Selected projects")
+#section("Projects")
 #records(d.projects, project)
-#section("Teaching and mentoring")
-#records(d.teaching, entry)
+#section("Teaching")
+#records(d.teaching, course)
+#section("Mentoring")
+#records(d.mentoring, entry)
 #section("Honors")
 #records(d.recognition, entry)

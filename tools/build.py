@@ -13,49 +13,73 @@ SITE = ROOT / "docs"
 PDF = Path("cv/seungyeol-ryu-cv.pdf")
 
 
-def anchor(label, href, css_class=""):
-    css = f' class="{escape(css_class)}"' if css_class else ""
-    return f'<a{css} href="{escape(href)}">{escape(label)}</a>'
+def anchor(label, href):
+    return f'<a href="{escape(href)}">{escape(label)}</a>'
 
 
-def research_article(item):
-    parts = [item["venue"], item["details"], item["role"]]
-    description = " · ".join(escape(part) for part in parts if part)
-    link = anchor(item["link_label"], item["href"], "text-link") if item["href"] else ""
-    return f'''<article class="research-item">
-        <div class="research-meta">
-          <span class="research-kind">{escape(item["type"])}</span>
-          <span class="research-date">{escape(item["year"])}</span>
-        </div>
-        <div class="research-content">
-          <h3>{escape(item["title"])}</h3>
-          <p class="credits">{description}</p>
-          <p class="summary">{escape(item["summary"])}</p>
-          {link}
-        </div>
-      </article>'''
+def record(title, date, metadata, summary="", source_link="", supplement=""):
+    paragraphs = [f'<p class="metadata">{escape(metadata)}</p>']
+    if summary:
+        paragraphs.append(f'<p class="summary">{escape(summary)}</p>')
+    if source_link:
+        paragraphs.append(f'<p class="source-link">{source_link}</p>')
+    if supplement:
+        paragraphs.append(supplement)
+    details = "\n            ".join(paragraphs)
+    return f'''<li class="record">
+          <h3>{escape(title)}</h3>
+          <p class="record-date">{escape(date)}</p>
+          <div class="record-details">
+            {details}
+          </div>
+        </li>'''
 
 
-def project_card(item):
-    return f'''<article class="project">
-          <p class="project-meta"><strong>{escape(item["organization"])}</strong><span>{escape(item["period"])}</span></p>
-          <h3>{escape(item["name"])}</h3>
-          <p>{escape(item["summary"])}</p>
-        </article>'''
+def benchmark_table(benchmark):
+    rows = "\n".join(
+        f'<tr><th scope="row">{escape(item["method"])}</th><td>{escape(item["score"])}</td></tr>'
+        for item in benchmark["scores"]
+    )
+    return f'''<details class="benchmark">
+              <summary>{escape(benchmark["label"])}</summary>
+              <table>
+                <caption>{escape(benchmark["caption"])}</caption>
+                <thead><tr><th scope="col">Method</th><th scope="col">ROC AUC</th></tr></thead>
+                <tbody>{rows}</tbody>
+              </table>
+            </details>'''
+
+
+def research_record(item):
+    metadata = ". ".join((item["venue"], item["details"], item["role"])) + "."
+    link = anchor(item["link_label"], item["href"]) if item["href"] else ""
+    benchmark = benchmark_table(item["benchmark"]) if "benchmark" in item else ""
+    return record(item["title"], item["year"], metadata, item["summary"], link, benchmark)
+
+
+def patent_record(item):
+    link = anchor(item["number"], item["href"])
+    return record(item["name"], item["period"], item["status"], source_link=link)
+
+
+def project_record(item):
+    metadata = f'{item["role"]}, {item["organization"]}'
+    return record(item["name"], item["period"], metadata, item["summary"])
+
+
+def course_record(item):
+    title = f'{item["name"]} ({item["code"]})'
+    metadata = f'{item["role"]}, {item["institution"]}'
+    return record(title, item["period"], metadata)
 
 
 def timeline(items):
-    rows = [
-        f'<div><dt>{escape(item["name"])}</dt>'
-        f'<dd>{escape(item["detail"])}<p class="timing">{escape(item["period"])}</p></dd></div>'
-        for item in items
-    ]
-    return "\n".join(rows)
+    return "\n".join(record(item["name"], item["period"], item["detail"]) for item in items)
 
 
 def render_site(profile):
     source = (ROOT / "site/index.template.html").read_text(encoding="utf-8")
-    social_links = " ".join(anchor(item["label"], item["href"], "quiet") for item in profile["links"])
+    social_links = "\n".join(anchor(item["label"], item["href"]) for item in profile["links"])
     return Template(source).substitute(
         name=escape(profile["name"]),
         korean_name=escape(profile["korean_name"]),
@@ -65,9 +89,10 @@ def render_site(profile):
         bio=escape(profile["bio"]),
         lab=escape(profile["lab"]),
         social_links=social_links,
-        topics="".join(f"<li>{escape(topic)}</li>" for topic in profile["topics"]),
-        research="\n".join(research_article(item) for item in profile["research"] if item["featured"]),
-        projects="\n".join(project_card(item) for item in profile["projects"]),
+        research="\n".join(research_record(item) for item in profile["research"] if item["featured"]),
+        patents="\n".join(patent_record(item) for item in profile["patents"]),
+        projects="\n".join(project_record(item) for item in profile["projects"]),
+        teaching="\n".join(course_record(item) for item in profile["teaching"]),
         education=timeline(profile["education"]),
         experience=timeline(profile["experience"]),
     )

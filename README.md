@@ -4,7 +4,7 @@ An academic homepage and a Typst CV built from the same records.
 
 ## Update the portfolio
 
-1. Edit `content/profile.json`. The `research` list holds journal articles and presentations. Set `featured` to `true` to include an entry on the homepage.
+1. Edit `content/profile.json`. The `research` list holds journal articles and presentations. Set `featured` to `true` to include a research entry on the homepage. Update `patents`, `projects`, and `teaching` to change the corresponding sections in both the homepage and CV. Use one record per course.
 2. Run `python tools/build.py` using Python 3.10+ and Typst 0.15.1. If Typst is outside PATH, pass its path with `--typst`.
 3. Review `docs/index.html` and `docs/cv/seungyeol-ryu-cv.pdf` before committing the updated content and generated files. For a local HTTP preview, run `python -m http.server 8000 --directory docs`.
 

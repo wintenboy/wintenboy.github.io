@@ -39,6 +39,11 @@
   detail: item.role + ", " + item.institution,
   period: item.period,
 ))
+#let professional(item) = {
+  let url = item.at("href", default: "")
+  let name = if url != "" { link(url, item.name) } else { item.name }
+  entry(item + (name: name,))
+}
 #let project(item) = block(above: 9pt, below: 9pt, breakable: false, stack(
   spacing: 3pt,
   grid(columns: (1fr, auto), column-gutter: 8pt,
@@ -55,7 +60,7 @@
 )
 
 #section("Professional experience")
-#records(d.professional_experience, entry)
+#records(d.professional_experience, professional)
 #section("Education")
 #records(d.education, entry)
 #section("Research experience")

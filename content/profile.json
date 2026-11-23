@@ -4,12 +4,13 @@
   "role": "Graduate researcher in industrial engineering",
   "university": "Yonsei University",
   "lab": "System Intelligence Lab",
-  "bio": "I work on machine learning for industrial data, from finding defects in materials to choosing models for time series.",
+  "bio": "At UNNEST, I help build AI agents that run on private networks. My research at Yonsei looks at how models learn from noisy data.",
   "professional_experience": [
     {
       "name": "UNNEST",
       "detail": "Chief Technology Officer (CTO)",
-      "period": "Present"
+      "period": "Present",
+      "href": "https://www.unnest.co.kr/"
     }
   ],
   "topics": [
@@ -127,35 +128,58 @@
       "organization": "Solideo",
       "role": "Project manager",
       "period": "Mar 2026–present",
-      "summary": "Managed development of an AI assistant that retrieves information for public-service workflows and asks follow-up questions to clarify requests."
+      "summary": "Managed development of an AI assistant that retrieves information for public-service workflows and asks follow-up questions to clarify requests.",
+      "case_study": "I managed the AI assistant prototype. I worked on the conversation flow so it could ask for missing details, retrieve the relevant public-service guidance, and use those sources to draft an answer.",
+      "visual": "solideo",
+      "caption": "Example conversation showing how a follow-up question narrows the search for official guidance."
     },
     {
       "name": "Metal contamination detection in battery cathode materials",
       "organization": "EcoPro BM",
       "role": "Researcher",
       "period": "Jan–May 2025",
-      "summary": "Worked on models that use manufacturing process data to detect metal contamination."
+      "summary": "Worked on models that use manufacturing process data to detect metal contamination.",
+      "case_study": "I examined production sensor readings and lab assays for metal contamination. I mapped how the two sources could be matched by production lot to prepare labeled examples for a detection model.",
+      "visual": "ecopro",
+      "caption": "Data preparation diagram showing how production readings and lab measurements are matched by lot."
     },
     {
       "name": "Predicting steel plate curvature after rolling",
       "organization": "POSCO",
       "role": "Researcher",
       "period": "Dec 2024–Nov 2025",
-      "summary": "Worked on image segmentation and contour analysis to predict upward or downward deformation in thick steel plates."
+      "summary": "Worked on image segmentation and contour analysis to predict upward or downward deformation in thick steel plates.",
+      "case_study": "I worked on selecting usable frames from rolling-line images, segmenting the plate, and extracting its lower edge. We used the outline to measure curvature and predict whether the plate tip would bend up or down in a later pass.",
+      "visual": "posco",
+      "caption": "Illustration of the plate mask and the lower contour used to measure tip curvature."
     },
     {
       "name": "Care product recommendation system",
       "organization": "National Research Foundation of Korea",
       "role": "Research assistant",
       "period": "Jul–Dec 2023",
-      "summary": "Contributed to a system that recommends care products based on patient needs."
+      "summary": "Contributed to a system that recommends care products based on patient needs.",
+      "case_study": "As a research assistant, I contributed to a recommender that uses patient needs, the care setting, and product information to suggest suitable supplies. I am a co-inventor on the associated published patent application.",
+      "visual": "care-products",
+      "caption": "Recommendation diagram showing how patient and product information inform the shortlist.",
+      "source": {
+        "label": "Published patent application",
+        "href": "https://app.rndcircle.io/patent/019c1ef7-5f39-70af-9fb0-16dedef649be"
+      }
     },
     {
       "name": "Personalized information for patients and caregivers",
       "organization": "National Research Foundation of Korea",
       "role": "Research assistant",
       "period": "Sep 2022–Jan 2023",
-      "summary": "Contributed to an information system for patients, guardians, and caregivers."
+      "summary": "Contributed to an information system for patients, guardians, and caregivers.",
+      "case_study": "I contributed to the caregiver–patient matching project as a research assistant. Our team designed a model that uses patient and caregiver profiles, location, and past satisfaction to suggest matches. I am a co-inventor on the resulting patent.",
+      "visual": "care-matching",
+      "caption": "Matching diagram based on the profiles, location information, and satisfaction data described in the patent.",
+      "source": {
+        "label": "Patent record",
+        "href": "https://patents.google.com/patent/KR102635315B1/en"
+      }
     }
   ],
   "teaching": [

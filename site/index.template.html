@@ -8,8 +8,11 @@
   <meta name="theme-color" content="#faf8f2">
   <title>$name</title>
   <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/projects.css">
+  <script src="assets/site.js" defer></script>
 </head>
 <body id="top">
+  <div class="reading-progress" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
   <div class="page">
     <header class="masthead">
@@ -40,9 +43,9 @@
       </section>
 
       <div class="content">
-        <section id="projects" class="content-section" aria-labelledby="projects-title">
+        <section id="projects" class="content-section projects-section" aria-labelledby="projects-title">
           <h2 id="projects-title">Projects</h2>
-          <ul class="records project-records">$projects</ul>
+          <ul class="project-records">$projects</ul>
         </section>
 
         <section id="research" class="content-section" aria-labelledby="research-title">

@@ -10,6 +10,8 @@ An academic homepage and a Typst CV built from the same records.
 
 `site/index.template.html` controls the page structure, `docs/assets/site.css` controls the styles, and `cv/cv.typ` controls the PDF layout.
 
+For a project, `summary` is the short CV entry and `case_study` is the homepage description. Set `visual` to the name of a file in `site/project-visuals/` without the `.html` extension, and describe the diagram in `caption`.
+
 ## GitHub Pages
 
 The publishing target is `wintenboy/wintenboy.github.io`. The site is ready to serve from `main` and `/docs` once the public repository and Pages publishing source are set up. Keep records meant for public release in this repository.

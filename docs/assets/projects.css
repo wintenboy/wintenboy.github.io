@@ -1,0 +1,181 @@
+.projects-section {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+.project-records {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project {
+  display: grid;
+  align-items: center;
+  gap: 20px 36px;
+  padding-block: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.project:first-child { padding-top: 4px; }
+.project:last-child { padding-bottom: 0; border-bottom: 0; }
+
+.project-copy h3 {
+  margin-top: 8px;
+  font-size: clamp(1.45rem, 2.5vw, 2.08rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -.037em;
+  text-wrap: pretty;
+}
+
+.project-copy .metadata { color: var(--accent); font-weight: 600; }
+.project-copy .summary { margin-top: 12px; color: var(--secondary); }
+.project-date { margin-top: 8px; color: var(--muted); font-size: .88rem; }
+.project-figure { min-width: 0; margin: 0; }
+
+.project-figure figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: .86rem;
+  line-height: 1.42;
+}
+
+.project-visual {
+  display: grid;
+  align-content: center;
+  min-height: 220px;
+  padding: clamp(14px, 3vw, 28px);
+  border-radius: 6px;
+  color: #242a3c;
+  font-size: .925rem;
+  line-height: 1.38;
+}
+
+.project-visual strong { display: block; font-weight: 650; }
+.visual-label { color: #4f5666; font-size: .77rem; font-weight: 650; }
+
+.civic-visual {
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 12px;
+  background: #e7eefb;
+}
+
+.conversation {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid #c3cfea;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.message {
+  padding: 8px;
+  border-radius: 4px;
+  background: #f2f3f6;
+}
+
+.message.reply { background: #e1eaf9; }
+
+.lookup {
+  align-self: center;
+  display: grid;
+  gap: 4px;
+  padding-inline-start: 12px;
+  border-inline-start: 2px solid #829ac9;
+}
+
+.lookup p { color: #424d61; font-size: .83rem; }
+
+.process-visual {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  background: #ddebe5;
+}
+
+.signal-box, .assay-box, .process-join {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border-block-start: 3px solid #5a8676;
+  background: #f9fffb;
+}
+
+.process-visual span { font-size: .82rem; }
+
+.process-join {
+  grid-column: 1 / -1;
+  text-align: center;
+  border-block-start-color: #315c4d;
+}
+
+.plate-visual {
+  gap: 12px;
+  background: #233241;
+  color: #f7f8f9;
+}
+
+.plate-key { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .83rem; }
+
+.plate-key span::before {
+  display: inline-block;
+  width: 12px;
+  height: 3px;
+  margin-inline-end: 6px;
+  vertical-align: middle;
+  background: #b8cad8;
+  content: "";
+}
+
+.plate-key span + span::before { background: #f0cf78; }
+
+.plate-drawing {
+  position: relative;
+  height: 86px;
+  border-bottom: 1px dashed #8696a3;
+}
+
+.plate-drawing div, .plate-drawing::after {
+  position: absolute;
+  inset: 0;
+  background: #b8cad8;
+  clip-path: polygon(0 53%, 45% 53%, 64% 47%, 81% 34%, 100% 8%, 100% 25%, 81% 51%, 64% 64%, 45% 70%, 0 70%);
+}
+
+.plate-drawing::after {
+  background: #f0cf78;
+  clip-path: polygon(0 69%, 45% 69%, 64% 63%, 81% 50%, 100% 24%, 100% 29%, 81% 55%, 64% 68%, 45% 74%, 0 74%);
+  content: "";
+}
+
+.plate-visual p { font-size: .84rem; }
+
+.supplies-visual {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 12px;
+  background: #f1e7d4;
+}
+
+.supplies-input, .supplies-result { padding: 10px 12px; background: #fffcf5; }
+.supplies-input p + p { margin-top: 4px; }
+.supplies-result { display: grid; align-content: center; gap: 6px; border-top: 3px solid #a47539; }
+.supplies-result p { font-size: .83rem; }
+
+.matching-visual {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  background: #eee8f3;
+}
+
+.match-input, .match-result { padding: 10px 12px; background: #fdfbff; text-align: center; }
+.match-input { border-block-end: 3px solid #9881ad; }
+.match-result { grid-column: 1 / -1; justify-self: center; }
+.match-result p { margin-top: 4px; font-size: .83rem; }
+
+@media (min-width: 850px) {
+  .project {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.14fr);
+    padding-block: 36px;
+  }
+}

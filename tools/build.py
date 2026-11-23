@@ -7,6 +7,7 @@ import shutil
 from string import Template
 import subprocess
 from tempfile import TemporaryDirectory
+from textwrap import indent
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "docs"
@@ -46,7 +47,28 @@ def patent_record(item):
 
 def project_record(item):
     metadata = f'{item["role"]}, {item["organization"]}'
-    return record(item["name"], item["period"], metadata, item["summary"])
+    description = item.get("case_study", item["summary"])
+    source = item.get("source")
+    source_link = ""
+    if source:
+        source_link = f'\n            <p class="source-link">{anchor(source["label"], source["href"])}</p>'
+    figure = ""
+    if item.get("visual"):
+        name = Path(item["visual"]).name
+        visual = (ROOT / "site/project-visuals" / f"{name}.html").read_text(encoding="utf-8").strip()
+        figure = f'''
+          <figure class="project-figure">
+{indent(visual, ' ' * 12)}
+            <figcaption>{escape(item["caption"])}</figcaption>
+          </figure>'''
+    return f'''<li class="project">
+          <div class="project-copy">
+            <p class="metadata">{escape(metadata)}</p>
+            <h3>{escape(item["name"])}</h3>
+            <p class="project-date">{escape(item["period"])}</p>
+            <p class="summary">{escape(description)}</p>{source_link}
+          </div>{figure}
+        </li>'''
 
 
 def course_record(item):
@@ -59,20 +81,26 @@ def timeline(items):
     return "\n".join(record(item["name"], item["period"], item["detail"]) for item in items)
 
 
+def current_role(item):
+    name = anchor(item["name"], item["href"]) if item.get("href") else escape(item["name"])
+    return f'<li>{escape(item["detail"])} at {name}</li>'
+
+
 def render_site(profile):
     source = (ROOT / "site/index.template.html").read_text(encoding="utf-8")
     social_links = "\n".join(anchor(item["label"], item["href"]) for item in profile["links"])
     current_roles = [
-        f'{item["detail"]} at {item["name"]}'
+        current_role(item)
         for item in profile["professional_experience"]
         if item["period"] == "Present"
     ]
-    current_roles.append(f'{profile["role"]} at {profile["university"]}')
+    academic_role = f'{profile["role"]} at {profile["university"]}'
+    current_roles.append(f'<li>{escape(academic_role)}</li>')
     return Template(source).substitute(
         name=escape(profile["name"]),
         korean_name=escape(profile["korean_name"]),
-        description=escape(f'{profile["name"]}. ' + ". ".join(current_roles) + "."),
-        current_roles="\n".join(f"<li>{escape(role)}</li>" for role in current_roles),
+        description=escape(f'{profile["name"]}. {profile["bio"]}'),
+        current_roles="\n".join(current_roles),
         bio=escape(profile["bio"]),
         social_links=social_links,
         research="\n".join(research_record(item) for item in profile["research"] if item["featured"]),

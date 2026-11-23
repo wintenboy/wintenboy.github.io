@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Seungyeol Ryu. Chief Technology Officer (CTO) at UNNEST. Graduate researcher in industrial engineering at Yonsei University.">
+  <meta name="description" content="Seungyeol Ryu. At UNNEST, I help build AI agents that run on private networks. My research at Yonsei looks at how models learn from noisy data.">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#faf8f2">
   <title>Seungyeol Ryu</title>
   <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/projects.css">
+  <script src="assets/site.js" defer></script>
 </head>
 <body id="top">
+  <div class="reading-progress" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
   <div class="page">
     <header class="masthead">
@@ -27,9 +30,9 @@
       <section class="intro" aria-labelledby="name">
         <div class="intro-text">
           <h1 id="name">Seungyeol Ryu</h1>
-          <ul class="roles"><li>Chief Technology Officer (CTO) at UNNEST</li>
+          <ul class="roles"><li>Chief Technology Officer (CTO) at <a href="https://www.unnest.co.kr/">UNNEST</a></li>
 <li>Graduate researcher in industrial engineering at Yonsei University</li></ul>
-          <p class="bio">I work on machine learning for industrial data, from finding defects in materials to choosing models for time series.</p>
+          <p class="bio">At UNNEST, I help build AI agents that run on private networks. My research at Yonsei looks at how models learn from noisy data.</p>
           <div class="profile-links">
             <a class="cv-link" href="cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">Download CV <span>(PDF)</span></a>
             <div class="external-links"><a href="https://scholar.google.com/citations?user=p-ycK4QAAAAJ&amp;hl=ko">Google Scholar</a>
@@ -42,47 +45,119 @@
       </section>
 
       <div class="content">
-        <section id="projects" class="content-section" aria-labelledby="projects-title">
+        <section id="projects" class="content-section projects-section" aria-labelledby="projects-title">
           <h2 id="projects-title">Projects</h2>
-          <ul class="records project-records"><li class="record">
-          <h3>AI assistance for local government administration</h3>
-          <p class="record-date">Mar 2026–present</p>
-          <div class="record-details">
+          <ul class="project-records"><li class="project">
+          <div class="project-copy">
             <p class="metadata">Project manager, Solideo</p>
-            <p class="summary">Managed development of an AI assistant that retrieves information for public-service workflows and asks follow-up questions to clarify requests.</p>
+            <h3>AI assistance for local government administration</h3>
+            <p class="project-date">Mar 2026–present</p>
+            <p class="summary">I managed the AI assistant prototype. I worked on the conversation flow so it could ask for missing details, retrieve the relevant public-service guidance, and use those sources to draft an answer.</p>
           </div>
+          <figure class="project-figure">
+            <div class="project-visual civic-visual" aria-hidden="true">
+              <div class="conversation">
+                <p class="visual-label">Resident</p>
+                <p class="message">Where do I submit an application?</p>
+                <p class="visual-label">Assistant</p>
+                <p class="message reply">Which service is the application for?</p>
+              </div>
+              <div class="lookup">
+                <span class="visual-label">Next step</span>
+                <strong>Find the relevant guidance</strong>
+                <p>Use the service details to look up the right procedure.</p>
+              </div>
+            </div>
+            <figcaption>Example conversation showing how a follow-up question narrows the search for official guidance.</figcaption>
+          </figure>
         </li>
-<li class="record">
-          <h3>Metal contamination detection in battery cathode materials</h3>
-          <p class="record-date">Jan–May 2025</p>
-          <div class="record-details">
+<li class="project">
+          <div class="project-copy">
             <p class="metadata">Researcher, EcoPro BM</p>
-            <p class="summary">Worked on models that use manufacturing process data to detect metal contamination.</p>
+            <h3>Metal contamination detection in battery cathode materials</h3>
+            <p class="project-date">Jan–May 2025</p>
+            <p class="summary">I examined production sensor readings and lab assays for metal contamination. I mapped how the two sources could be matched by production lot to prepare labeled examples for a detection model.</p>
           </div>
+          <figure class="project-figure">
+            <div class="project-visual process-visual" aria-hidden="true">
+              <div class="signal-box">
+                <strong>Production sensors</strong>
+                <span>Pressure, temperature, voltage</span>
+              </div>
+              <div class="assay-box">
+                <strong>Lab assays</strong>
+                <span>Metal contamination measurements</span>
+              </div>
+              <div class="process-join">
+                <strong>Match by production lot</strong>
+                <span>Prepare examples for a detection model</span>
+              </div>
+            </div>
+            <figcaption>Data preparation diagram showing how production readings and lab measurements are matched by lot.</figcaption>
+          </figure>
         </li>
-<li class="record">
-          <h3>Predicting steel plate curvature after rolling</h3>
-          <p class="record-date">Dec 2024–Nov 2025</p>
-          <div class="record-details">
+<li class="project">
+          <div class="project-copy">
             <p class="metadata">Researcher, POSCO</p>
-            <p class="summary">Worked on image segmentation and contour analysis to predict upward or downward deformation in thick steel plates.</p>
+            <h3>Predicting steel plate curvature after rolling</h3>
+            <p class="project-date">Dec 2024–Nov 2025</p>
+            <p class="summary">I worked on selecting usable frames from rolling-line images, segmenting the plate, and extracting its lower edge. We used the outline to measure curvature and predict whether the plate tip would bend up or down in a later pass.</p>
           </div>
+          <figure class="project-figure">
+            <div class="project-visual plate-visual" aria-hidden="true">
+              <div class="plate-key">
+                <span>Plate mask</span>
+                <span>Lower contour</span>
+              </div>
+              <div class="plate-drawing"><div></div></div>
+              <p>Measure the curve along the lower edge.</p>
+            </div>
+            <figcaption>Illustration of the plate mask and the lower contour used to measure tip curvature.</figcaption>
+          </figure>
         </li>
-<li class="record">
-          <h3>Care product recommendation system</h3>
-          <p class="record-date">Jul–Dec 2023</p>
-          <div class="record-details">
+<li class="project">
+          <div class="project-copy">
             <p class="metadata">Research assistant, National Research Foundation of Korea</p>
-            <p class="summary">Contributed to a system that recommends care products based on patient needs.</p>
+            <h3>Care product recommendation system</h3>
+            <p class="project-date">Jul–Dec 2023</p>
+            <p class="summary">As a research assistant, I contributed to a recommender that uses patient needs, the care setting, and product information to suggest suitable supplies. I am a co-inventor on the associated published patent application.</p>
+            <p class="source-link"><a href="https://app.rndcircle.io/patent/019c1ef7-5f39-70af-9fb0-16dedef649be">Published patent application</a></p>
           </div>
+          <figure class="project-figure">
+            <div class="project-visual supplies-visual" aria-hidden="true">
+              <div class="supplies-input">
+                <p class="visual-label">Consider</p>
+                <p>Patient needs</p>
+                <p>Care setting</p>
+                <p>Product information</p>
+              </div>
+              <div class="supplies-result">
+                <strong>Suitable care products</strong>
+                <p>Suggest supplies that fit the person and where care is provided.</p>
+              </div>
+            </div>
+            <figcaption>Recommendation diagram showing how patient and product information inform the shortlist.</figcaption>
+          </figure>
         </li>
-<li class="record">
-          <h3>Personalized information for patients and caregivers</h3>
-          <p class="record-date">Sep 2022–Jan 2023</p>
-          <div class="record-details">
+<li class="project">
+          <div class="project-copy">
             <p class="metadata">Research assistant, National Research Foundation of Korea</p>
-            <p class="summary">Contributed to an information system for patients, guardians, and caregivers.</p>
+            <h3>Personalized information for patients and caregivers</h3>
+            <p class="project-date">Sep 2022–Jan 2023</p>
+            <p class="summary">I contributed to the caregiver–patient matching project as a research assistant. Our team designed a model that uses patient and caregiver profiles, location, and past satisfaction to suggest matches. I am a co-inventor on the resulting patent.</p>
+            <p class="source-link"><a href="https://patents.google.com/patent/KR102635315B1/en">Patent record</a></p>
           </div>
+          <figure class="project-figure">
+            <div class="project-visual matching-visual" aria-hidden="true">
+              <div class="match-input"><strong>Caregiver profile</strong></div>
+              <div class="match-input"><strong>Patient profile</strong></div>
+              <div class="match-result">
+                <strong>Suggested matches</strong>
+                <p>Use location and past satisfaction alongside the profiles.</p>
+              </div>
+            </div>
+            <figcaption>Matching diagram based on the profiles, location information, and satisfaction data described in the patent.</figcaption>
+          </figure>
         </li></ul>
         </section>
 

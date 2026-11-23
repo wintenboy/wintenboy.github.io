@@ -22,23 +22,23 @@
         <a href="#research">Research</a>
         <a href="#patents">Patents</a>
         <a href="#teaching">Teaching</a>
-        <a href="#profile">About</a>
+        <a href="#profile">Education</a>
       </nav>
     </header>
 
     <main id="main">
       <section class="intro" aria-labelledby="name">
-        <div class="intro-name">
-          <h1 id="name">$animated_name</h1>
-          <button class="motion-replay" type="button" hidden>Replay intro</button>
-        </div>
-        <div class="intro-details">
-          <ul class="roles">$current_roles</ul>
-          <p class="bio">$bio</p>
-          <div class="profile-links">
-            <a class="cv-link" href="cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">CV <span>(PDF)</span></a>
-            $social_links
+        <h1 id="name">$animated_name</h1>
+        <div class="intro-profile">
+          <div class="intro-details">
+            <ul class="roles">$current_roles</ul>
+            <p class="bio">$bio</p>
+            <div class="profile-links">
+              <a class="cv-link" href="cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">CV <span>(PDF)</span></a>
+              $social_links
+            </div>
           </div>
+          <img class="portrait" src="assets/portrait.webp" alt="Portrait of $name" width="354" height="472">
         </div>
       </section>
 
@@ -63,20 +63,13 @@
           <ul class="records">$teaching</ul>
         </section>
 
-        <section id="profile" class="content-section" aria-labelledby="about-title">
-          <h2 id="about-title">About</h2>
-          <div class="about-details">
-            <img class="portrait" src="assets/portrait.webp" alt="Portrait of $name" width="354" height="472" loading="lazy">
-            <div>
-              <h3 class="about-heading">Education</h3>
-              <ul class="records">$education</ul>
-            </div>
+        <section id="profile" class="content-section" aria-labelledby="education-title">
+          <h2 id="education-title">Education</h2>
+          <div class="education-records">
+            <ul class="records">$education</ul>
+            <h3 id="experience">Research experience</h3>
+            <ul class="records">$experience</ul>
           </div>
-        </section>
-
-        <section id="experience" class="content-section" aria-labelledby="experience-title">
-          <h2 id="experience-title">Research experience</h2>
-          <ul class="records">$experience</ul>
         </section>
 
         <footer>

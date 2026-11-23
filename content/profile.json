@@ -30,6 +30,7 @@
   ],
   "research": [
     {
+      "id": "surface-defect-detection",
       "type": "Journal article",
       "year": "2026",
       "title": "An Adaptive Contrastive Learning-Based Robust Surface Defect Detection Model for Noisy Datasets",
@@ -43,6 +44,7 @@
       "featured": true
     },
     {
+      "id": "informs-2026",
       "type": "Conference presentation",
       "year": "2026",
       "title": "Adaptive Model Selection for Time-Series Classification with Language Model",
@@ -71,6 +73,7 @@
   ],
   "patents": [
     {
+      "id": "data-analysis-assistant",
       "name": "Data analysis assistance for marketers",
       "title": "Method for assisting marketers in data analysis and electronic device for performing the same",
       "number": "KR 10-2972642",
@@ -80,6 +83,7 @@
       "href": "https://patents.google.com/patent/KR102972642B1/en"
     },
     {
+      "id": "caregiver-patient-matching",
       "name": "Caregiver–patient matching",
       "title": "Method for training and using a caregiver–patient matching model",
       "number": "KR 10-2635315",
@@ -89,6 +93,7 @@
       "href": "https://patents.google.com/patent/KR102635315B1/en"
     },
     {
+      "id": "care-product-recommendations",
       "name": "Care product recommendations",
       "title": "Care product recommendation system to improve nursing service quality",
       "number": "KR 10-2023-0185772",
@@ -214,6 +219,7 @@
   ],
   "teaching": [
     {
+      "id": "machine-learning-1",
       "name": "Machine Learning 1",
       "code": "DSS6003",
       "institution": "Yonsei University",
@@ -221,6 +227,7 @@
       "period": "Fall 2025"
     },
     {
+      "id": "industrial-applications",
       "name": "ML & Industrial Applications",
       "code": "IIE3104-01",
       "institution": "Yonsei University",
@@ -228,6 +235,7 @@
       "period": "Fall 2025"
     },
     {
+      "id": "machine-learning-2",
       "name": "Machine Learning 2",
       "code": "DSS6017",
       "institution": "Yonsei University",

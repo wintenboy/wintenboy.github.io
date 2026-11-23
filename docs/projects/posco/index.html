@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="I worked on selecting usable frames from rolling-line images, segmenting the plate, and extracting its lower edge. We used the outline to measure curvature and predict whether the plate tip would bend up or down in a later pass.">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#faf9f6">
+  <title>Predicting steel plate curvature after rolling | Seungyeol Ryu</title>
+  <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/projects/posco/">
+  <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/projects/posco/">
+  <link rel="stylesheet" href="../../assets/site.css?v=f7cec263d728">
+  <link rel="stylesheet" href="../../assets/projects.css?v=f7cec263d728">
+  <script src="../../assets/site.js?v=f7cec263d728" defer></script>
+</head>
+<body id="top">
+  <div class="reading-progress" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="page">
+    <header class="masthead">
+      <a class="wordmark" href="../../index.html" lang="ko">류승열</a>
+      <nav class="language-switch" aria-label="Language">
+        <a href="index.html" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a>
+        <a href="../../ko/projects/posco/index.html" lang="ko" hreflang="ko">한국어</a>
+      </nav>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="../../education/index.html">Education</a>
+        <a href="../../research/index.html">Research</a>
+        <a href="../index.html" aria-current="location">Projects</a>
+        <a href="../../patents/index.html">Patents</a>
+        <a href="../../teaching/index.html">Teaching</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Projects</a><h1>Predicting steel plate curvature after rolling</h1><p class="metadata">Dec 2024–Nov 2025 · Researcher, POSCO</p><p class="summary">I worked on selecting usable frames from rolling-line images, segmenting the plate, and extracting its lower edge. We used the outline to measure curvature and predict whether the plate tip would bend up or down in a later pass.</p></header>
+          <figure class="project-figure">
+            <a class="project-visual" href="../../assets/projects/posco-analysis-pipeline.png">
+              <img src="../../assets/projects/posco-analysis-pipeline.png" alt="The steel plate analysis workflow with example frames for labeling, segmentation, contour extraction, and prediction." width="1419" height="638" loading="lazy" decoding="async">
+              <span class="project-visual-action">View full size</span>
+            </a>
+            <figcaption>Original pipeline figure from the POSCO project presentation in my portfolio.</figcaption>
+          </figure><div class="article-body"><section><h2 data-motion-title="words">From rolling-line frames to a measure of curvature</h2><p>I helped select usable frames, build the segmentation workflow, and extract the plate contours. The work included mask cleanup, edge extraction, and curve fitting. Once we had a reliable outline, we could use it to quantify how much the plate tip bent upward or downward.</p></section>
+<section><h2 data-motion-title="words">Forecasting a later pass</h2><p>We paired the image-derived warping index with measurements from roughing and finishing passes. I helped develop a support vector regression model to predict warping two passes ahead. Current warping, rolling speed, and plate thickness were among the process features we examined.</p></section>
+<section><h2 data-motion-title="words">What the pipeline made possible</h2><p>The project connected visual annotation and segmentation to an interpretable process quantity and a subsequent regression task. The project figure shows those stages in order.</p></section></div></article>
+    </main>
+    <footer>
+      <a href="#top">Back to top</a>
+    </footer>
+  </div>
+</body>
+</html>

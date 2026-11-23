@@ -2,18 +2,8 @@
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   const progressBar = document.querySelector(".reading-progress");
   const intro = document.querySelector(".intro");
-  const name = intro.querySelector("h1");
-  const motionButton = document.querySelector(".motion-toggle");
-  const motionKey = "portfolio-motion";
-  let motionPreference;
-  let motionEnabled = false;
+  const name = intro?.querySelector("h1");
   let frame = 0;
-
-  try {
-    motionPreference = localStorage.getItem(motionKey);
-  } catch {
-    // The switch still works for this page when storage is unavailable.
-  }
 
   const languageLink = document.querySelector(".language-switch a:not([aria-current])");
   const otherLanguageUrl = new URL(languageLink.href);
@@ -27,18 +17,14 @@
 
   function draw() {
     frame = 0;
-    if (!motionEnabled) {
-      progressBar.style.removeProperty("transform");
-      name.style.removeProperty("--name-drift");
-      return;
-    }
-
     const at = Math.max(0, window.scrollY);
     const distance = document.documentElement.scrollHeight - window.innerHeight;
     const progress = distance > 0 ? Math.min(at / distance, 1) : 0;
-    const drift = Math.min(at / Math.max(intro.offsetHeight * .65, 1), 1);
     progressBar.style.transform = "scaleX(" + progress + ")";
-    name.style.setProperty("--name-drift", (drift * 32) + "px");
+    if (name) {
+      const drift = reduce.matches ? 0 : Math.min(at / Math.max(intro.offsetHeight * .65, 1), 1);
+      name.style.setProperty("--name-drift", (drift * 32) + "px");
+    }
   }
 
   function scheduleDraw() {
@@ -48,16 +34,16 @@
   window.addEventListener("scroll", scheduleDraw, { passive: true });
   window.addEventListener("resize", scheduleDraw);
   window.addEventListener("load", scheduleDraw, { once: true });
+  reduce.addEventListener("change", scheduleDraw);
+  scheduleDraw();
 
-  const canObserve = "IntersectionObserver" in window;
+  if (!("IntersectionObserver" in window)) return;
   let nameLeftView = false;
-  if (canObserve) {
+  if (name) {
     const nameObserver = new IntersectionObserver(([entry]) => {
       if (entry.intersectionRatio === 0) nameLeftView = true;
       if (entry.intersectionRatio < .7 || !nameLeftView) return;
       nameLeftView = false;
-      if (!motionEnabled) return;
-
       intro.classList.add("reset-name");
       // Resolve the reset before starting the same CSS animation again.
       void name.offsetWidth;
@@ -95,14 +81,16 @@
   }
 
   function animateTitle(title) {
-    const byLetter = title.tagName === "H2";
+    const byLetter = title.dataset.motionTitle === "letters";
     const tokens = titleTokens.get(title) ?? prepareTitle(title, byLetter);
-    const entry = byLetter ? "translateY(1.05em) rotate(7deg)" : "translateY(.88em)";
+    const gentle = reduce.matches;
+    const entry = gentle ? "translateY(.17em)"
+      : byLetter ? "translateY(1.05em) rotate(7deg)" : "translateY(.88em)";
 
     tokens.forEach((token, index) => {
       token.getAnimations().forEach((animation) => animation.cancel());
       token.animate(
-        [{ transform: entry, opacity: .25 }, { transform: "none", opacity: 1 }],
+        [{ transform: entry, opacity: gentle ? .4 : .25 }, { transform: "none", opacity: 1 }],
         {
           delay: index * (byLetter ? 34 : 58),
           duration: 470,
@@ -113,43 +101,11 @@
     });
   }
 
-  const headings = [...document.querySelectorAll(".content-section > h2, .project-copy > h3")];
-  const observer = canObserve && Element.prototype.animate
-    ? new IntersectionObserver((entries) => {
-      if (!motionEnabled) return;
-      for (const { target, isIntersecting, intersectionRatio } of entries) {
-        if (isIntersecting && intersectionRatio >= .18) animateTitle(target);
-      }
-    }, { threshold: .18, rootMargin: "0px 0px -12% 0px" })
-    : null;
-
-  function updateMotion() {
-    motionEnabled = motionPreference === "on" || (motionPreference !== "off" && !reduce.matches);
-    document.documentElement.classList.toggle("motion-enabled", motionEnabled);
-    motionButton.setAttribute("aria-pressed", String(motionEnabled));
-    scheduleDraw();
-
-    if (!observer) return;
-    if (motionEnabled) {
-      headings.forEach((heading) => observer.observe(heading));
-    } else {
-      observer.disconnect();
-      headings.forEach((heading) => {
-        heading.getAnimations({ subtree: true }).forEach((animation) => animation.cancel());
-      });
+  if (!Element.prototype.animate) return;
+  const observer = new IntersectionObserver((entries) => {
+    for (const { target, isIntersecting, intersectionRatio } of entries) {
+      if (isIntersecting && intersectionRatio >= .18) animateTitle(target);
     }
-  }
-
-  motionButton.addEventListener("click", () => {
-    motionPreference = motionEnabled ? "off" : "on";
-    try {
-      localStorage.setItem(motionKey, motionPreference);
-    } catch {
-      // A browser can block storage on local files or in private mode.
-    }
-    updateMotion();
-  });
-  reduce.addEventListener("change", updateMotion);
-  motionButton.hidden = false;
-  updateMotion();
+  }, { threshold: .18, rootMargin: "0px 0px -12% 0px" });
+  document.querySelectorAll("[data-motion-title]").forEach((heading) => observer.observe(heading));
 })();

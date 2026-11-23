@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="I studied how to detect surface defects when the training images include defective samples.">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#faf9f6">
+  <title>An Adaptive Contrastive Learning-Based Robust Surface Defect Detection Model for Noisy Datasets | Seungyeol Ryu</title>
+  <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/research/surface-defect-detection/">
+  <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/research/surface-defect-detection/">
+  <link rel="stylesheet" href="../../assets/site.css?v=f7cec263d728">
+  <link rel="stylesheet" href="../../assets/projects.css?v=f7cec263d728">
+  <script src="../../assets/site.js?v=f7cec263d728" defer></script>
+</head>
+<body id="top">
+  <div class="reading-progress" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="page">
+    <header class="masthead">
+      <a class="wordmark" href="../../index.html" lang="ko">류승열</a>
+      <nav class="language-switch" aria-label="Language">
+        <a href="index.html" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a>
+        <a href="../../ko/research/surface-defect-detection/index.html" lang="ko" hreflang="ko">한국어</a>
+      </nav>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="../../education/index.html">Education</a>
+        <a href="../index.html" aria-current="location">Research</a>
+        <a href="../../projects/index.html">Projects</a>
+        <a href="../../patents/index.html">Patents</a>
+        <a href="../../teaching/index.html">Teaching</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Research</a><h1>An Adaptive Contrastive Learning-Based Robust Surface Defect Detection Model for Noisy Datasets</h1><p class="metadata">2026 · IEEE Access · Vol. 14, pp. 177782–177797 · First author</p><p class="summary">I studied how to detect surface defects when the training images include defective samples.</p><p class="source-link"><a href="https://doi.org/10.1109/ACCESS.2026.3752900">Read the paper</a></p></header><div class="article-body"><section><h2 data-motion-title="words">Why training data matters</h2><p>Surface inspection data collected on a factory line can contain subtle defects even when it is assembled as a normal training set. A model trained on that mixture can learn to treat some defects as examples of normal appearance. This study tested image-level detection under controlled contamination.</p></section>
+<section><h2 data-motion-title="words">Adaptive contrastive learning</h2><p>As first author, I worked on a self-supervised contrastive approach that tests individual samples using a one-sample t-test. The p-value feeds an adjustment to the temperature of the contrastive loss. That changes how strongly the learning objective treats similarities when the training examples are less trustworthy.</p></section>
+<section><h2 data-motion-title="words">What we evaluated</h2><p>We varied the share of defective training images and evaluated the detector on Surface Crack, Magnetic Tile, and KolektorSDD2. We compared the method with self-supervised and patch-based baselines under the same contamination conditions. The IEEE Access article reports the full setup and results.</p></section></div></article>
+    </main>
+    <footer>
+      <a href="#top">Back to top</a>
+    </footer>
+  </div>
+</body>
+</html>

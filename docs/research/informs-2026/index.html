@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="We used a language model to choose which classifier to apply to each time series.">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#faf9f6">
+  <title>Adaptive Model Selection for Time-Series Classification with Language Model | Seungyeol Ryu</title>
+  <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/research/informs-2026/">
+  <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/research/informs-2026/">
+  <link rel="stylesheet" href="../../assets/site.css?v=f7cec263d728">
+  <link rel="stylesheet" href="../../assets/projects.css?v=f7cec263d728">
+  <script src="../../assets/site.js?v=f7cec263d728" defer></script>
+</head>
+<body id="top">
+  <div class="reading-progress" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="page">
+    <header class="masthead">
+      <a class="wordmark" href="../../index.html" lang="ko">류승열</a>
+      <nav class="language-switch" aria-label="Language">
+        <a href="index.html" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a>
+        <a href="../../ko/research/informs-2026/index.html" lang="ko" hreflang="ko">한국어</a>
+      </nav>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="../../education/index.html">Education</a>
+        <a href="../index.html" aria-current="location">Research</a>
+        <a href="../../projects/index.html">Projects</a>
+        <a href="../../patents/index.html">Patents</a>
+        <a href="../../teaching/index.html">Teaching</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Research</a><h1>Adaptive Model Selection for Time-Series Classification with Language Model</h1><p class="metadata">2026 · INFORMS Annual Meeting · San Francisco, CA, November 2026 · Presenter</p><p class="summary">We used a language model to choose which classifier to apply to each time series.</p><p class="source-link"><a href="https://www.informs.org/Meetings-Conferences/INFORMS-Conference-Calendar/2026-INFORMS-Annual-Meeting">Conference information</a></p></header><div class="article-body"><section><h2 data-motion-title="words">The choice to make</h2><p>A single classifier chosen for an entire time-series dataset can miss examples that another model handles better. At the INFORMS Annual Meeting I presented a router that picks one pre-trained classifier for each input, then leaves the final class prediction to that classifier.</p></section>
+<section><h2 data-motion-title="words">What the router sees</h2><p>We combined dataset metadata, discrete time-series tokens, and a natural-language description. The language model uses those representations to choose from the candidate models. It predicts a model choice rather than generating the final class label.</p></section>
+<section><h2 data-motion-title="words">Training and comparison</h2><p>We trained the router using Partial Cross-Entropy and Reinforcement Learning from Calibrated Decision. In the presentation I compared input-level routing with picking one best model per dataset on 18 selected UCR 2019 datasets. The comparison was about when model selection at the input level was useful.</p></section></div></article>
+    </main>
+    <footer>
+      <a href="#top">Back to top</a>
+    </footer>
+  </div>
+</body>
+</html>

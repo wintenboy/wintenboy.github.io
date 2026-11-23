@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="언어 모델로 각 시계열 데이터에 어떤 분류 모델을 적용할지 선택하는 방법을 발표했습니다.">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#faf9f6">
+  <title>언어 모델을 활용한 시계열 분류 모델의 적응적 선택 | 류승열</title>
+  <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/research/informs-2026/">
+  <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/research/informs-2026/">
+  <link rel="stylesheet" href="../../../assets/site.css?v=f7cec263d728">
+  <link rel="stylesheet" href="../../../assets/projects.css?v=f7cec263d728">
+  <script src="../../../assets/site.js?v=f7cec263d728" defer></script>
+</head>
+<body id="top">
+  <div class="reading-progress" aria-hidden="true"></div>
+  <a class="skip" href="#main">본문 바로가기</a>
+  <div class="page">
+    <header class="masthead">
+      <a class="wordmark" href="../../index.html" lang="ko">류승열</a>
+      <nav class="language-switch" aria-label="언어">
+        <a href="../../../research/informs-2026/index.html" lang="en" hreflang="en" aria-label="English">EN</a>
+        <a href="index.html" lang="ko" hreflang="ko" aria-current="page">한국어</a>
+      </nav>
+      <nav class="site-nav" aria-label="목차">
+        <a href="../../education/index.html">학력</a>
+        <a href="../index.html" aria-current="location">연구</a>
+        <a href="../../projects/index.html">프로젝트</a>
+        <a href="../../patents/index.html">특허</a>
+        <a href="../../teaching/index.html">수업 조교</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← 연구</a><h1>언어 모델을 활용한 시계열 분류 모델의 적응적 선택</h1><p class="metadata">2026 · INFORMS Annual Meeting · 미국 샌프란시스코, 2026년 11월 · 발표자</p><p class="summary">언어 모델로 각 시계열 데이터에 어떤 분류 모델을 적용할지 선택하는 방법을 발표했습니다.</p><p class="source-link"><a href="https://www.informs.org/Meetings-Conferences/INFORMS-Conference-Calendar/2026-INFORMS-Annual-Meeting">학회 정보</a></p></header><div class="article-body"><section><h2 data-motion-title="words">데이터마다 쓸 분류기를 고르는 문제</h2><p>한 데이터셋에서 평균 성능이 가장 좋은 모델도 개별 시계열에서는 다른 모델에 뒤질 수 있습니다. INFORMS 연례 학회에서 시계열 하나가 들어올 때마다 사전학습된 후보 중 어느 분류기에 맡길지 고르는 방법을 발표했습니다.</p></section>
+<section><h2 data-motion-title="words">언어 모델이 읽는 정보</h2><p>라우터에는 데이터셋의 메타데이터, 이산화한 시계열 토큰, 자연어 설명을 넣었습니다. 언어 모델이 이 정보를 읽고 분류기 하나를 고릅니다. 그 분류기가 시계열의 클래스를 예측합니다.</p></section>
+<section><h2 data-motion-title="words">라우터를 학습하고 비교한 방법</h2><p>Partial Cross-Entropy(PCE)와 Reinforcement Learning from Calibrated Decision(RLCD)을 결합해 라우터를 학습했습니다. 발표에서는 UCR 2019 데이터셋 18개에서 입력별로 모델을 고르는 방식과 데이터셋당 가장 성능이 좋은 모델을 하나만 쓰는 방식을 비교했습니다.</p></section></div></article>
+    </main>
+    <footer>
+      <a href="#top">맨 위로</a>
+    </footer>
+  </div>
+</body>
+</html>

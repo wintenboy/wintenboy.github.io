@@ -1,0 +1,145 @@
+{
+  "name": "Seungyeol Ryu",
+  "korean_name": "류승열",
+  "role": "Graduate researcher in industrial engineering",
+  "university": "Yonsei University",
+  "lab": "System Intelligence Lab",
+  "bio": "I study how machine learning models can handle noisy industrial data, choose the right model for a time-series input, and learn from data held across different systems.",
+  "topics": [
+    "Industrial AI",
+    "Time-series classification",
+    "Federated learning"
+  ],
+  "links": [
+    {
+      "label": "Google Scholar",
+      "href": "https://scholar.google.com/citations?user=p-ycK4QAAAAJ&hl=ko"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/wintenboy"
+    }
+  ],
+  "research": [
+    {
+      "type": "Journal article",
+      "year": "2026",
+      "title": "An Adaptive Contrastive Learning-Based Robust Surface Defect Detection Model for Noisy Datasets",
+      "venue": "IEEE Access",
+      "details": "Vol. 14, pp. 177782–177797",
+      "credit": "Seungyeol Ryu, Geonwoo Kim, and Jaeyeon Jang",
+      "role": "First author",
+      "summary": "Adaptive contrastive learning for image-level surface defect detection when abnormal samples are mixed into the training data.",
+      "href": "https://doi.org/10.1109/ACCESS.2026.3752900",
+      "link_label": "Read the paper",
+      "featured": true
+    },
+    {
+      "type": "Conference presentation",
+      "year": "2026",
+      "title": "Adaptive Model Selection for Time-Series Classification with Language Model",
+      "venue": "INFORMS Annual Meeting",
+      "details": "San Francisco, CA, November 2026",
+      "credit": "Seungyeol Ryu",
+      "role": "Presenter",
+      "summary": "A language-model router selects a classifier for each time-series input. The presentation evaluates the approach on 18 selected UCR 2019 datasets.",
+      "href": "https://www.informs.org/Meetings-Conferences/INFORMS-Conference-Calendar/2026-INFORMS-Annual-Meeting",
+      "link_label": "Conference information",
+      "featured": true
+    },
+    {
+      "type": "Conference presentation",
+      "year": "2023",
+      "title": "Adaptive Self-Supervised Learning: Development of a Robust Surface Anomaly Detection Model Against Data Noise",
+      "venue": "KIIE/KORMS Spring Joint Conference",
+      "details": "Oral presentation",
+      "credit": "Seungyeol Ryu, Geon Woo Kim, and Jaeyeon Jang",
+      "role": "First author",
+      "summary": "",
+      "href": "",
+      "link_label": "",
+      "featured": false
+    }
+  ],
+  "education": [
+    {
+      "name": "Yonsei University",
+      "detail": "Integrated M.S.–Ph.D. program in Industrial Engineering",
+      "period": "2024–present"
+    },
+    {
+      "name": "The Catholic University of Korea",
+      "detail": "B.S. in International Studies, Business (Data Science Track)",
+      "period": "2018–2024"
+    }
+  ],
+  "experience": [
+    {
+      "name": "System Intelligence Lab, Yonsei University",
+      "detail": "Graduate researcher",
+      "period": "2024–present"
+    },
+    {
+      "name": "Applied AI Lab, The Catholic University of Korea",
+      "detail": "Undergraduate researcher",
+      "period": "2022–2024"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Detecting contamination in battery materials",
+      "organization": "EcoPro BM",
+      "role": "Researcher",
+      "period": "2025",
+      "summary": "Worked on models that use process data to detect metal contamination in cathode material manufacturing."
+    },
+    {
+      "name": "Predicting steel plate curvature after rolling",
+      "organization": "POSCO",
+      "role": "Researcher",
+      "period": "2024–2025",
+      "summary": "Worked on image segmentation and contour analysis to predict upward or downward deformation in thick steel plates."
+    },
+    {
+      "name": "AI assistance for local government services",
+      "organization": "Solideo",
+      "role": "Project manager",
+      "period": "From 2026",
+      "summary": "Managed development of an AI agent for public-service workflows, including retrieval and questions that clarify user requests."
+    }
+  ],
+  "teaching": [
+    {
+      "name": "Yonsei University",
+      "detail": "Teaching assistant for Machine Learning 1, Machine Learning 2, and Machine Learning & Industrial Applications",
+      "period": "2025"
+    },
+    {
+      "name": "SK hynix DSS Program",
+      "detail": "Mentor for the 6th and 7th cohorts",
+      "period": "2024–2026"
+    },
+    {
+      "name": "Hyundai Department Store Group",
+      "detail": "Mentor for the Citizen Data Scientist program",
+      "period": "2026"
+    }
+  ],
+  "recognition": [
+    {
+      "name": "Summa cum laude",
+      "detail": "The Catholic University of Korea",
+      "period": "2024"
+    },
+    {
+      "name": "Data Analysis Competition, Grand Prize",
+      "detail": "The Catholic University of Korea",
+      "period": "2023"
+    },
+    {
+      "name": "Data Analysis Competition, First Prize",
+      "detail": "The Catholic University of Korea",
+      "period": "2022"
+    }
+  ]
+}

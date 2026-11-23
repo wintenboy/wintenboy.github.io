@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Seungyeol Ryu. At UNNEST, I help build AI agents that run on private networks. My research at Yonsei looks at how models learn from noisy data.">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#faf8f2">
+  <meta name="theme-color" content="#f8f9fa">
   <title>Seungyeol Ryu</title>
   <link rel="stylesheet" href="assets/site.css">
   <link rel="stylesheet" href="assets/projects.css">
@@ -22,25 +22,25 @@
         <a href="#research">Research</a>
         <a href="#patents">Patents</a>
         <a href="#teaching">Teaching</a>
-        <a href="#profile">Education</a>
+        <a href="#profile">About</a>
       </nav>
     </header>
 
     <main id="main">
       <section class="intro" aria-labelledby="name">
-        <div class="intro-text">
+        <div class="intro-name">
           <h1 id="name"><span class="name-word" style="--word-index: 0"><span>Seungyeol</span></span> <span class="name-word" style="--word-index: 1"><span>Ryu</span></span></h1>
+          <button class="motion-replay" type="button" hidden>Replay intro</button>
+        </div>
+        <div class="intro-details">
           <ul class="roles"><li>Chief Technology Officer (CTO) at <a href="https://www.unnest.co.kr/">UNNEST</a></li>
 <li>Graduate researcher in industrial engineering at Yonsei University</li></ul>
           <p class="bio">At UNNEST, I help build AI agents that run on private networks. My research at Yonsei looks at how models learn from noisy data.</p>
           <div class="profile-links">
-            <a class="cv-link" href="cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">Download CV <span>(PDF)</span></a>
-            <div class="external-links"><a href="https://scholar.google.com/citations?user=p-ycK4QAAAAJ&amp;hl=ko">Google Scholar</a>
-<a href="https://github.com/wintenboy">GitHub</a></div>
+            <a class="cv-link" href="cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">CV <span>(PDF)</span></a>
+            <a href="https://scholar.google.com/citations?user=p-ycK4QAAAAJ&amp;hl=ko">Google Scholar</a>
+<a href="https://github.com/wintenboy">GitHub</a>
           </div>
-        </div>
-        <div class="portrait-panel">
-          <img class="portrait" src="assets/portrait.webp" alt="Portrait of Seungyeol Ryu" width="354" height="472" fetchpriority="high">
         </div>
       </section>
 
@@ -55,7 +55,7 @@
             <p class="summary">I managed the AI assistant prototype. I worked on the conversation flow so it could ask for missing details, retrieve the relevant public-service guidance, and use those sources to draft an answer.</p>
           </div>
           <figure class="project-figure">
-            <a class="project-visual" href="assets/projects/solideo-demo.png">
+            <a class="project-visual" href="assets/projects/solideo-demo.png" data-preview="top">
               <img src="assets/projects/solideo-demo.png" alt="The legal agent’s demo response showing citations, an application form link, and a graph of related regulations." width="626" height="1096" loading="lazy" decoding="async">
               <span class="project-visual-action">View full size</span>
             </a>
@@ -101,7 +101,7 @@
             <p class="source-link"><a href="https://app.rndcircle.io/patent/019c1ef7-5f39-70af-9fb0-16dedef649be">Published patent application</a></p>
           </div>
           <figure class="project-figure">
-            <a class="project-visual drawing-preview" href="assets/projects/care-products-patent.jpg">
+            <a class="project-visual" href="assets/projects/care-products-patent.jpg" data-preview="center">
               <img src="assets/projects/care-products-patent.jpg" alt="Published patent drawing connecting patient and caregiver devices to a recommendation server and database." width="1890" height="2362" loading="lazy" decoding="async">
               <span class="project-visual-action">View full size</span>
             </a>
@@ -201,9 +201,13 @@
         </li></ul>
         </section>
 
-        <section id="profile" class="content-section" aria-labelledby="education-title">
-          <h2 id="education-title">Education</h2>
-          <ul class="records"><li class="record">
+        <section id="profile" class="content-section" aria-labelledby="about-title">
+          <h2 id="about-title">About</h2>
+          <div class="about-details">
+            <img class="portrait" src="assets/portrait.webp" alt="Portrait of Seungyeol Ryu" width="354" height="472" loading="lazy">
+            <div>
+              <h3 class="about-heading">Education</h3>
+              <ul class="records"><li class="record">
           <h3>Yonsei University</h3>
           <p class="record-date">2024–present</p>
           <div class="record-details">
@@ -217,6 +221,8 @@
             <p class="metadata">B.S. in International Studies, Business (Data Science Track)</p>
           </div>
         </li></ul>
+            </div>
+          </div>
         </section>
 
         <section id="experience" class="content-section" aria-labelledby="experience-title">

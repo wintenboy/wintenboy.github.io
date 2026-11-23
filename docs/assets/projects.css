@@ -11,7 +11,7 @@
 
 .project {
   display: grid;
-  align-items: center;
+  align-items: start;
   gap: 20px 36px;
   padding-block: 28px;
   border-bottom: 1px solid var(--line);
@@ -49,8 +49,7 @@
   overflow: hidden;
   padding: clamp(10px, 2vw, 20px);
   border: 1px solid var(--line);
-  border-radius: 5px;
-  background: #fff;
+  background: #eff2f6;
   cursor: zoom-in;
 }
 
@@ -70,13 +69,16 @@
   max-width: 100%;
   max-height: 420px;
   object-fit: contain;
+  background: white;
 }
 
-.project-visual.drawing-preview img {
+.project-visual[data-preview] img {
   width: 100%;
   aspect-ratio: 2;
   object-fit: cover;
 }
+
+.project-visual[data-preview="top"] img { object-position: center top; }
 
 @media (prefers-reduced-motion: no-preference) and (hover: hover) {
   .project-visual img { transition: transform 220ms cubic-bezier(.22, 1, .36, 1); }
@@ -85,7 +87,7 @@
 
 @media (min-width: 850px) {
   .project {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.14fr);
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr);
     padding-block: 36px;
   }
 }

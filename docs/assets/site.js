@@ -1,16 +1,25 @@
 (() => {
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   const progressBar = document.querySelector(".reading-progress");
-  const portrait = document.querySelector(".portrait");
   const intro = document.querySelector(".intro");
+  const name = intro.querySelector("h1");
+  const replay = intro.querySelector(".motion-replay");
   let frame = 0;
+
+  replay.hidden = false;
+  replay.addEventListener("click", () => {
+    intro.classList.add("reset-name");
+    // Resolve the reset before asking the browser to start the same CSS animation.
+    void name.offsetWidth;
+    intro.classList.remove("reset-name");
+    intro.classList.add("replay-name");
+  });
 
   function draw() {
     frame = 0;
     if (reduce.matches) {
       progressBar.style.removeProperty("transform");
-      portrait.style.removeProperty("--photo-offset");
-      portrait.style.removeProperty("--photo-angle");
+      name.style.removeProperty("--name-drift");
       return;
     }
 
@@ -19,8 +28,7 @@
     const progress = distance > 0 ? Math.min(at / distance, 1) : 0;
     const drift = Math.min(at / Math.max(intro.offsetHeight * .65, 1), 1);
     progressBar.style.transform = "scaleX(" + progress + ")";
-    portrait.style.setProperty("--photo-offset", (drift * 40) + "px");
-    portrait.style.setProperty("--photo-angle", (-4 + drift * 6) + "deg");
+    name.style.setProperty("--name-drift", (drift * 32) + "px");
   }
 
   function scheduleDraw() {
@@ -30,7 +38,10 @@
   window.addEventListener("scroll", scheduleDraw, { passive: true });
   window.addEventListener("resize", scheduleDraw);
   window.addEventListener("load", scheduleDraw, { once: true });
-  reduce.addEventListener("change", scheduleDraw);
+  reduce.addEventListener("change", () => {
+    if (reduce.matches) intro.classList.remove("replay-name");
+    scheduleDraw();
+  });
   scheduleDraw();
 
   if (!("IntersectionObserver" in window) || !Element.prototype.animate) return;

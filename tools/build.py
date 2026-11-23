@@ -50,10 +50,10 @@ def project_figure(visual, caption):
         raise FileNotFoundError(SITE / file)
     href = escape(file.as_posix())
     width, height = int(visual["width"]), int(visual["height"])
-    crop = " drawing-preview" if visual.get("drawing_preview") else ""
+    preview = f' data-preview="{escape(visual["preview"])}"' if visual.get("preview") else ""
     return f'''
           <figure class="project-figure">
-            <a class="project-visual{crop}" href="{href}">
+            <a class="project-visual" href="{href}"{preview}>
               <img src="{href}" alt="{escape(visual['alt'])}" width="{width}" height="{height}" loading="lazy" decoding="async">
               <span class="project-visual-action">View full size</span>
             </a>

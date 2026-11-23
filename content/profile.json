@@ -134,7 +134,8 @@
         "file": "solideo-demo.png",
         "width": 626,
         "height": 1096,
-        "alt": "The legal agent’s demo response showing citations, an application form link, and a graph of related regulations."
+        "alt": "The legal agent’s demo response showing citations, an application form link, and a graph of related regulations.",
+        "preview": "top"
       },
       "caption": "Original demo capture from the Solideo project submission."
     },
@@ -180,7 +181,7 @@
         "width": 1890,
         "height": 2362,
         "alt": "Published patent drawing connecting patient and caregiver devices to a recommendation server and database.",
-        "drawing_preview": true
+        "preview": "center"
       },
       "caption": "Original system drawing from Korean patent application 10-2023-0185772.",
       "source": {

@@ -4,7 +4,14 @@
   "role": "Graduate researcher in industrial engineering",
   "university": "Yonsei University",
   "lab": "System Intelligence Lab",
-  "bio": "I work on surface defect detection with noisy training data, classifier selection for time series, and federated learning for industrial data.",
+  "bio": "I work on machine learning for industrial data, from finding defects in materials to choosing models for time series.",
+  "professional_experience": [
+    {
+      "name": "UNNEST",
+      "detail": "Chief Technology Officer (CTO)",
+      "period": "Present"
+    }
+  ],
   "topics": [
     "Industrial AI",
     "Time-series classification",
@@ -29,17 +36,7 @@
       "details": "Vol. 14, pp. 177782–177797",
       "credit": "Seungyeol Ryu, Geonwoo Kim, and Jaeyeon Jang",
       "role": "First author",
-      "summary": "The method uses a t-test to adjust the contrastive loss temperature when defective images are mixed into the training set.",
-      "benchmark": {
-        "label": "Results with 10% defective training images",
-        "caption": "Mean ROC AUC across Surface Crack, Magnetic Tile, and KolektorSDD2",
-        "scores": [
-          {"method": "Adaptive contrastive learning", "score": "0.906"},
-          {"method": "SoftPatch", "score": "0.891"},
-          {"method": "PatchCore", "score": "0.887"},
-          {"method": "SimCLR", "score": "0.817"}
-        ]
-      },
+      "summary": "I studied how to detect surface defects when the training images include defective samples.",
       "href": "https://doi.org/10.1109/ACCESS.2026.3752900",
       "link_label": "Read the paper",
       "featured": true
@@ -52,7 +49,7 @@
       "details": "San Francisco, CA, November 2026",
       "credit": "Seungyeol Ryu",
       "role": "Presenter",
-      "summary": "A language model chooses a classifier for each input. We tested it on 18 time-series datasets from the UCR archive.",
+      "summary": "We used a language model to choose which classifier to apply to each time series.",
       "href": "https://www.informs.org/Meetings-Conferences/INFORMS-Conference-Calendar/2026-INFORMS-Annual-Meeting",
       "link_label": "Conference information",
       "featured": true

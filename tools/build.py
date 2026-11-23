@@ -17,14 +17,12 @@ def anchor(label, href):
     return f'<a href="{escape(href)}">{escape(label)}</a>'
 
 
-def record(title, date, metadata, summary="", source_link="", supplement=""):
+def record(title, date, metadata, summary="", source_link=""):
     paragraphs = [f'<p class="metadata">{escape(metadata)}</p>']
     if summary:
         paragraphs.append(f'<p class="summary">{escape(summary)}</p>')
     if source_link:
         paragraphs.append(f'<p class="source-link">{source_link}</p>')
-    if supplement:
-        paragraphs.append(supplement)
     details = "\n            ".join(paragraphs)
     return f'''<li class="record">
           <h3>{escape(title)}</h3>
@@ -35,26 +33,10 @@ def record(title, date, metadata, summary="", source_link="", supplement=""):
         </li>'''
 
 
-def benchmark_table(benchmark):
-    rows = "\n".join(
-        f'<tr><th scope="row">{escape(item["method"])}</th><td>{escape(item["score"])}</td></tr>'
-        for item in benchmark["scores"]
-    )
-    return f'''<details class="benchmark">
-              <summary>{escape(benchmark["label"])}</summary>
-              <table>
-                <caption>{escape(benchmark["caption"])}</caption>
-                <thead><tr><th scope="col">Method</th><th scope="col">ROC AUC</th></tr></thead>
-                <tbody>{rows}</tbody>
-              </table>
-            </details>'''
-
-
 def research_record(item):
     metadata = ". ".join((item["venue"], item["details"], item["role"])) + "."
     link = anchor(item["link_label"], item["href"]) if item["href"] else ""
-    benchmark = benchmark_table(item["benchmark"]) if "benchmark" in item else ""
-    return record(item["title"], item["year"], metadata, item["summary"], link, benchmark)
+    return record(item["title"], item["year"], metadata, item["summary"], link)
 
 
 def patent_record(item):
@@ -80,14 +62,18 @@ def timeline(items):
 def render_site(profile):
     source = (ROOT / "site/index.template.html").read_text(encoding="utf-8")
     social_links = "\n".join(anchor(item["label"], item["href"]) for item in profile["links"])
+    current_roles = [
+        f'{item["detail"]} at {item["name"]}'
+        for item in profile["professional_experience"]
+        if item["period"] == "Present"
+    ]
+    current_roles.append(f'{profile["role"]} at {profile["university"]}')
     return Template(source).substitute(
         name=escape(profile["name"]),
         korean_name=escape(profile["korean_name"]),
-        description=escape(f'{profile["name"]}, {profile["role"]} at {profile["university"]}.'),
-        role=escape(profile["role"]),
-        university=escape(profile["university"]),
+        description=escape(f'{profile["name"]}. ' + ". ".join(current_roles) + "."),
+        current_roles="\n".join(f"<li>{escape(role)}</li>" for role in current_roles),
         bio=escape(profile["bio"]),
-        lab=escape(profile["lab"]),
         social_links=social_links,
         research="\n".join(research_record(item) for item in profile["research"] if item["featured"]),
         patents="\n".join(patent_record(item) for item in profile["patents"]),

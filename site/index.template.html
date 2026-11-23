@@ -5,53 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="$description">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#f1f4f6">
+  <meta name="theme-color" content="#faf8f2">
   <title>$name</title>
   <link rel="stylesheet" href="assets/site.css">
 </head>
 <body id="top">
-  <a class="skip" href="#research">Skip to research</a>
+  <a class="skip" href="#main">Skip to content</a>
   <div class="page">
     <header class="masthead">
       <a class="wordmark" href="#top" lang="ko">$korean_name</a>
       <nav class="site-nav" aria-label="Sections">
+        <a href="#projects">Projects</a>
         <a href="#research">Research</a>
         <a href="#patents">Patents</a>
-        <a href="#projects">Projects</a>
         <a href="#teaching">Teaching</a>
         <a href="#profile">Education</a>
       </nav>
     </header>
 
-    <main class="site-layout">
+    <main id="main">
       <section class="intro" aria-labelledby="name">
-        <img class="portrait" src="assets/portrait.webp" alt="Portrait of $name" width="354" height="472">
         <div class="intro-text">
           <h1 id="name">$name</h1>
-          <p class="affiliation">$role<br>$university</p>
-          <p class="lab">$lab</p>
+          <ul class="roles">$current_roles</ul>
+          <p class="bio">$bio</p>
+          <div class="profile-links">
+            <a class="cv-link" href="cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">Download CV <span>(PDF)</span></a>
+            <div class="external-links">$social_links</div>
+          </div>
         </div>
-        <p class="bio">$bio</p>
-        <div class="profile-links">
-          <a class="cv-link" href="cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">Download CV <span>(PDF)</span></a>
-          <div class="external-links">$social_links</div>
+        <div class="portrait-panel">
+          <img class="portrait" src="assets/portrait.webp" alt="Portrait of $name" width="354" height="472" fetchpriority="high">
         </div>
       </section>
 
       <div class="content">
+        <section id="projects" class="content-section" aria-labelledby="projects-title">
+          <h2 id="projects-title">Projects</h2>
+          <ul class="records project-records">$projects</ul>
+        </section>
+
         <section id="research" class="content-section" aria-labelledby="research-title">
           <h2 id="research-title">Research</h2>
-          <ul class="records research-records">$research</ul>
+          <ul class="records">$research</ul>
         </section>
 
         <section id="patents" class="content-section" aria-labelledby="patents-title">
           <h2 id="patents-title">Patents</h2>
           <ul class="records">$patents</ul>
-        </section>
-
-        <section id="projects" class="content-section" aria-labelledby="projects-title">
-          <h2 id="projects-title">Projects</h2>
-          <ul class="records">$projects</ul>
         </section>
 
         <section id="teaching" class="content-section" aria-labelledby="teaching-title">

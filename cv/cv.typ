@@ -54,6 +54,8 @@
   d.links.map(item => link(item.href)[#item.label]).join([ · ]),
 )
 
+#section("Professional experience")
+#records(d.professional_experience, entry)
 #section("Education")
 #records(d.education, entry)
 #section("Research experience")

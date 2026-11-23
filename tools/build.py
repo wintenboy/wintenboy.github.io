@@ -119,7 +119,8 @@ def entry_info(section, item, labels):
         return item["title"], item["year"], meta, item["summary"], reference
     if section == "patents":
         meta = " · ".join((item["status"], item["number"], labels["co_inventor_label"]))
-        return item["name"], item["period"], meta, "", anchor(labels["patent_record_label"], item["href"])
+        reference = anchor(item.get("link_label", labels["patent_record_label"]), item["href"])
+        return item["title"], item["period"], meta, "", reference
     if section == "teaching":
         title = f'{item["name"]} ({item["code"]})'
         return title, item["period"], f'{item["role"]}, {item["institution"]}', "", ""
@@ -218,9 +219,13 @@ def render_index(profile, labels, language):
                 heading = f'<strong>{escape(item["name"])}</strong>'
                 meta = item["detail"]
             else:
-                name, _, meta, _, _ = entry_info(section, item, labels)
+                name, date, meta, _, _ = entry_info(section, item, labels)
                 if section == "research":
                     meta = f'{item["venue"]} · {item["role"]}'
+                elif section == "patents":
+                    name = item["name"]
+                elif section == "teaching":
+                    meta = date
                 heading = anchor(name, page_link(page, language, f'{section}/{item["id"]}'))
             previews.append(f'<li>{heading}<p>{escape(meta)}</p></li>')
         anchor_id = "profile" if section == "education" else section
@@ -273,11 +278,10 @@ def article_sections(sections):
     return "\n".join(parts)
 
 
-def route_heading(title, meta="", intro="", reference="", back=""):
+def route_heading(title, meta="", reference="", back=""):
     meta_html = f'<p class="metadata">{escape(meta)}</p>' if meta else ""
-    intro_html = f'<p class="summary">{escape(intro)}</p>' if intro else ""
     ref_html = f'<p class="source-link">{reference}</p>' if reference else ""
-    return f'<header class="route-heading">{back}<h1>{escape(title)}</h1>{meta_html}{intro_html}{ref_html}</header>'
+    return f'<header class="route-heading">{back}<h1>{escape(title)}</h1>{meta_html}{ref_html}</header>'
 
 
 def render_section(profile, labels, language, section, details):
@@ -308,12 +312,9 @@ def render_detail(item, labels, language, section, details):
     route = f'{section}/{item["id"]}'
     page = page_path(language, route)
     title, date, meta, lead, reference = entry_info(section, item, labels)
-    if section == "patents":
-        title = item.get("detail_title", item["title"])
     back_url = escape(page_link(page, language, section))
     back = f'<a class="back-link" href="{back_url}">← {escape(labels[section + "_label"])}</a>'
-    intro = lead if section == "research" else ""
-    heading = route_heading(title, f"{date} · {meta}", intro, reference, back)
+    heading = route_heading(title, f"{date} · {meta}", reference=reference, back=back)
     figure = figure_for(item, "../" * len(page.parent.parts), labels["full_size_label"])
     body = f'<article class="detail-page">{heading}{figure}<div class="article-body">{article_sections(details[item["id"]])}</div></article>'
     return route, title, lead, body

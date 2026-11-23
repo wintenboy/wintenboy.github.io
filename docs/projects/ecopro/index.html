@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="I examined production sensor readings and lab assays for metal contamination. I mapped how the two sources could be matched by production lot to prepare labeled examples for a detection model.">
+  <meta name="description" content="EcoPro BM virtual metrology project. Matching QCP sensor readings to ICP measurements by production lot.">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#faf9f6">
   <title>Metal contamination detection in battery cathode materials | Seungyeol Ryu</title>
@@ -36,13 +36,13 @@
       <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Projects</a><h1>Metal contamination detection in battery cathode materials</h1><p class="metadata">Jan–May 2025 · Researcher, EcoPro BM</p></header>
           <figure class="project-figure">
             <a class="project-visual" href="../../assets/projects/ecopro-cv-workflow-en.png">
-              <img src="../../assets/projects/ecopro-cv-workflow-en.png" alt="EcoPro BM workflow. Align process measurements by production lot, predict ICP measurements with virtual metrology, and assess metal contamination risk." width="1400" height="520" loading="lazy" decoding="async">
+              <img src="../../assets/projects/ecopro-cv-workflow-en.png" alt="Production lots link QCP sensor readings to lab results. A virtual metrology model uses the sensor readings to estimate ICP measurements." width="1400" height="520" loading="lazy" decoding="async">
               <span class="project-visual-action">View full size</span>
             </a>
-            <figcaption>Virtual metrology workflow adapted from my PowerPoint portfolio, with the original EcoPro BM logo.</figcaption>
-          </figure><div class="article-body"><section><h2 data-motion-title="words">Which lab result goes with a sensor trace?</h2><p>Process measurements are timestamped. The lab’s ICP measurements are tied to production lots. I worked on matching the two so that each training record paired a sensor trace from the line with the lab result for the corresponding material.</p></section>
-<section><h2 data-motion-title="words">Estimating the ICP measurement</h2><p>I worked on features for the virtual metrology model that capture changes over time and interactions among process measurements. We used the QCP sensor data to estimate metal concentrations measured by ICP. The estimate was meant to help the team investigate a possible source of contamination.</p></section>
-<section><h2 data-motion-title="words">A separate equipment health index</h2><p>I also helped design an equipment health index. We looked at how it changed over time and whether the available signals could give enough advance notice of a change in equipment condition.</p></section></div></article>
+            <figcaption>QCP sensor readings and ICP measurements, matched by production lot.</figcaption>
+          </figure><div class="article-body"><section><h2 data-motion-title="words">Matching sensor and lab records</h2><p>The sensor data came as timestamped readings. The lab reported ICP results by production lot. I worked on identifying which stretch of sensor data belonged to each tested lot, so those records could be paired for training.</p></section>
+<section><h2 data-motion-title="words">Estimating metal concentration</h2><p>I worked on features that track changes in sensor readings and how different process variables move together. The virtual metrology model estimated ICP metal concentrations from QCP sensor readings. Those estimates could help the team investigate where contamination arose.</p></section>
+<section><h2 data-motion-title="words">Equipment health index</h2><p>I also worked on an equipment health index and a criterion for judging whether the sensor signals could give early warning of a change in equipment condition.</p></section></div></article>
     </main>
     <footer>
       <a href="#top">Back to top</a>

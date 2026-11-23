@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="I worked on selecting usable frames from rolling-line images, segmenting the plate, and extracting its lower edge. We used the outline to measure curvature and predict whether the plate tip would bend up or down in a later pass.">
+  <meta name="description" content="POSCO plate-warping project. Measuring the lower contour and forecasting warping two rolling passes ahead.">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#faf9f6">
-  <title>Predicting steel plate curvature after rolling | Seungyeol Ryu</title>
+  <title>Predicting plate-tip warping during rolling | Seungyeol Ryu</title>
   <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/projects/posco/">
   <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/projects/posco/">
   <link rel="stylesheet" href="../../assets/site.css?v=bf9473147892">
@@ -33,15 +33,15 @@
     </header>
 
     <main id="main">
-      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Projects</a><h1>Predicting steel plate curvature after rolling</h1><p class="metadata">Dec 2024–Nov 2025 · Researcher, POSCO</p></header>
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Projects</a><h1>Predicting plate-tip warping during rolling</h1><p class="metadata">Dec 2024–Nov 2025 · Researcher, POSCO</p></header>
           <figure class="project-figure">
             <a class="project-visual" href="../../assets/projects/posco-analysis-pipeline.png">
               <img src="../../assets/projects/posco-analysis-pipeline.png" alt="The steel plate analysis workflow with example frames for labeling, segmentation, contour extraction, and prediction." width="1419" height="638" loading="lazy" decoding="async">
               <span class="project-visual-action">View full size</span>
             </a>
-            <figcaption>Original pipeline figure from the POSCO project presentation in my portfolio.</figcaption>
-          </figure><div class="article-body"><section><h2 data-motion-title="words">Keeping the direction of the bend</h2><p>I worked on the image preparation, plate segmentation, and contour extraction. We segmented the plate with SAM2 and extracted the lower edge because the cameras look at the plate from an angle. Entry and exit cameras face opposite directions, so we flipped the entry images before calculating curvature. We kept the sign of the curvature to record whether the tip bent up or down.</p></section>
-<section><h2 data-motion-title="words">Why we predicted two passes ahead</h2><p>The entry and exit images were collected on different dates. We could pair images two passes apart from the same side of the line. We joined the image-derived warping index to process measurements from roughing and finishing, then used support vector regression to predict the later pass. The inputs we examined included the current warping index, rolling speed, and plate thickness.</p></section></div></article>
+            <figcaption>From the POSCO project presentation. A labeled frame is segmented to extract the plate’s lower edge.</figcaption>
+          </figure><div class="article-body"><section><h2 data-motion-title="words">Measuring the direction of the bend</h2><p>I worked on selecting frames, segmenting the plate with SAM2, and tracing its lower edge. The entry and exit cameras look at the plate from different directions. We flipped the entry images to align them and kept the sign of the curvature to distinguish an upward bend from a downward one.</p></section>
+<section><h2 data-motion-title="words">Two passes ahead</h2><p>Entry and exit images came from different collection dates, so consecutive passes of the same plate were hard to pair. We matched frames from the same side of the line, two passes apart. I helped build the support vector regression model using the image-derived warping index and process measurements such as rolling speed and plate thickness.</p></section></div></article>
     </main>
     <footer>
       <a href="#top">Back to top</a>

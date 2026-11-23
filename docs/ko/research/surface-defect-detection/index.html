@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="정상으로 모아 둔 학습 이미지에도 결함이 섞일 수 있습니다. 그런 데이터로 이미지 단위의 결함 검출기를 학습하는 방법을 연구했습니다.">
+  <meta name="description" content="정상으로 분류한 학습 이미지에 불량이 섞였을 때 표면 결함 검출기를 학습하는 방법입니다.">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#faf9f6">
   <title>노이즈가 섞인 데이터셋을 위한 강건한 적응형 대조 학습 기반 표면 결함 탐지 모델 | 류승열</title>
@@ -33,9 +33,9 @@
     </header>
 
     <main id="main">
-      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← 연구</a><h1>노이즈가 섞인 데이터셋을 위한 강건한 적응형 대조 학습 기반 표면 결함 탐지 모델</h1><p class="metadata">2026 · IEEE Access · 14권, 177782–177797쪽 · 제1저자</p><p class="summary">정상으로 모아 둔 학습 이미지에도 결함이 섞일 수 있습니다. 그런 데이터로 이미지 단위의 결함 검출기를 학습하는 방법을 연구했습니다.</p><p class="source-link"><a href="https://doi.org/10.1109/ACCESS.2026.3752900">논문 보기</a></p></header><div class="article-body"><section><h2 data-motion-title="words">증강 이미지 쌍마다 온도를 선택하는 방법</h2><p>학습 이미지 하나에 무작위 증강을 두 번 적용해 양성 쌍을 만들었습니다. 양성 쌍의 코사인 유사도를 같은 미니배치에서 계산한 다른 쌍의 유사도와 비교했습니다. 양측 단일 표본 t-검정의 p값으로 InfoNCE 온도를 두 값 중 하나로 정했습니다. 낮은 온도에서는 모델이 구분하기 어려운 음성 쌍이 학습에 더 크게 반영됩니다.</p></section>
-<section><h2 data-motion-title="words">최근접 이웃으로 매긴 이상 점수</h2><p>학습이 끝나면 투영층을 지나기 전 인코더 특성을 꺼내 k-최근접 이웃(k-NN)으로 이상 점수를 계산했습니다. 실험에서는 이미지 전체에 결함이 있는지 판별하는 성능을 평가했습니다. 이미지에서 결함이 난 위치를 찾으려면 픽셀이나 패치 단위로 별도 평가가 필요합니다.</p></section>
-<section><h2 data-motion-title="words">고정 온도와 무작위 선택을 비교했습니다</h2><p>Surface Crack과 Magnetic Tile에서 이 규칙으로 온도를 골랐을 때 평균 ROC AUC가 더 높았습니다. 비교 대상은 고정 온도와 무작위 전환이었습니다. KolektorSDD2에서도 이미지 단위의 결함 검출을 평가했습니다. 미니배치 안에서는 여러 쌍의 유사도 계산에 같은 표본이 들어갑니다. 이 때문에 논문에서 p값은 학습 중 온도를 고르는 기준으로 썼습니다.</p></section></div></article>
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← 연구</a><h1>노이즈가 섞인 데이터셋을 위한 강건한 적응형 대조 학습 기반 표면 결함 탐지 모델</h1><p class="metadata">2026 · IEEE Access · 14권, 177782–177797쪽 · 제1저자</p><p class="source-link"><a href="https://doi.org/10.1109/ACCESS.2026.3752900">논문 보기</a></p></header><div class="article-body"><section><h2 data-motion-title="words">이미지 쌍마다 온도 고르기</h2><p>공장에서 정상으로 분류한 학습 이미지에도 불량이 섞일 수 있습니다. 한 학습 이미지를 무작위로 두 번 증강해 양성 쌍을 만들었습니다. 증강 이미지 각각이 배치 안의 다른 이미지와 이루는 쌍의 코사인 유사도를 구해 양성 쌍과 비교했습니다. 양측 단일 표본 t-검정의 p값으로 두 InfoNCE 온도 중 하나를 골랐습니다. 낮은 온도에서는 서로 다른데도 모델이 비슷하게 보는 이미지 쌍이 학습에 더 크게 반영됩니다.</p></section>
+<section><h2 data-motion-title="words">이미지 한 장에 이상 점수 매기기</h2><p>학습이 끝나면 투영층에 들어가기 전의 인코더 특성에 k-최근접 이웃(k-NN)을 적용했습니다. 이미지 한 장에 이상 점수 하나를 매겼습니다. 결함 위치를 찾는 문제는 별도의 평가가 필요합니다.</p></section>
+<section><h2 data-motion-title="words">온도 선택 규칙의 비교</h2><p>Surface Crack과 Magnetic Tile에서 온도를 쌍마다 고르는 방법을 고정 온도 및 무작위 선택과 비교했습니다. 실험한 설정 가운데 쌍마다 온도를 고르는 방법의 평균 ROC AUC가 가장 높았습니다. KolektorSDD2에서도 이미지 단위 검출을 평가했습니다. 미니배치의 여러 유사도 계산에 같은 표본이 들어가므로 p값은 학습 중 온도를 고르는 기준으로 사용했습니다.</p></section></div></article>
     </main>
     <footer>
       <a href="#top">맨 위로</a>

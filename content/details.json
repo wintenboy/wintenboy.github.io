@@ -1,122 +1,120 @@
 {
   "en": {
     "education": [
-      ["Graduate research", "At Yonsei’s System Intelligence Lab, I study industrial inspection and time-series classification. My first-author IEEE Access paper starts from a problem in inspection data: the set used to learn what a normal surface looks like can already contain cracks and other defects. In my INFORMS work, the problem is deciding which existing classifier to run on each time series."],
-      ["Undergraduate research", "I took the data science track alongside international studies and business at the Catholic University of Korea. I joined the Applied AI Lab as an undergraduate research assistant and worked on the two care projects listed here. One led to a granted patent on matching patients and caregivers. The other led to a published application on recommending care products."],
-      ["UNNEST", "I serve as CTO at UNNEST. We build AI agents for organizations that run them on their own networks."]
+      ["At Yonsei", "I joined the System Intelligence Lab in 2024. My first-author paper in IEEE Access looks at training a surface defect detector on data that already contains defects. At INFORMS I presented a method for choosing a classifier for each time series."],
+      ["At the Catholic University of Korea", "I worked in the Applied AI Lab on caregiver matching and care product recommendations. The first project led to a granted patent. The second led to a published application."],
+      ["At UNNEST", "I am the CTO. We build AI agents that organizations can run on their own networks."]
     ],
     "surface-defect-detection": [
-      ["Choosing a temperature for each positive pair", "We generate two views of each training image and compare how similar they are with the cosine similarities those views have to the other samples in the mini-batch. We use a two-sided one-sample t-test to decide whether InfoNCE should use a low or high temperature for that pair. The low setting increases the influence of hard negatives during training."],
-      ["Scoring new images with nearest neighbors", "After training, we use the encoder features before the projection layer to score new images with k-nearest neighbors. The detector assigns a score to the whole image. Finding the exact location of a defect would require a separate evaluation at the pixel or patch level."],
-      ["Fixed, random, and adaptive settings", "On Surface Crack and Magnetic Tile, the rule gave a higher mean ROC AUC than holding the temperature fixed or switching randomly. The paper also evaluates image-level detection on KolektorSDD2. Similarities computed from the same mini-batch share samples, so we use the p-value as a training rule."]
+      ["Temperature for positive pairs", "A production image labeled normal may still contain a defect. We made two augmented views of each training image. We compared their cosine similarity with the similarities between those views and the rest of the mini-batch. The p-value from a two-sided one-sample t-test picked one of two InfoNCE temperatures. At the lower temperature, difficult negative pairs have a stronger effect on training."],
+      ["Scoring new images", "After training, we used k-nearest neighbors on the encoder features before the projection layer. Each image got one anomaly score. Locating the faulty region within an image would need a separate evaluation."],
+      ["What the temperature comparison showed", "The adaptive rule gave a higher mean ROC AUC than the fixed and random settings tested on Surface Crack and Magnetic Tile. We also evaluated image-level detection on KolektorSDD2. Similarities within a mini-batch share samples, so in the paper we used the p-value as a training rule."]
     ],
     "informs-2026": [
-      ["One classifier per time series", "At INFORMS I presented a way to choose among pre-trained classifiers for each input. The language model reads dataset metadata, tokens derived from the series, and a short text description. It returns the name of a classifier. We then run that classifier on the series to get the class prediction."],
-      ["Several classifiers can get the same input right", "We trained the router with Partial Cross-Entropy and Reinforcement Learning from Calibrated Decision. More than one candidate can classify a training example correctly. The selection problem is therefore to learn which candidates can handle that example. In the talk I compared per-input routing with choosing one best classifier for the entire dataset, using 18 datasets from the UCR 2019 archive."]
+      ["Picking a classifier for each input", "A classifier can rank first on a dataset and still miss a series that another model gets right. The router reads dataset metadata, tokens made from the series, and a text description. It picks a pre-trained classifier, which then predicts the class."],
+      ["Training the router", "Several classifiers can get the same example right. We used Partial Cross-Entropy and Reinforcement Learning from Calibrated Decision to train the router on those examples. At INFORMS I compared this with running one classifier per dataset across 18 UCR 2019 datasets."]
     ],
     "solideo": [
-      ["Follow-up questions and agent routing", "As project manager I coordinated the team and schedule. I also worked on the database and the workflow that decides when to ask a follow-up question and which agent should handle the request. The legal search agent combines vector search with graph traversal. A separate agent handles forms."],
-      ["Form review", "The prototype includes a human review step for form handling. The memory agent keeps the details the next turn needs, so the user can answer a follow-up without repeating the whole request. We submitted the prototype for a public-service innovation competition."]
+      ["Routing a request", "I coordinated the prototype team, managed the schedule, and worked on the workflow and database design. When a request is missing information, the chat asks a follow-up. The regulation search agent uses vector search and graph traversal. A separate agent handles forms."],
+      ["Reviewing a form", "The prototype routes the form to a person for review. The memory agent carries the original request forward when the user answers a follow-up. We submitted the prototype to a public-service innovation competition."]
     ],
     "ecopro": [
-      ["Which lab result goes with a sensor trace?", "Process measurements are timestamped. The lab’s ICP measurements are tied to production lots. I worked on matching the two so that each training record paired a sensor trace from the line with the lab result for the corresponding material."],
-      ["Estimating the ICP measurement", "I worked on features for the virtual metrology model that capture changes over time and interactions among process measurements. We used the QCP sensor data to estimate metal concentrations measured by ICP. The estimate was meant to help the team investigate a possible source of contamination."],
-      ["A separate equipment health index", "I also helped design an equipment health index. We looked at how it changed over time and whether the available signals could give enough advance notice of a change in equipment condition."]
+      ["Matching sensor and lab records", "The sensor data came as timestamped readings. The lab reported ICP results by production lot. I worked on identifying which stretch of sensor data belonged to each tested lot, so those records could be paired for training."],
+      ["Estimating metal concentration", "I worked on features that track changes in sensor readings and how different process variables move together. The virtual metrology model estimated ICP metal concentrations from QCP sensor readings. Those estimates could help the team investigate where contamination arose."],
+      ["Equipment health index", "I also worked on an equipment health index and a criterion for judging whether the sensor signals could give early warning of a change in equipment condition."]
     ],
     "posco": [
-      ["Keeping the direction of the bend", "I worked on the image preparation, plate segmentation, and contour extraction. We segmented the plate with SAM2 and extracted the lower edge because the cameras look at the plate from an angle. Entry and exit cameras face opposite directions, so we flipped the entry images before calculating curvature. We kept the sign of the curvature to record whether the tip bent up or down."],
-      ["Why we predicted two passes ahead", "The entry and exit images were collected on different dates. We could pair images two passes apart from the same side of the line. We joined the image-derived warping index to process measurements from roughing and finishing, then used support vector regression to predict the later pass. The inputs we examined included the current warping index, rolling speed, and plate thickness."]
+      ["Measuring the direction of the bend", "I worked on selecting frames, segmenting the plate with SAM2, and tracing its lower edge. The entry and exit cameras look at the plate from different directions. We flipped the entry images to align them and kept the sign of the curvature to distinguish an upward bend from a downward one."],
+      ["Two passes ahead", "Entry and exit images came from different collection dates, so consecutive passes of the same plate were hard to pair. We matched frames from the same side of the line, two passes apart. I helped build the support vector regression model using the image-derived warping index and process measurements such as rolling speed and plate thickness."]
     ],
     "care-products": [
-      ["What the team compared", "I was a research assistant on this National Research Foundation of Korea project. The recommendation work combined patient intake fields and consultation notes with product information and reviews. The team considered two questions for each suggestion: whether the product met the patient’s needs and whether it could be used in that care setting."],
-      ["From the project to the patent application", "The work led to Korean patent application 10-2023-0185772, where I am named as a co-inventor. The published application describes how the system uses product similarity and checks the proposed items against the patient’s care setting."]
+      ["From a patient profile to a shortlist", "The team combined intake and consultation records with product information and reviews. We shortlisted products that suited the patient, then checked whether those items could be used in their care setting."],
+      ["Published application", "I am a co-inventor on Korean patent application 10-2023-0185772."]
     ],
     "care-matching": [
-      ["Checking where care can take place", "I was a research assistant on this National Research Foundation of Korea project. The team used the name of the patient’s hospital to look up its location, then compared it with the caregiver’s area of residence. That gave the matching model a way to account for where the two people could meet."],
-      ["Using satisfaction from previous care", "Previous patients’ satisfaction ratings supplied the target for training. The matching model estimates satisfaction for a new pairing, which the method uses to recommend a caregiver. I am a co-inventor on the resulting Korean patent, 10-2635315."]
+      ["Hospital location and past ratings", "The team mapped hospital names to locations and compared them with caregivers’ areas of residence. We trained the model on previous care ratings to predict satisfaction for a new pairing."],
+      ["Patent", "I am a co-inventor on the resulting Korean patent 10-2635315."]
     ],
     "data-analysis-assistant": [
-      ["From blog and purchase reviews to a query", "The patented method prepares blog reviews and purchase reviews in a common database. A marketer can ask a question in ordinary language. The analysis interface uses that request to select a method and run it against the review data. The patent describes examples such as extracting keywords or plotting the distribution of star ratings."],
-      ["Inventors", "The grant lists Jaeyeon Jang, Geon Woo Kim, Hyeoni Kim, Chae Won Yun, and Seungyeol Ryu."]
+      ["Review data behind the chat", "The patent covers preparing blog reviews and purchase reviews in a common database. The analysis module reads a marketer’s question, then selects and runs an analysis. Examples include extracting keywords and plotting the distribution of star ratings."],
+      ["Inventors", "Jaeyeon Jang, Geon Woo Kim, Hyeoni Kim, Chae Won Yun, and Seungyeol Ryu."]
     ],
     "caregiver-patient-matching": [
-      ["Geographic match in the training data", "The patent describes matching the patient’s hospital location to the caregiver’s area of residence. It gives two ways to use the result during training: filter out pairs below a geographic match threshold or include the match score as a model input."],
-      ["Satisfaction as a prediction target", "The recommendation claim combines a classifier’s estimates of satisfaction and dissatisfaction with a numerical rating from a regression model. The combined estimate is used to recommend a caregiver. I am a co-inventor on the grant and participated in the research project as a research assistant."]
+      ["How location enters training", "The patent compares the patient’s hospital location and the caregiver’s area of residence. It describes filtering pairs below a minimum match score or keeping the score as a feature."],
+      ["How the method recommends a caregiver", "A classifier estimates the probabilities of satisfaction and dissatisfaction. A regression model predicts a satisfaction rating. The recommendation claim uses both to score a potential pairing."]
     ],
     "care-product-recommendations": [
-      ["Comparing a patient profile with a product", "The application combines structured patient information with consultation text, product information, and reviews. Its recommendation method uses a multimodal model to estimate how well the products fit the patient. It also checks whether the products suit the place where care will be provided."],
-      ["Research contribution", "I participated in the recommendation project as a research assistant and am named as a co-inventor on the application."]
+      ["Product similarity and the care setting", "The application uses a multimodal model trained with structured patient data and text from consultations and product reviews. The system checks product similarity, then checks whether the shortlisted products fit the care setting."]
     ],
     "machine-learning-1": [
-      ["Steel plate data for a regression assignment", "I helped prepare a regression assignment using rolling-process measurements and plate-tip warping as the target. The handout asked students to identify missing values and categorical fields, then fit multiple linear regression, Ridge, and Lasso. They reported R² and RMSE separately for training and validation and cross-validated a regularized model."],
-      ["Notebook and report", "Students submitted the notebook with its outputs and a report based on those results. I worked with the grading guide so the data checks and model comparisons could be assessed alongside the predictions."]
+      ["Regression assignment", "I helped prepare an assignment on predicting plate-tip warping from rolling-process measurements. The handout asked students to handle missing values and categorical variables, then compare multiple linear regression, Ridge, and Lasso. The submission included train and validation scores for R² and RMSE and a cross-validation result for a regularized model."],
+      ["Grading", "I used the notebook and report to check how students prepared the data and compared the models."]
     ],
     "industrial-applications": [
-      ["Five models on the same wafer data", "I helped prepare and grade a final assignment that used process sensor readings to classify wafers as normal or defective. Students built Random Forest, Gradient Boosting, LightGBM, XGBoost, and CatBoost models. They submitted the predictions together in a five-column CSV."],
-      ["Model comparison and reasoning", "F1 on the held-out test set determined the model ranking portion of the grade. Students used the report to explain what they kept, how they handled the inputs, and how they chose and tuned the models."]
+      ["Wafer inspection assignment", "I helped prepare and grade a final assignment on detecting defective wafers from process sensors. The assignment required Random Forest, Gradient Boosting, LightGBM, XGBoost, and CatBoost. Students submitted one column of predictions per model."],
+      ["Grading", "We scored test predictions using F1. In the reports I checked which variables students kept and how they validated and tuned their models."]
     ],
     "machine-learning-2": [
-      ["Assignment instructions and grading", "I wrote a guide for the first assignment and gave students an example of how to submit predictions. The two problems required notebooks, a written response for the first problem, and a prediction CSV for the second. The grading guide credited validation experiments such as k-fold cross-validation and the reasoning students documented in their analysis."]
+      ["Assignments and grading", "I wrote the guide and example prediction file for the first assignment. Students submitted notebooks for both problems, a written answer for the first, and predictions for the second. The grading guide gave credit for students’ reasoning and for checks such as k-fold cross-validation."]
     ]
   },
   "ko": {
     "education": [
-      ["연세대학교 시스템인텔리전스랩", "공장에서 찍은 표면 이미지에 불량이 섞이면 정상 표면을 배우는 모델도 영향을 받습니다. 이 조건에서 결함을 검출하는 방법을 연구해 IEEE Access에 제1저자로 게재했습니다. 시계열 연구에서는 데이터셋 전체에 모델 하나를 고정했을 때 생기는 문제부터 살폈습니다. 입력마다 분류기를 고르는 방법을 다뤘습니다."],
-      ["가톨릭대학교 응용인공지능연구실", "국제학과 경영학을 공부하며 데이터사이언스 트랙을 밟았습니다. 학부 연구보조원으로 환자와 간병인을 연결하는 과제와 간병 용품을 추천하는 과제에 참여했습니다. 두 과제에서 각각 등록 특허와 공개 출원이 나왔습니다."],
-      ["UNNEST", "UNNEST에서 CTO를 맡고 있습니다. 조직이 자체 네트워크 안에서 운영하는 AI 에이전트를 개발합니다."]
+      ["대학원 연구", "2024년부터 연세대학교 시스템인텔리전스랩에서 연구합니다. IEEE Access에 실은 제1저자 논문에서는 불량 이미지가 섞인 학습 데이터로 표면 결함을 검출하는 방법을 다뤘습니다. INFORMS에서는 시계열마다 분류기를 고르는 방법을 발표했습니다."],
+      ["학부 연구", "가톨릭대학교 응용인공지능연구실에서 환자·간병인 매칭과 간병 용품 추천 과제에 참여했습니다. 매칭 연구는 특허로 등록됐고 용품 추천 연구는 출원 문헌으로 공개됐습니다."],
+      ["UNNEST", "CTO로 일하며 조직이 자체 네트워크에서 운영할 수 있는 AI 에이전트를 개발합니다."]
     ],
     "surface-defect-detection": [
-      ["증강 이미지 쌍마다 온도를 선택하는 방법", "학습 이미지 하나에 무작위 증강을 두 번 적용해 양성 쌍을 만들었습니다. 양성 쌍의 코사인 유사도를 같은 미니배치에서 계산한 다른 쌍의 유사도와 비교했습니다. 양측 단일 표본 t-검정의 p값으로 InfoNCE 온도를 두 값 중 하나로 정했습니다. 낮은 온도에서는 모델이 구분하기 어려운 음성 쌍이 학습에 더 크게 반영됩니다."],
-      ["최근접 이웃으로 매긴 이상 점수", "학습이 끝나면 투영층을 지나기 전 인코더 특성을 꺼내 k-최근접 이웃(k-NN)으로 이상 점수를 계산했습니다. 실험에서는 이미지 전체에 결함이 있는지 판별하는 성능을 평가했습니다. 이미지에서 결함이 난 위치를 찾으려면 픽셀이나 패치 단위로 별도 평가가 필요합니다."],
-      ["고정 온도와 무작위 선택을 비교했습니다", "Surface Crack과 Magnetic Tile에서 이 규칙으로 온도를 골랐을 때 평균 ROC AUC가 더 높았습니다. 비교 대상은 고정 온도와 무작위 전환이었습니다. KolektorSDD2에서도 이미지 단위의 결함 검출을 평가했습니다. 미니배치 안에서는 여러 쌍의 유사도 계산에 같은 표본이 들어갑니다. 이 때문에 논문에서 p값은 학습 중 온도를 고르는 기준으로 썼습니다."]
+      ["이미지 쌍마다 온도 고르기", "공장에서 정상으로 분류한 학습 이미지에도 불량이 섞일 수 있습니다. 한 학습 이미지를 무작위로 두 번 증강해 양성 쌍을 만들었습니다. 증강 이미지 각각이 배치 안의 다른 이미지와 이루는 쌍의 코사인 유사도를 구해 양성 쌍과 비교했습니다. 양측 단일 표본 t-검정의 p값으로 두 InfoNCE 온도 중 하나를 골랐습니다. 낮은 온도에서는 서로 다른데도 모델이 비슷하게 보는 이미지 쌍이 학습에 더 크게 반영됩니다."],
+      ["이미지 한 장에 이상 점수 매기기", "학습이 끝나면 투영층에 들어가기 전의 인코더 특성에 k-최근접 이웃(k-NN)을 적용했습니다. 이미지 한 장에 이상 점수 하나를 매겼습니다. 결함 위치를 찾는 문제는 별도의 평가가 필요합니다."],
+      ["온도 선택 규칙의 비교", "Surface Crack과 Magnetic Tile에서 온도를 쌍마다 고르는 방법을 고정 온도 및 무작위 선택과 비교했습니다. 실험한 설정 가운데 쌍마다 온도를 고르는 방법의 평균 ROC AUC가 가장 높았습니다. KolektorSDD2에서도 이미지 단위 검출을 평가했습니다. 미니배치의 여러 유사도 계산에 같은 표본이 들어가므로 p값은 학습 중 온도를 고르는 기준으로 사용했습니다."]
     ],
     "informs-2026": [
-      ["시계열 하나가 들어올 때마다 분류기를 고릅니다", "INFORMS에서 사전학습된 분류기 중 하나를 입력마다 고르는 방법을 발표했습니다. 언어 모델에 데이터셋의 메타데이터와 시계열을 토큰으로 바꾼 값, 자연어 설명을 넣었습니다. 언어 모델이 분류기를 고르면 그 분류기에 시계열을 넘겨 최종 예측값을 얻습니다."],
-      ["복수의 정답 후보로 라우터를 학습", "여러 후보 모델이 같은 시계열의 클래스를 맞히기도 합니다. 라우터를 학습할 때 Partial Cross-Entropy(PCE)와 Reinforcement Learning from Calibrated Decision(RLCD)을 사용했습니다. 학습 예시마다 정답을 낸 후보를 구분하도록 했습니다. 발표에서는 UCR 2019 데이터셋 18개로 입력마다 고르는 방식과 데이터셋 전체에 최우수 분류기 하나를 쓰는 방식을 비교했습니다."]
+      ["시계열마다 다른 분류기", "데이터셋 전체에서 정확도가 가장 높은 모델도 특정 시계열에서는 예측이 틀릴 수 있습니다. 언어 모델에 데이터셋 정보, 시계열을 변환한 토큰, 자연어 설명을 넣었습니다. 언어 모델이 사전학습된 분류기 하나를 고르면 그 분류기가 시계열의 클래스를 예측합니다."],
+      ["라우터 학습과 비교 실험", "후보 분류기 여러 개가 같은 시계열을 정확히 분류할 수 있습니다. 라우터 학습에는 Partial Cross-Entropy(PCE)와 Reinforcement Learning from Calibrated Decision(RLCD)을 썼습니다. UCR 2019 데이터셋 18개에서 입력마다 모델을 고르는 경우와 데이터셋마다 하나를 고정하는 경우를 비교했습니다. 결과는 INFORMS에서 발표했습니다."]
     ],
     "solideo": [
-      ["질문에 필요한 정보가 빠져 있을 때", "프로젝트 매니저로 프로토타입 개발 일정과 팀을 맡았습니다. 대화 흐름과 데이터베이스를 설계하면서 요청에 빠진 정보가 있으면 어느 단계에서 다시 물을지 정했습니다. 법령 검색과 서식 처리를 서로 다른 에이전트에 맡겼습니다. 법령을 찾는 에이전트에는 벡터 검색과 그래프 탐색을 적용했습니다."],
-      ["서식은 접수 전에 사람이 확인하도록", "서식을 접수하기 전에 사람이 검토하도록 했습니다. 사용자가 빠진 정보를 다음 메시지에서 답하면 메모리 에이전트가 그 답을 앞서 받은 내용과 연결합니다. 이 흐름을 담은 프로토타입을 민원 서비스 혁신 공모전에 제출했습니다."]
+      ["민원에 필요한 정보를 묻는 흐름", "프로젝트 매니저로 일정과 팀을 조율하고 대화 흐름과 데이터베이스를 설계했습니다. 요청에 필요한 정보가 빠지면 채팅에서 다시 묻습니다. 법령 검색에는 벡터 검색과 그래프 탐색을 썼습니다. 서식 처리는 별도 에이전트에 맡겼습니다."],
+      ["서식 검토", "제출 전에 사람이 서식을 확인하도록 했습니다. 사용자가 추가 질문에 답하면 메모리 에이전트가 그 답을 앞서 받은 요청과 연결합니다. 프로토타입을 민원 서비스 혁신 공모전에 제출했습니다."]
     ],
     "ecopro": [
-      ["센서 기록과 검사 결과를 로트로 연결", "공정 센서는 시각마다 값을 남기고 실험실의 ICP 검사 결과는 생산 로트별로 정리됩니다. 이 자료를 학습에 쓰려면 어느 구간의 센서값이 검사한 로트에 해당하는지부터 맞춰야 합니다. 생산 로트를 기준으로 센서값과 검사 결과를 짝지었습니다."],
-      ["공정에서 잰 값으로 검사 결과를 추정했습니다", "가상 계측 모델에 넣을 특성을 만들 때 센서값이 시간에 따라 어떻게 변하는지와 공정 변수끼리 함께 움직이는 양상을 살폈습니다. 모델은 QCP 공정 센서값으로 ICP에서 측정하는 금속 농도를 추정합니다. 추정치는 금속 이물이 어느 공정에서 생겼는지 조사할 때 참고할 수 있도록 설계했습니다."],
-      ["설비의 상태를 나타내는 지표", "금속 농도 추정과 별도로 설비 상태 지표(Health Index) 설계에도 참여했습니다. 지표가 시간에 따라 어떻게 변하는지 살폈습니다. 설비 상태가 달라지기 얼마나 전에 센서 신호가 바뀌는지 판단할 기준을 정했습니다."]
+      ["시간별 센서 기록과 로트별 검사 결과", "공정 센서값은 시간순으로 쌓이고 ICP 검사 결과는 생산 로트별로 나옵니다. 검사한 로트의 생산 시간대를 찾아 그때 기록된 센서값과 검사 결과를 짝지어 학습 데이터를 만들었습니다."],
+      ["QCP 센서값으로 ICP 농도 추정", "센서값의 시간 변화와 공정 변수 사이의 상호작용을 가상 계측 모델의 입력에 반영했습니다. 이 모델은 QCP 센서값으로 ICP에서 재는 금속 농도를 추정합니다. 추정값은 이물이 나온 공정을 조사하는 데 참고할 수 있습니다."],
+      ["설비 상태 지표", "설비 상태 지표(Health Index)를 설계하는 데도 참여했습니다. 센서값으로 설비 상태 변화를 미리 판단할 수 있는지 확인할 기준을 함께 정했습니다."]
     ],
     "posco": [
-      ["입구·출구 영상의 방향 맞추기", "압연 영상에서 쓸 프레임을 골라 SAM2로 후판 영역을 분할하고 아래쪽 윤곽선을 추출하는 작업에 참여했습니다. 입구와 출구 영상은 카메라 방향이 반대여서 입구 영상을 좌우로 뒤집었습니다. 곡률 계산에서 부호를 살려 후판 끝이 위로 휘는지 아래로 휘는지 구분했습니다."],
-      ["두 패스 뒤를 예측한 이유", "입구와 출구에서 영상을 수집한 날짜가 달라 같은 후판의 연속 두 패스를 짝짓기 어려웠습니다. 그래서 같은 쪽에서 두 패스 간격으로 찍은 영상을 짝지어 예측 데이터를 만들었습니다. 영상의 휨 지수에 조압연과 마무리 압연의 측정값을 연결했습니다. 현재 휨 지수, 압연 속도, 두께를 살펴보고 두 패스 뒤의 휨을 예측하는 SVR 모델 개발에 참여했습니다."]
+      ["입구와 출구 영상의 방향 맞추기", "압연 영상에서 프레임을 고르고 SAM2로 후판 영역을 분할해 아래쪽 윤곽을 뽑는 작업에 참여했습니다. 입구와 출구에 설치된 카메라의 촬영 방향이 달라 입구 영상을 좌우로 뒤집었습니다. 곡률의 부호를 남겨 끝이 위로 휘는지 아래로 휘는지 구분했습니다."],
+      ["두 패스 뒤의 휨을 예측한 이유", "입구와 출구의 영상 수집 날짜가 달라 같은 후판의 연속 패스를 짝짓기 어려웠습니다. 같은 쪽에서 두 패스 간격으로 찍은 영상을 짝지었습니다. 영상에서 구한 휨 지수와 압연 속도, 두께 등 공정 측정값을 입력으로 썼습니다. 두 패스 뒤의 휨을 예측하는 SVR 모델 개발에 참여했습니다."]
     ],
     "care-products": [
-      ["환자에게 맞는지, 그곳에서 쓸 수 있는지", "한국연구재단의 간병 용품 추천 과제에 연구보조원으로 참여했습니다. 팀은 환자 기본 정보와 상담 내용, 제품 정보와 후기를 함께 살폈습니다. 환자에게 맞는 제품을 고른 뒤 실제 간병 장소에서 쓸 수 있는지 확인하는 흐름을 설계했습니다."],
-      ["과제에서 나온 특허 출원", "이 과제에서 국내 특허 출원 10-2023-0185772가 나왔습니다. 공동 발명자로 이름을 올렸습니다. 공개 문헌에는 제품의 유사도로 후보를 고르고 간병 환경을 기준으로 다시 거르는 방법을 담았습니다."]
+      ["환자 정보와 간병 장소로 용품 고르기", "팀은 환자 정보와 상담 내용, 제품 정보와 후기를 함께 봤습니다. 환자에게 맞는 제품을 고른 뒤 간병 장소에서 쓸 수 있는지 확인하는 순서로 추천 절차를 짰습니다."],
+      ["공개 출원", "국내 특허 출원 10-2023-0185772의 공동 발명자입니다."]
     ],
     "care-matching": [
-      ["입원한 병원과 간병인이 사는 곳을 비교했습니다", "한국연구재단의 환자–간병인 매칭 과제에 연구보조원으로 참여했습니다. 팀은 환자와 간병인이 실제로 만날 수 있는 지역을 매칭에 반영했습니다. 병원명으로 환자가 입원한 곳의 소재지를 찾은 뒤 간병인의 거주 지역과 비교했습니다."],
-      ["이전 환자가 남긴 만족도로 학습했습니다", "이전 환자가 남긴 만족도를 목표값으로 삼아 모델을 학습했습니다. 새 환자와 간병인을 짝지었을 때의 만족도를 추정해 간병인 추천에 썼습니다. 이 연구에서 나온 국내 특허 10-2635315에 공동 발명자로 등재됐습니다."]
+      ["병원 위치와 이전 간병의 만족도", "팀은 병원명으로 입원한 병원의 소재지를 찾아 간병인의 거주 지역과 비교했습니다. 이전 간병의 만족도 자료로 모델을 학습해 새 환자와 간병인이 짝을 이뤘을 때의 만족도를 예측했습니다."],
+      ["등록 특허", "국내 등록 특허 10-2635315의 공동 발명자입니다."]
     ],
     "data-analysis-assistant": [
-      ["리뷰를 모아 마케터의 질문에 답하는 방법", "블로그 후기와 구매 후기를 정리해 하나의 데이터베이스로 만듭니다. 마케터가 평소 쓰는 말로 질문하면 대화형 모듈이 분석 방법을 골라 실행합니다. 특허에는 후기에서 주요 단어를 뽑거나 별점이 어떻게 분포하는지 그려 보는 예가 있습니다."],
-      ["발명자", "장재연, 김건우, 김현이, 윤채원과 함께 발명자로 등재됐습니다."]
+      ["블로그 후기와 구매 후기를 분석하는 대화형 도구", "특허는 블로그 후기와 구매 후기를 정리해 한 데이터베이스에 넣는 방법을 다룹니다. 마케터가 질문을 입력하면 도구가 분석 방법을 골라 실행합니다. 특허에는 후기에서 주요 단어를 뽑거나 별점 분포를 그리는 예가 나옵니다."],
+      ["발명자", "장재연, 김건우, 김현이, 윤채원, 류승열."]
     ],
     "caregiver-patient-matching": [
-      ["학습할 때 지역을 반영하는 두 방법", "입원한 병원의 소재지와 간병인의 거주 지역을 비교해 지역 일치도를 구합니다. 문헌에서는 지역 일치도가 기준에 못 미치는 조합을 학습에서 제외하는 방법과 일치도 자체를 모델 입력에 넣는 방법을 각각 설명합니다."],
-      ["만족 여부와 만족도 점수를 함께 봅니다", "추천에 관한 청구항은 분류 모델이 구한 만족·불만족 확률과 회귀 모델이 예측한 만족도 점수를 합쳐 간병인을 추천하는 방법을 다룹니다. 관련 과제에 연구보조원으로 참여했고 등록 특허의 공동 발명자입니다."]
+      ["학습 데이터에 지역을 반영하는 방법", "환자가 입원한 병원의 소재지와 간병인의 거주 지역을 비교해 지역 일치도를 구합니다. 문헌에는 일치도가 기준에 못 미치는 조합을 학습 데이터에서 빼는 방법과 일치도 자체를 모델 입력에 넣는 방법이 나옵니다."],
+      ["간병인 추천에 쓰는 두 예측값", "분류 모델은 만족·불만족 확률을 계산하고 회귀 모델은 만족도 점수를 예측합니다. 추천 청구항은 두 결과를 합쳐 간병인을 추천하는 방법을 다룹니다."]
     ],
     "care-product-recommendations": [
-      ["제품을 고른 뒤 간병 장소를 확인합니다", "출원에 담긴 멀티모달 모델은 환자의 기본 정보와 상담 내용, 제품 정보와 후기를 함께 씁니다. 환자의 요구와 제품 특성을 비교해 후보를 고른 뒤 간병 장소나 사용 환경에 맞는지 확인합니다."],
-      ["연구 참여", "간병 용품 추천 과제에 연구보조원으로 참여했고 이 출원에 공동 발명자로 등재됐습니다."]
+      ["용품 후보를 고른 뒤 간병 장소를 확인", "공개 출원은 환자 기본 정보, 상담 내용, 제품 정보와 후기를 함께 쓰는 멀티모달 추천 모델을 다룹니다. 환자에게 맞는 제품을 추린 뒤 간병 장소나 사용 환경에 맞는지 확인합니다."]
     ],
     "machine-learning-1": [
-      ["후판 휨을 예측하는 회귀 과제", "압연 공정에서 측정한 변수로 후판 선단의 휨을 예측하는 과제를 준비했습니다. 학생들은 결측치와 범주형 변수를 처리한 뒤 다중선형회귀, Ridge, Lasso를 비교했습니다. 학습과 검증 데이터의 R²와 RMSE를 따로 보고하고 규제 모델은 교차검증으로 확인하도록 했습니다."],
-      ["노트북의 분석 과정도 봤습니다", "실행 결과가 담긴 노트북과 그 결과를 해석한 보고서를 받았습니다. 예측 결과와 함께 데이터 확인, 전처리, 모델 비교 과정도 볼 수 있도록 채점 기준을 정리했습니다."]
+      ["후판 휨 회귀 과제", "압연 공정의 측정값으로 후판 선단의 휨을 예측하는 과제를 준비했습니다. 과제에서는 결측치와 범주형 변수를 처리한 뒤 다중선형회귀, Ridge, Lasso를 비교하도록 했습니다. 학습·검증 데이터의 R²와 RMSE를 따로 보고하고 규제 모델을 교차검증하도록 안내했습니다."],
+      ["채점", "노트북과 보고서를 함께 보며 학생이 데이터를 어떻게 정리하고 모델을 비교했는지 확인했습니다."]
     ],
     "industrial-applications": [
-      ["웨이퍼 불량 분류 기말과제", "반도체 공정 센서값으로 웨이퍼가 정상인지 불량인지 맞히는 기말과제의 준비와 채점을 맡았습니다. 학생들은 랜덤 포레스트, 그래디언트 부스팅, LightGBM, XGBoost, CatBoost를 학습한 뒤 모델마다 한 열씩 예측값을 CSV로 냈습니다."],
-      ["테스트 결과와 분석 보고서를 함께 봤습니다", "테스트 데이터의 F1 점수로 예측 성능을 비교했습니다. 보고서에서는 어떤 변수를 왜 남겼는지 확인했습니다. 교차검증과 파라미터 탐색을 어떻게 했는지도 살폈습니다."]
+      ["웨이퍼 불량 분류 기말과제", "반도체 공정 센서값으로 웨이퍼의 정상과 불량을 구분하는 과제를 준비하고 채점했습니다. 랜덤 포레스트, 그래디언트 부스팅, LightGBM, XGBoost, CatBoost의 예측을 모델마다 한 열씩 CSV로 받았습니다."],
+      ["채점", "테스트 예측은 F1 점수로 평가했습니다. 보고서에서는 변수를 고른 이유와 교차검증, 파라미터 탐색 방법을 확인했습니다."]
     ],
     "machine-learning-2": [
-      ["첫 과제 안내와 채점 기준", "첫 과제의 가이드라인과 예측값 제출 예시를 만들었습니다. 두 문제의 풀이를 노트북으로 받고 첫 문제는 서술 답안, 두 번째 문제는 예측 CSV를 추가로 받았습니다. 채점에서는 예측 결과와 함께 k-fold 교차검증처럼 학생이 직접 시도한 분석과 그 근거를 확인했습니다."]
+      ["첫 과제 안내와 채점", "첫 과제의 안내문과 예측값 제출 예시를 만들었습니다. 두 문제의 풀이를 노트북으로 받았습니다. 첫 문제의 서술 답안과 두 번째 문제의 예측 CSV도 함께 받았습니다. 채점할 때 풀이의 근거와 k-fold 교차검증처럼 학생이 직접 적용한 검증 방법을 확인했습니다."]
     ]
   }
 }

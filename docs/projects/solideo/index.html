@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="I managed the AI assistant prototype. I worked on the conversation flow so it could ask for missing details, retrieve the relevant public-service guidance, and use those sources to draft an answer.">
+  <meta name="description" content="Solideo’s municipal-service prototype. Conversation flow, regulation search, and human review of forms.">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#faf9f6">
-  <title>AI assistance for local government administration | Seungyeol Ryu</title>
+  <title>AI assistant for municipal services | Seungyeol Ryu</title>
   <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/projects/solideo/">
   <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/projects/solideo/">
   <link rel="stylesheet" href="../../assets/site.css?v=bf9473147892">
@@ -33,15 +33,15 @@
     </header>
 
     <main id="main">
-      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Projects</a><h1>AI assistance for local government administration</h1><p class="metadata">Mar 2026–present · Project manager, Solideo</p></header>
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Projects</a><h1>AI assistant for municipal services</h1><p class="metadata">Mar 2026–present · Project manager, Solideo</p></header>
           <figure class="project-figure">
             <a class="project-visual" href="../../assets/projects/solideo-cv-architecture.webp">
-              <img src="../../assets/projects/solideo-cv-architecture.webp" alt="The Solideo architecture diagram connecting the chat interface, guardrails, orchestrator, and agents for legal search, memory, and form handling." width="3573" height="2473" loading="lazy" decoding="async">
+              <img src="../../assets/projects/solideo-cv-architecture.webp" alt="The chat sends requests through input checks to the orchestrator, which calls the regulation search, memory, and forms agents." width="3573" height="2473" loading="lazy" decoding="async">
               <span class="project-visual-action">View full size</span>
             </a>
-            <figcaption>Agent architecture from my PowerPoint portfolio.</figcaption>
-          </figure><div class="article-body"><section><h2 data-motion-title="words">Follow-up questions and agent routing</h2><p>As project manager I coordinated the team and schedule. I also worked on the database and the workflow that decides when to ask a follow-up question and which agent should handle the request. The legal search agent combines vector search with graph traversal. A separate agent handles forms.</p></section>
-<section><h2 data-motion-title="words">Form review</h2><p>The prototype includes a human review step for form handling. The memory agent keeps the details the next turn needs, so the user can answer a follow-up without repeating the whole request. We submitted the prototype for a public-service innovation competition.</p></section></div></article>
+            <figcaption>The prototype’s chat and agent architecture.</figcaption>
+          </figure><div class="article-body"><section><h2 data-motion-title="words">Routing a request</h2><p>I coordinated the prototype team, managed the schedule, and worked on the workflow and database design. When a request is missing information, the chat asks a follow-up. The regulation search agent uses vector search and graph traversal. A separate agent handles forms.</p></section>
+<section><h2 data-motion-title="words">Reviewing a form</h2><p>The prototype routes the form to a person for review. The memory agent carries the original request forward when the user answers a follow-up. We submitted the prototype to a public-service innovation competition.</p></section></div></article>
     </main>
     <footer>
       <a href="#top">Back to top</a>

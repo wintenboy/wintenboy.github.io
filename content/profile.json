@@ -4,7 +4,7 @@
   "role": "Graduate researcher in industrial engineering",
   "university": "Yonsei University",
   "lab": "System Intelligence Lab",
-  "bio": "At UNNEST, I help build AI agents that run on private networks. My research at Yonsei looks at how models learn from noisy data.",
+  "bio": "I study surface defect detection and how to choose a classifier for each time series. At UNNEST, I build AI agents that run on private networks.",
   "professional_experience": [
     {
       "name": "UNNEST",
@@ -14,7 +14,7 @@
     }
   ],
   "topics": [
-    "Industrial AI",
+    "Surface defect detection",
     "Time-series classification",
     "Federated learning"
   ],
@@ -38,7 +38,7 @@
       "details": "Vol. 14, pp. 177782–177797",
       "credit": "Seungyeol Ryu, Geonwoo Kim, and Jaeyeon Jang",
       "role": "First author",
-      "summary": "A training set labeled normal can already contain defects. I studied how to train an image-level detector under those conditions.",
+      "summary": "Training a surface defect detector when images labeled normal can contain defects.",
       "href": "https://doi.org/10.1109/ACCESS.2026.3752900",
       "link_label": "Read the paper",
       "featured": true
@@ -49,10 +49,10 @@
       "year": "2026",
       "title": "Adaptive Model Selection for Time-Series Classification with Language Model",
       "venue": "INFORMS Annual Meeting",
-      "details": "San Francisco, CA, November 2026",
+      "details": "November, San Francisco, CA",
       "credit": "Seungyeol Ryu",
       "role": "Presenter",
-      "summary": "The classifier with the best average accuracy on a dataset can still be a poor choice for an individual time series.",
+      "summary": "Using a language model to choose a classifier for each incoming time series.",
       "href": "https://www.informs.org/Meetings-Conferences/INFORMS-Conference-Calendar/2026-INFORMS-Annual-Meeting",
       "link_label": "Conference information",
       "featured": true
@@ -74,7 +74,7 @@
   "patents": [
     {
       "id": "data-analysis-assistant",
-      "name": "Data analysis assistance for marketers",
+      "name": "Review analysis for marketers",
       "title": "Method for assisting marketers in data analysis and electronic device for performing the same",
       "number": "KR 10-2972642",
       "status": "Granted patent",
@@ -85,8 +85,7 @@
     {
       "id": "caregiver-patient-matching",
       "name": "Caregiver–patient matching",
-      "title": "Method for training and using a caregiver–patient matching model",
-      "detail_title": "Method for training caregiver-patient matching model that infers matching information between caregiver and patient and matching caregiver-patient using caregiver-patient matching model",
+      "title": "Method for training caregiver-patient matching model that infers matching information between caregiver and patient and matching caregiver-patient using caregiver-patient matching model",
       "number": "KR 10-2635315",
       "status": "Granted patent",
       "period": "2024",
@@ -99,8 +98,9 @@
       "title": "Care product recommendation system to improve nursing service quality",
       "number": "KR 10-2023-0185772",
       "status": "Published application",
-      "period": "Filed 2023",
+      "period": "2023",
       "inventors": "Jaeyeon Jang, Hong Joo Lee, Minsik Kim, Geon Woo Kim, Seungyeol Ryu, and Hyeoni Kim",
+      "link_label": "Application record",
       "href": "https://app.rndcircle.io/patent/019c1ef7-5f39-70af-9fb0-16dedef649be"
     }
   ],
@@ -112,7 +112,7 @@
     },
     {
       "name": "The Catholic University of Korea",
-      "detail": "B.S. in International Studies, Business (Data Science Track)",
+      "detail": "B.S. in International Studies and Business (Data Science Track)",
       "period": "2018–2024"
     }
   ],
@@ -131,19 +131,19 @@
   "projects": [
     {
       "id": "solideo",
-      "name": "AI assistance for local government administration",
+      "name": "AI assistant for municipal services",
       "organization": "Solideo",
       "role": "Project manager",
       "period": "Mar 2026–present",
-      "summary": "Managed development of an AI assistant that retrieves information for public-service workflows and asks follow-up questions to clarify requests.",
-      "case_study": "I managed the AI assistant prototype. I worked on the conversation flow so it could ask for missing details, retrieve the relevant public-service guidance, and use those sources to draft an answer.",
+      "summary": "Led a municipal-service prototype and designed how it asks for missing details, searches regulations, and handles forms.",
+      "case_study": "Solideo’s municipal-service prototype. Conversation flow, regulation search, and human review of forms.",
       "visual": {
         "file": "solideo-cv-architecture.webp",
         "width": 3573,
         "height": 2473,
-        "alt": "The Solideo architecture diagram connecting the chat interface, guardrails, orchestrator, and agents for legal search, memory, and form handling."
+        "alt": "The chat sends requests through input checks to the orchestrator, which calls the regulation search, memory, and forms agents."
       },
-      "caption": "Agent architecture from my PowerPoint portfolio."
+      "caption": "The prototype’s chat and agent architecture."
     },
     {
       "id": "ecopro",
@@ -151,31 +151,31 @@
       "organization": "EcoPro BM",
       "role": "Researcher",
       "period": "Jan–May 2025",
-      "summary": "Worked on models that use manufacturing process data to detect metal contamination.",
-      "case_study": "I examined production sensor readings and lab assays for metal contamination. I mapped how the two sources could be matched by production lot to prepare labeled examples for a detection model.",
+      "summary": "Matched process sensor readings to lab results by production lot and worked on estimating metal concentrations from the sensor data.",
+      "case_study": "EcoPro BM virtual metrology project. Matching QCP sensor readings to ICP measurements by production lot.",
       "visual": {
         "file": "ecopro-cv-workflow-en.png",
         "width": 1400,
         "height": 520,
-        "alt": "EcoPro BM workflow. Align process measurements by production lot, predict ICP measurements with virtual metrology, and assess metal contamination risk."
+        "alt": "Production lots link QCP sensor readings to lab results. A virtual metrology model uses the sensor readings to estimate ICP measurements."
       },
-      "caption": "Virtual metrology workflow adapted from my PowerPoint portfolio, with the original EcoPro BM logo."
+      "caption": "QCP sensor readings and ICP measurements, matched by production lot."
     },
     {
       "id": "posco",
-      "name": "Predicting steel plate curvature after rolling",
+      "name": "Predicting plate-tip warping during rolling",
       "organization": "POSCO",
       "role": "Researcher",
       "period": "Dec 2024–Nov 2025",
-      "summary": "Worked on image segmentation and contour analysis to predict upward or downward deformation in thick steel plates.",
-      "case_study": "I worked on selecting usable frames from rolling-line images, segmenting the plate, and extracting its lower edge. We used the outline to measure curvature and predict whether the plate tip would bend up or down in a later pass.",
+      "summary": "Extracted the lower edge of steel plates from rolling-line images and used it to help predict warping two passes ahead.",
+      "case_study": "POSCO plate-warping project. Measuring the lower contour and forecasting warping two rolling passes ahead.",
       "visual": {
         "file": "posco-analysis-pipeline.png",
         "width": 1419,
         "height": 638,
         "alt": "The steel plate analysis workflow with example frames for labeling, segmentation, contour extraction, and prediction."
       },
-      "caption": "Original pipeline figure from the POSCO project presentation in my portfolio."
+      "caption": "From the POSCO project presentation. A labeled frame is segmented to extract the plate’s lower edge."
     },
     {
       "id": "care-products",
@@ -183,15 +183,15 @@
       "organization": "National Research Foundation of Korea",
       "role": "Research assistant",
       "period": "Jul–Dec 2023",
-      "summary": "Contributed to a system that recommends care products based on patient needs.",
-      "case_study": "As a research assistant, I contributed to a recommender that uses patient needs, the care setting, and product information to suggest suitable supplies. I am a co-inventor on the associated published patent application.",
+      "summary": "Research on matching care products to a patient’s needs and the place where they receive care.",
+      "case_study": "An NRF-supported project on matching patients with care products. Published application 10-2023-0185772.",
       "visual": {
         "file": "care-products-flow-en.png",
         "width": 1400,
         "height": 520,
-        "alt": "Care product workflow. Use the patient profile and care setting to match products and recommend suitable supplies."
+        "alt": "A patient profile and care setting guide product comparison. The system lists products that fit both."
       },
-      "caption": "Workflow based on Korean patent application 10-2023-0185772.",
+      "caption": "Recommendation steps in application 10-2023-0185772.",
       "source": {
         "label": "Published patent application",
         "href": "https://app.rndcircle.io/patent/019c1ef7-5f39-70af-9fb0-16dedef649be"
@@ -199,19 +199,19 @@
     },
     {
       "id": "care-matching",
-      "name": "Personalized information for patients and caregivers",
+      "name": "Patient–caregiver matching",
       "organization": "National Research Foundation of Korea",
       "role": "Research assistant",
       "period": "Sep 2022–Jan 2023",
-      "summary": "Contributed to an information system for patients, guardians, and caregivers.",
-      "case_study": "I contributed to the caregiver–patient matching project as a research assistant. Our team designed a model that uses patient and caregiver profiles, location, and past satisfaction to suggest matches. I am a co-inventor on the resulting patent.",
+      "summary": "Research on recommending caregivers using hospital location and ratings from previous care.",
+      "case_study": "An NRF-supported caregiver matching project that led to Korean patent 10-2635315.",
       "visual": {
         "file": "care-matching-flow-en.png",
         "width": 1400,
         "height": 520,
-        "alt": "Caregiver matching workflow. Use profiles and location to identify candidates, predict satisfaction, and recommend suitable caregivers."
+        "alt": "The method filters candidates by location and uses predicted satisfaction to recommend caregivers."
       },
-      "caption": "Workflow based on Korean patent 10-2635315.",
+      "caption": "The recommendation steps in Korean patent 10-2635315.",
       "source": {
         "label": "Patent record",
         "href": "https://patents.google.com/patent/KR102635315B1/en"
@@ -229,7 +229,7 @@
     },
     {
       "id": "industrial-applications",
-      "name": "ML & Industrial Applications",
+      "name": "Machine Learning and Industrial Applications",
       "code": "IIE3104-01",
       "institution": "Yonsei University",
       "role": "Teaching assistant",

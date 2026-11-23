@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="압연 라인 영상에서 분석할 프레임을 고르고, 후판을 분할해 아래쪽 윤곽선을 추출하는 작업에 참여했습니다. 이 윤곽선으로 곡률을 측정해 이후 압연 과정에서 후판 끝이 어느 방향으로 휘는지 예측했습니다.">
+  <meta name="description" content="포스코 후판 상하향 예측 연구. 아래쪽 윤곽에서 휨을 측정하고 두 패스 뒤의 휨을 예측했습니다.">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#faf9f6">
-  <title>압연 후 후판의 휨 예측 | 류승열</title>
+  <title>압연공정 후판 상하향 예측 | 류승열</title>
   <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/projects/posco/">
   <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/projects/posco/">
   <link rel="stylesheet" href="../../../assets/site.css?v=bf9473147892">
@@ -33,15 +33,15 @@
     </header>
 
     <main id="main">
-      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← 프로젝트</a><h1>압연 후 후판의 휨 예측</h1><p class="metadata">2024년 12월~2025년 11월 · 연구원, 포스코</p></header>
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← 프로젝트</a><h1>압연공정 후판 상하향 예측</h1><p class="metadata">2024년 12월~2025년 11월 · 연구원, 포스코</p></header>
           <figure class="project-figure">
             <a class="project-visual" href="../../../assets/projects/posco-analysis-pipeline.png">
               <img src="../../../assets/projects/posco-analysis-pipeline.png" alt="후판 영상 라벨링, 영역 분할, 윤곽선 추출, 휨 예측을 순서대로 보여 주는 분석 흐름도." width="1419" height="638" loading="lazy" decoding="async">
-              <span class="project-visual-action">원본 크기로 보기</span>
+              <span class="project-visual-action">그림 확대</span>
             </a>
-            <figcaption>포스코 프로젝트 발표 자료에 사용한 분석 흐름도.</figcaption>
-          </figure><div class="article-body"><section><h2 data-motion-title="words">입구·출구 영상의 방향 맞추기</h2><p>압연 영상에서 쓸 프레임을 골라 SAM2로 후판 영역을 분할하고 아래쪽 윤곽선을 추출하는 작업에 참여했습니다. 입구와 출구 영상은 카메라 방향이 반대여서 입구 영상을 좌우로 뒤집었습니다. 곡률 계산에서 부호를 살려 후판 끝이 위로 휘는지 아래로 휘는지 구분했습니다.</p></section>
-<section><h2 data-motion-title="words">두 패스 뒤를 예측한 이유</h2><p>입구와 출구에서 영상을 수집한 날짜가 달라 같은 후판의 연속 두 패스를 짝짓기 어려웠습니다. 그래서 같은 쪽에서 두 패스 간격으로 찍은 영상을 짝지어 예측 데이터를 만들었습니다. 영상의 휨 지수에 조압연과 마무리 압연의 측정값을 연결했습니다. 현재 휨 지수, 압연 속도, 두께를 살펴보고 두 패스 뒤의 휨을 예측하는 SVR 모델 개발에 참여했습니다.</p></section></div></article>
+            <figcaption>포스코 과제 발표 자료. 라벨링한 화면에서 후판을 분할하고 아래쪽 윤곽을 뽑는 과정.</figcaption>
+          </figure><div class="article-body"><section><h2 data-motion-title="words">입구와 출구 영상의 방향 맞추기</h2><p>압연 영상에서 프레임을 고르고 SAM2로 후판 영역을 분할해 아래쪽 윤곽을 뽑는 작업에 참여했습니다. 입구와 출구에 설치된 카메라의 촬영 방향이 달라 입구 영상을 좌우로 뒤집었습니다. 곡률의 부호를 남겨 끝이 위로 휘는지 아래로 휘는지 구분했습니다.</p></section>
+<section><h2 data-motion-title="words">두 패스 뒤의 휨을 예측한 이유</h2><p>입구와 출구의 영상 수집 날짜가 달라 같은 후판의 연속 패스를 짝짓기 어려웠습니다. 같은 쪽에서 두 패스 간격으로 찍은 영상을 짝지었습니다. 영상에서 구한 휨 지수와 압연 속도, 두께 등 공정 측정값을 입력으로 썼습니다. 두 패스 뒤의 휨을 예측하는 SVR 모델 개발에 참여했습니다.</p></section></div></article>
     </main>
     <footer>
       <a href="#top">맨 위로</a>

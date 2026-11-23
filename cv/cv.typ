@@ -8,7 +8,7 @@
 #set text(font: "New Computer Modern", size: 11pt, fill: ink)
 #set par(leading: .62em, justify: false)
 #show link: set text(fill: blue)
-#let section(title) = block(above: 14pt, below: 7pt, width: 100%, sticky: true, stack(
+#let section(title) = block(above: 12pt, below: 6pt, width: 100%, sticky: true, stack(
   spacing: 4pt,
   text(size: 13pt, weight: "bold", fill: blue, title),
   line(length: 100%, stroke: .55pt + rule-color),
@@ -50,7 +50,7 @@
     text(weight: "bold", item.name), text(size: 9.5pt, fill: muted, item.period)),
   [#text(fill: muted)[#item.organization · #item.role] #linebreak() #item.summary],
 ))
-#let records(items, render) = items.map(render).join(v(8pt))
+#let records(items, render) = items.map(render).join(v(5pt))
 
 #stack(
   spacing: 8pt,

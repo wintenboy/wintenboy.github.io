@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="공정 센서 측정값과 금속 이물 검사 결과를 분석했습니다. 두 데이터를 생산 로트 기준으로 연결해 검출 모델의 학습 데이터를 구성하는 방법을 검토했습니다.">
+  <meta name="description" content="에코프로비엠 가상 계측 연구. QCP 센서값과 ICP 검사 결과를 생산 로트로 연결했습니다.">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#faf9f6">
   <title>이차전지 양극재의 금속 이물 검출 | 류승열</title>
@@ -36,13 +36,13 @@
       <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← 프로젝트</a><h1>이차전지 양극재의 금속 이물 검출</h1><p class="metadata">2025년 1~5월 · 연구원, 에코프로비엠</p></header>
           <figure class="project-figure">
             <a class="project-visual" href="../../../assets/projects/ecopro-cv-workflow-ko.png">
-              <img src="../../../assets/projects/ecopro-cv-workflow-ko.png" alt="공정 측정값을 생산 로트 기준으로 정합한 뒤 가상 계측으로 ICP 측정값을 예측하고 이물 위험을 파악하는 에코프로비엠 프로젝트 흐름도." width="1400" height="520" loading="lazy" decoding="async">
-              <span class="project-visual-action">원본 크기로 보기</span>
+              <img src="../../../assets/projects/ecopro-cv-workflow-ko.png" alt="QCP 센서 기록과 ICP 검사 결과를 로트별로 연결하고, 센서값으로 ICP 측정값을 추정하는 그림." width="1400" height="520" loading="lazy" decoding="async">
+              <span class="project-visual-action">그림 확대</span>
             </a>
-            <figcaption>PPT 포트폴리오의 에코프로비엠 로고와 가상 계측 흐름을 정리한 도식.</figcaption>
-          </figure><div class="article-body"><section><h2 data-motion-title="words">센서 기록과 검사 결과를 로트로 연결</h2><p>공정 센서는 시각마다 값을 남기고 실험실의 ICP 검사 결과는 생산 로트별로 정리됩니다. 이 자료를 학습에 쓰려면 어느 구간의 센서값이 검사한 로트에 해당하는지부터 맞춰야 합니다. 생산 로트를 기준으로 센서값과 검사 결과를 짝지었습니다.</p></section>
-<section><h2 data-motion-title="words">공정에서 잰 값으로 검사 결과를 추정했습니다</h2><p>가상 계측 모델에 넣을 특성을 만들 때 센서값이 시간에 따라 어떻게 변하는지와 공정 변수끼리 함께 움직이는 양상을 살폈습니다. 모델은 QCP 공정 센서값으로 ICP에서 측정하는 금속 농도를 추정합니다. 추정치는 금속 이물이 어느 공정에서 생겼는지 조사할 때 참고할 수 있도록 설계했습니다.</p></section>
-<section><h2 data-motion-title="words">설비의 상태를 나타내는 지표</h2><p>금속 농도 추정과 별도로 설비 상태 지표(Health Index) 설계에도 참여했습니다. 지표가 시간에 따라 어떻게 변하는지 살폈습니다. 설비 상태가 달라지기 얼마나 전에 센서 신호가 바뀌는지 판단할 기준을 정했습니다.</p></section></div></article>
+            <figcaption>생산 로트별로 짝지은 QCP 센서 기록과 ICP 검사 결과.</figcaption>
+          </figure><div class="article-body"><section><h2 data-motion-title="words">시간별 센서 기록과 로트별 검사 결과</h2><p>공정 센서값은 시간순으로 쌓이고 ICP 검사 결과는 생산 로트별로 나옵니다. 검사한 로트의 생산 시간대를 찾아 그때 기록된 센서값과 검사 결과를 짝지어 학습 데이터를 만들었습니다.</p></section>
+<section><h2 data-motion-title="words">QCP 센서값으로 ICP 농도 추정</h2><p>센서값의 시간 변화와 공정 변수 사이의 상호작용을 가상 계측 모델의 입력에 반영했습니다. 이 모델은 QCP 센서값으로 ICP에서 재는 금속 농도를 추정합니다. 추정값은 이물이 나온 공정을 조사하는 데 참고할 수 있습니다.</p></section>
+<section><h2 data-motion-title="words">설비 상태 지표</h2><p>설비 상태 지표(Health Index)를 설계하는 데도 참여했습니다. 센서값으로 설비 상태 변화를 미리 판단할 수 있는지 확인할 기준을 함께 정했습니다.</p></section></div></article>
     </main>
     <footer>
       <a href="#top">맨 위로</a>

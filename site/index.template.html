@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="$description">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#f8f9fa">
+  <meta name="theme-color" content="#eff2fa">
   <title>$name</title>
   <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/">
   <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/">
@@ -35,15 +35,15 @@
     <main id="main">
       <section class="intro" aria-labelledby="name">
         <h1 id="name" aria-label="$name">$animated_name</h1>
-        <div class="intro-profile">
-          <div class="intro-details">
-            <ul class="roles">$current_roles</ul>
-            <p class="bio">$bio</p>
-            <div class="profile-links">
-              <a class="cv-link" href="${asset_prefix}cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">$cv_label <span>(PDF)</span></a>
-              $social_links
-            </div>
-          </div>
+        <div class="intro-details">
+          <ul class="roles">$current_roles</ul>
+          <p class="bio">$bio</p>
+        </div>
+        <div class="profile-links">
+          <a class="cv-link" href="${asset_prefix}cv/seungyeol-ryu-cv.pdf" download="Seungyeol-Ryu-CV.pdf">$cv_label <span>(PDF)</span></a>
+          $social_links
+        </div>
+        <div class="portrait-frame">
           <img class="portrait" src="${asset_prefix}assets/portrait.webp" alt="$portrait_label" width="354" height="472">
         </div>
       </section>

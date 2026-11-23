@@ -1,9 +1,17 @@
 .projects-section {
-  grid-template-columns: minmax(0, 1fr);
-  gap: 20px;
+  display: block;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.projects-section > h2 {
+  margin-bottom: clamp(17px, 2.4vw, 30px);
+  font-size: clamp(2.42rem, 4.6vw, 3.72rem);
 }
 
 .project-records {
+  display: grid;
+  gap: clamp(16px, 2.3vw, 28px);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -12,24 +20,25 @@
 .project {
   display: grid;
   align-items: start;
-  gap: 20px 36px;
-  padding-block: 28px;
-  border-bottom: 1px solid var(--line);
+  gap: 20px clamp(26px, 4vw, 54px);
+  padding: clamp(20px, 3.7vw, 45px);
+  border: 1px solid var(--glass-edge);
+  border-radius: clamp(20px, 2.6vw, 30px);
+  background: linear-gradient(120deg, rgb(255 255 255 / .84), rgb(243 246 255 / .58) 75%, rgb(231 237 253 / .66));
+  box-shadow: var(--glass-shadow);
 }
-
-.project:first-child { padding-top: 4px; }
-.project:last-child { padding-bottom: 0; border-bottom: 0; }
 
 .project-copy h3 {
   margin-top: 8px;
-  font-size: clamp(1.45rem, 2.5vw, 2.08rem);
-  font-weight: 600;
+  font-size: clamp(1.5rem, 2.55vw, 2.28rem);
+  font-weight: 650;
   line-height: 1.12;
   letter-spacing: -.037em;
   text-wrap: pretty;
 }
 
-.project-copy .metadata { color: var(--accent); font-weight: 600; }
+.project-copy { min-width: 0; }
+.project-copy .metadata { color: var(--accent); font-weight: 650; }
 .project-copy .summary { margin-top: 12px; color: var(--secondary); }
 .project-date { margin-top: 8px; color: var(--muted); font-size: .88rem; }
 .project-figure { min-width: 0; margin: 0; }
@@ -44,12 +53,13 @@
 .project-visual {
   display: grid;
   gap: 10px;
-  min-height: 180px;
   place-items: center;
   overflow: hidden;
-  padding: clamp(10px, 2vw, 20px);
-  border: 1px solid var(--line);
-  background: #eff2f6;
+  padding: clamp(8px, 1.2vw, 15px);
+  border: 1px solid #aebddd66;
+  border-radius: clamp(12px, 1.5vw, 19px);
+  background: linear-gradient(140deg, #f4f7ff, #e0e7f9);
+  box-shadow: 0 9px 18px -14px #354a8875, inset 0 1px 0 #fff;
   cursor: zoom-in;
 }
 
@@ -59,6 +69,7 @@
 
 .project-visual-action {
   justify-self: end;
+  margin-inline: 3px;
   font-size: .8rem;
 }
 
@@ -68,6 +79,8 @@
   height: auto;
   max-width: 100%;
   max-height: 420px;
+  border-radius: clamp(6px, .88vw, 11px);
+  box-shadow: 0 4px 13px -9px #15203c85;
   object-fit: contain;
   background: white;
 }
@@ -87,7 +100,6 @@
 
 @media (min-width: 850px) {
   .project {
-    grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr);
-    padding-block: 36px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
   }
 }

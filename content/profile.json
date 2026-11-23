@@ -132,13 +132,12 @@
       "summary": "Managed development of an AI assistant that retrieves information for public-service workflows and asks follow-up questions to clarify requests.",
       "case_study": "I managed the AI assistant prototype. I worked on the conversation flow so it could ask for missing details, retrieve the relevant public-service guidance, and use those sources to draft an answer.",
       "visual": {
-        "file": "solideo-demo.png",
-        "width": 626,
-        "height": 1096,
-        "alt": "The legal agent’s demo response showing citations, an application form link, and a graph of related regulations.",
-        "preview": "top"
+        "file": "solideo-cv-architecture.webp",
+        "width": 3573,
+        "height": 2473,
+        "alt": "The Solideo architecture diagram connecting the chat interface, guardrails, orchestrator, and agents for legal search, memory, and form handling."
       },
-      "caption": "Original demo capture from the Solideo project submission."
+      "caption": "Agent architecture from my PowerPoint portfolio."
     },
     {
       "id": "ecopro",
@@ -149,12 +148,12 @@
       "summary": "Worked on models that use manufacturing process data to detect metal contamination.",
       "case_study": "I examined production sensor readings and lab assays for metal contamination. I mapped how the two sources could be matched by production lot to prepare labeled examples for a detection model.",
       "visual": {
-        "file": "ecopro-feature-importance.png",
-        "width": 640,
-        "height": 480,
-        "alt": "Bar chart ranking process features used in the virtual metrology analysis."
+        "file": "ecopro-cv-workflow-en.png",
+        "width": 1400,
+        "height": 520,
+        "alt": "EcoPro BM workflow. Align process measurements by production lot, predict ICP measurements with virtual metrology, and assess metal contamination risk."
       },
-      "caption": "Feature importance chart from the original virtual metrology analysis."
+      "caption": "Virtual metrology workflow adapted from my PowerPoint portfolio, with the original EcoPro BM logo."
     },
     {
       "id": "posco",
@@ -181,13 +180,12 @@
       "summary": "Contributed to a system that recommends care products based on patient needs.",
       "case_study": "As a research assistant, I contributed to a recommender that uses patient needs, the care setting, and product information to suggest suitable supplies. I am a co-inventor on the associated published patent application.",
       "visual": {
-        "file": "care-products-patent.jpg",
-        "width": 1890,
-        "height": 2362,
-        "alt": "Published patent drawing connecting patient and caregiver devices to a recommendation server and database.",
-        "preview": "center"
+        "file": "care-products-flow-en.png",
+        "width": 1400,
+        "height": 520,
+        "alt": "Care product workflow. Use the patient profile and care setting to match products and recommend suitable supplies."
       },
-      "caption": "Original system drawing from Korean patent application 10-2023-0185772.",
+      "caption": "Workflow based on Korean patent application 10-2023-0185772.",
       "source": {
         "label": "Published patent application",
         "href": "https://app.rndcircle.io/patent/019c1ef7-5f39-70af-9fb0-16dedef649be"
@@ -202,12 +200,12 @@
       "summary": "Contributed to an information system for patients, guardians, and caregivers.",
       "case_study": "I contributed to the caregiver–patient matching project as a research assistant. Our team designed a model that uses patient and caregiver profiles, location, and past satisfaction to suggest matches. I am a co-inventor on the resulting patent.",
       "visual": {
-        "file": "care-matching-patent.png",
-        "width": 1880,
-        "height": 1937,
-        "alt": "Published flowchart showing location matching, satisfaction prediction, and caregiver recommendation."
+        "file": "care-matching-flow-en.png",
+        "width": 1400,
+        "height": 520,
+        "alt": "Caregiver matching workflow. Use profiles and location to identify candidates, predict satisfaction, and recommend suitable caregivers."
       },
-      "caption": "Original recommendation flowchart from Korean patent 10-2635315.",
+      "caption": "Workflow based on Korean patent 10-2635315.",
       "source": {
         "label": "Patent record",
         "href": "https://patents.google.com/patent/KR102635315B1/en"

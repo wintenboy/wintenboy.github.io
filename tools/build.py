@@ -98,6 +98,8 @@ def project_record(item, prefix, full_size):
     figure = ""
     if visual := item.get("visual"):
         alt = item.get("visual_alt", visual["alt"])
+        if filename := item.get("visual_file"):
+            visual = {**visual, "file": filename}
         figure = project_figure(visual, item["caption"], alt, prefix, full_size)
     return f'''<li class="project">
           <div class="project-copy">

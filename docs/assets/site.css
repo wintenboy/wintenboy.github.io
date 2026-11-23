@@ -7,14 +7,12 @@
 }
 
 :root {
-  --paper: #eff2fa;
-  --ink: #15203c;
-  --secondary: #394764;
-  --muted: #4b5875;
-  --line: #cbd4e8;
-  --accent: #3449a7;
-  --glass-edge: rgb(255 255 255 / .82);
-  --glass-shadow: 0 18px 45px -31px #33477867, inset 0 1px 0 #fff;
+  --paper: #faf9f6;
+  --ink: #172238;
+  --secondary: #3b465b;
+  --muted: #546073;
+  --line: #d8dade;
+  --accent: #344999;
   --font: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -23,14 +21,6 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 body, h1, h2, h3, p { margin: 0; }
-
-body {
-  background:
-    radial-gradient(ellipse 46rem 42rem at 94% 19rem, #ccd6f7 5%, transparent 74%),
-    radial-gradient(ellipse 38rem 31rem at 0% 2rem, #fff 8%, transparent 72%),
-    radial-gradient(ellipse 44rem 36rem at 5% 61rem, #e1e6f9 3%, transparent 76%),
-    linear-gradient(180deg, #e9edf8 0, var(--paper) 75rem, #f5f6fa 150rem);
-}
 
 html[lang="ko"] {
   --font: "Instrument Sans", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans CJK KR", system-ui, sans-serif;
@@ -74,7 +64,7 @@ html.motion-enabled { scroll-behavior: smooth; }
 .skip:focus { transform: none; }
 
 .page {
-  width: min(1160px, calc(100% - 28px));
+  width: min(1120px, calc(100% - 36px));
   margin-inline: auto;
   padding-top: clamp(10px, 2vw, 23px);
 }
@@ -85,11 +75,10 @@ html.motion-enabled { scroll-behavior: smooth; }
   align-items: center;
   column-gap: clamp(12px, 2.25vw, 32px);
   padding: 5px clamp(12px, 2.1vw, 26px);
-  border: 1px solid var(--glass-edge);
-  border-radius: 17px;
-  background: rgb(250 251 255 / .77);
-  backdrop-filter: blur(20px) saturate(135%);
-  box-shadow: var(--glass-shadow);
+  border: 1px solid #d8dadeb3;
+  border-radius: 13px;
+  background: rgb(250 249 246 / .85);
+  backdrop-filter: blur(12px);
 }
 
 .wordmark {
@@ -147,7 +136,7 @@ html.motion-enabled { scroll-behavior: smooth; }
   inset: 6px 0;
   border: 1px solid var(--line);
   border-radius: inherit;
-  background: #e4eafa;
+  background: #eeede9;
 }
 
 .language-switch::after {
@@ -155,7 +144,7 @@ html.motion-enabled { scroll-behavior: smooth; }
   inset: 9px 50% 9px 3px;
   border-radius: inherit;
   background: white;
-  box-shadow: 0 1px 3px #15203c29;
+  box-shadow: 0 1px 2px #1722381f;
 }
 
 html[lang="ko"] .language-switch::after {
@@ -188,8 +177,6 @@ html[lang="ko"] .language-switch::after {
 html[lang="ko"] .language-switch:has(a[lang="en"]:active)::after { transform: none; }
 
 .intro {
-  position: relative;
-  isolation: isolate;
   display: grid;
   grid-template:
     "name name"
@@ -198,33 +185,9 @@ html[lang="ko"] .language-switch:has(a[lang="en"]:active)::after { transform: no
     / minmax(0, 1fr) clamp(62px, 19vw, 118px);
   align-content: center;
   gap: 15px clamp(14px, 3vw, 40px);
-  overflow: clip;
-  margin: clamp(16px, 2.4vw, 30px) 0 clamp(38px, 5.6vw, 78px);
-  padding: clamp(24px, 4.6vw, 64px);
-  border: 1px solid var(--glass-edge);
-  border-radius: clamp(23px, 3vw, 38px);
-  background: linear-gradient(112deg, rgb(255 255 255 / .84), rgb(245 248 255 / .5) 63%, rgb(214 221 250 / .44));
-  backdrop-filter: blur(15px);
-  box-shadow: 0 32px 76px -35px #354a886b, inset 0 1px 0 #fff;
-}
-
-.intro::before {
-  position: absolute;
-  z-index: -1;
-  inset: -75% -28% auto auto;
-  width: min(100%, 870px);
-  aspect-ratio: 1;
-  transform: rotate(-37deg) scaleY(.70);
-  border: 1px solid #fffc;
-  border-radius: 50%;
-  background: linear-gradient(155deg, #fff8, #fff0 46%, #aab9f469);
-  box-shadow:
-    0 0 0 21px #fff2,
-    0 0 0 22px #fff8,
-    0 21px 55px -20px #6d80c26e,
-    inset 0 -33px 70px -40px #8195e09a;
-  pointer-events: none;
-  content: "";
+  margin-bottom: clamp(32px, 4vw, 52px);
+  padding-block: clamp(38px, 5.3vw, 74px) clamp(36px, 5vw, 68px);
+  border-bottom: 1px solid var(--line);
 }
 
 h1 {
@@ -307,28 +270,18 @@ html[lang="ko"] .name-word + .name-word { margin-inline-start: 0; }
 .cv-link {
   gap: 6px;
   padding-inline: clamp(13px, 1.8vw, 20px);
-  border: 1px solid #354477;
-  border-radius: 999px;
-  background: linear-gradient(155deg, #35487e, #25345e);
-  box-shadow: 0 8px 18px -12px #22305bd9, inset 0 1px 0 #fff2;
+  border-radius: 6px;
+  background: #263551;
   color: #fff;
   text-decoration: none;
 }
 
-.cv-link:hover { background: #394c86; }
+.cv-link:hover { background: #33466c; }
 .cv-link span { font-size: .77em; }
 
-.portrait-frame {
-  grid-area: portrait;
-  align-self: start;
-  padding: clamp(4px, .6vw, 7px);
-  border: 1px solid var(--glass-edge);
-  border-radius: clamp(13px, 1.8vw, 23px);
-  background: rgb(255 255 255 / .43);
-  box-shadow: 0 18px 28px -20px #223668b3;
-}
-
 .portrait {
+  grid-area: portrait;
+  align-self: center;
   display: block;
   width: 100%;
   max-width: 100%;
@@ -336,8 +289,9 @@ html[lang="ko"] .name-word + .name-word { margin-inline-start: 0; }
   aspect-ratio: 4 / 4.65;
   object-fit: cover;
   object-position: center 32%;
-  border-radius: clamp(8px, 1.2vw, 16px);
-  background: #e9edf1;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #eeede9;
 }
 
 .education-records > h3 {
@@ -461,10 +415,8 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; }
     align-items: center;
   }
 
-  .intro::before { inset: -12% -48% auto auto; }
   .intro h1 { font-size: clamp(1.96rem, 8.6vw, 3.15rem); }
   .profile-links { gap: 6px 10px; font-size: .86rem; }
-  .portrait-frame { align-self: center; }
 }
 
 @media (max-width: 360px) {
@@ -472,13 +424,12 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; }
   .masthead { padding-inline: 10px; }
   .site-nav { column-gap: 2px; }
   .site-nav a { font-size: .75rem; }
-  .intro { padding-inline: 18px; }
   .profile-links { font-size: .82rem; }
   .cv-link { padding-inline: 11px; }
 }
 
 @media (min-width: 620px) {
-  .page { width: min(1160px, calc(100% - 72px)); }
+  .page { width: min(1120px, calc(100% - 72px)); }
   .record { grid-template-columns: minmax(0, 1fr) auto; }
   .record-date { text-align: right; padding-top: 2px; }
   .record-details { grid-column: 1 / -1; }
@@ -496,13 +447,9 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; }
       "name portrait"
       "details portrait"
       "links portrait"
-      / minmax(0, 1fr) clamp(152px, 17vw, 211px);
-    min-height: 390px;
+      / minmax(0, 1fr) clamp(144px, 16vw, 188px);
     column-gap: clamp(26px, 5vw, 72px);
-    padding-inline: clamp(40px, 5.6vw, 80px);
   }
-
-  .portrait-frame { align-self: center; }
 
   h1 { font-size: clamp(3.45rem, 6.3vw, 6.5rem); }
 

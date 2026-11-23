@@ -10,7 +10,7 @@ An academic homepage and a Typst CV built from the same records.
 
 `site/index.template.html` controls the page structure, `docs/assets/site.css` controls the styles, and `cv/cv.typ` controls the PDF layout.
 
-For a project, `summary` is the short CV entry and `case_study` is the homepage description. Set `visual` to the name of a file in `site/project-visuals/` without the `.html` extension, and describe the diagram in `caption`.
+For a project, `summary` is the short CV entry and `case_study` is the homepage description. Put the screenshot or figure in `docs/assets/projects/` and record its `file`, pixel `width` and `height`, and `alt` description under `visual`. Describe its source in `caption`.
 
 ## GitHub Pages
 

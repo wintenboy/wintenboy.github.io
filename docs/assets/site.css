@@ -122,6 +122,30 @@ h1 {
   text-wrap: balance;
 }
 
+.name-word {
+  display: inline-block;
+  overflow: clip;
+  margin-block: -.12em;
+  padding-block: .12em;
+  vertical-align: bottom;
+}
+
+.name-word > span { display: block; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .name-word > span {
+    transform-origin: 20% 80%;
+    animation: name-arrival 880ms cubic-bezier(.19, 1, .22, 1) both;
+    animation-delay: calc(65ms + var(--word-index) * 105ms);
+  }
+}
+
+@keyframes name-arrival {
+  0% { transform: translateY(118%) rotate(8deg) scaleX(.89); }
+  62% { transform: translateY(-.055em) rotate(-1.8deg) scaleX(1.015); }
+  100% { transform: none; }
+}
+
 .roles {
   margin: 16px 0 0;
   padding: 0;

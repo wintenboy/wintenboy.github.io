@@ -42,10 +42,14 @@
       if (!isIntersecting) continue;
       observer.unobserve(target);
 
-      target.animate(
-        [{ transform: "translateY(14px)", opacity: .72 }, { transform: "none", opacity: 1 }],
-        { duration: 440, easing: "cubic-bezier(.22, 1, .36, 1)" }
-      );
+      const heading = target.tagName === "H2";
+      const keyframes = heading
+        ? [
+            { clipPath: "inset(-.2em 100% -.2em -.06em)", transform: "translateY(.24em)" },
+            { clipPath: "inset(-.2em -.06em -.2em -.06em)", transform: "none" }
+          ]
+        : [{ transform: "translateY(14px)", opacity: .72 }, { transform: "none", opacity: 1 }];
+      target.animate(keyframes, { duration: heading ? 580 : 440, easing: "cubic-bezier(.22, 1, .36, 1)" });
     }
   }, { threshold: .18 });
 

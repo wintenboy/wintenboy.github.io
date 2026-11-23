@@ -7,7 +7,6 @@ import shutil
 from string import Template
 import subprocess
 from tempfile import TemporaryDirectory
-from textwrap import indent
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "docs"
@@ -45,6 +44,23 @@ def patent_record(item):
     return record(item["name"], item["period"], item["status"], source_link=link)
 
 
+def project_figure(visual, caption):
+    file = Path("assets/projects") / Path(visual["file"]).name
+    if not (SITE / file).is_file():
+        raise FileNotFoundError(SITE / file)
+    href = escape(file.as_posix())
+    width, height = int(visual["width"]), int(visual["height"])
+    crop = " drawing-preview" if visual.get("drawing_preview") else ""
+    return f'''
+          <figure class="project-figure">
+            <a class="project-visual{crop}" href="{href}">
+              <img src="{href}" alt="{escape(visual['alt'])}" width="{width}" height="{height}" loading="lazy" decoding="async">
+              <span class="project-visual-action">View full size</span>
+            </a>
+            <figcaption>{escape(caption)}</figcaption>
+          </figure>'''
+
+
 def project_record(item):
     metadata = f'{item["role"]}, {item["organization"]}'
     description = item.get("case_study", item["summary"])
@@ -52,15 +68,7 @@ def project_record(item):
     source_link = ""
     if source:
         source_link = f'\n            <p class="source-link">{anchor(source["label"], source["href"])}</p>'
-    figure = ""
-    if item.get("visual"):
-        name = Path(item["visual"]).name
-        visual = (ROOT / "site/project-visuals" / f"{name}.html").read_text(encoding="utf-8").strip()
-        figure = f'''
-          <figure class="project-figure">
-{indent(visual, ' ' * 12)}
-            <figcaption>{escape(item["caption"])}</figcaption>
-          </figure>'''
+    figure = project_figure(item["visual"], item["caption"]) if item.get("visual") else ""
     return f'''<li class="project">
           <div class="project-copy">
             <p class="metadata">{escape(metadata)}</p>
@@ -96,8 +104,13 @@ def render_site(profile):
     ]
     academic_role = f'{profile["role"]} at {profile["university"]}'
     current_roles.append(f'<li>{escape(academic_role)}</li>')
+    animated_name = " ".join(
+        f'<span class="name-word" style="--word-index: {index}"><span>{escape(word)}</span></span>'
+        for index, word in enumerate(profile["name"].split())
+    )
     return Template(source).substitute(
         name=escape(profile["name"]),
+        animated_name=animated_name,
         korean_name=escape(profile["korean_name"]),
         description=escape(f'{profile["name"]}. {profile["bio"]}'),
         current_roles="\n".join(current_roles),

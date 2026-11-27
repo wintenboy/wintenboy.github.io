@@ -105,7 +105,7 @@ def project_record(item, href, prefix, full_size):
     return f'''<li class="project">
           <div class="project-copy">
             <p class="metadata">{escape(metadata)}</p>
-            <h2><a href="{escape(href)}" data-motion-title="words">{escape(item["name"])}</a></h2>
+            <h2><a href="{escape(href)}">{escape(item["name"])}</a></h2>
             <p class="project-date">{escape(item["period"])}</p>
             <p class="summary">{escape(item["summary"])}</p>
           </div>{figure}
@@ -235,7 +235,7 @@ def render_index(profile, labels, language):
             if len(items) > len(previews) else ""
         )
         blocks.append(f'''<section id="{anchor_id}" class="content-section" aria-labelledby="{anchor_id}-title">
-      <h2 id="{anchor_id}-title"><a href="{section_href}" data-motion-title="letters">{escape(title)}</a></h2>
+      <h2 id="{anchor_id}-title"><a href="{section_href}">{escape(title)}</a></h2>
       <div><ul class="index-list"{list_id}>{"".join(previews)}</ul>{view_all}</div>
     </section>''')
     return "\n    ".join(blocks)
@@ -274,7 +274,7 @@ def article_sections(sections):
     parts = []
     for heading, *paragraphs in sections:
         content = "".join(f"<p>{escape(p)}</p>" for p in paragraphs)
-        parts.append(f'<section><h2 data-motion-title="words">{escape(heading)}</h2>{content}</section>')
+        parts.append(f'<section><h2>{escape(heading)}</h2>{content}</section>')
     return "\n".join(parts)
 
 

@@ -9,9 +9,9 @@
   <title>An Adaptive Contrastive Learning-Based Robust Surface Defect Detection Model for Noisy Datasets | Seungyeol Ryu</title>
   <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/research/surface-defect-detection/">
   <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/research/surface-defect-detection/">
-  <link rel="stylesheet" href="../../assets/site.css?v=bf9473147892">
-  <link rel="stylesheet" href="../../assets/projects.css?v=bf9473147892">
-  <script src="../../assets/site.js?v=bf9473147892" defer></script>
+  <link rel="stylesheet" href="../../assets/site.css?v=402801096a52">
+  <link rel="stylesheet" href="../../assets/projects.css?v=402801096a52">
+  <script src="../../assets/site.js?v=402801096a52" defer></script>
 </head>
 <body id="top">
   <div class="reading-progress" aria-hidden="true"></div>
@@ -20,6 +20,7 @@
     <header class="masthead">
       <a class="wordmark" href="../../index.html" lang="ko">류승열</a>
       <nav class="language-switch" aria-label="Language">
+        <span class="language-indicator" aria-hidden="true"></span>
         <a href="index.html" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a>
         <a href="../../ko/research/surface-defect-detection/index.html" lang="ko" hreflang="ko">한국어</a>
       </nav>
@@ -33,9 +34,9 @@
     </header>
 
     <main id="main">
-      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Research</a><h1>An Adaptive Contrastive Learning-Based Robust Surface Defect Detection Model for Noisy Datasets</h1><p class="metadata">2026 · IEEE Access · Vol. 14, pp. 177782–177797 · First author</p><p class="source-link"><a href="https://doi.org/10.1109/ACCESS.2026.3752900">Read the paper</a></p></header><div class="article-body"><section><h2 data-motion-title="words">Temperature for positive pairs</h2><p>A production image labeled normal may still contain a defect. We made two augmented views of each training image. We compared their cosine similarity with the similarities between those views and the rest of the mini-batch. The p-value from a two-sided one-sample t-test picked one of two InfoNCE temperatures. At the lower temperature, difficult negative pairs have a stronger effect on training.</p></section>
-<section><h2 data-motion-title="words">Scoring new images</h2><p>After training, we used k-nearest neighbors on the encoder features before the projection layer. Each image got one anomaly score. Locating the faulty region within an image would need a separate evaluation.</p></section>
-<section><h2 data-motion-title="words">What the temperature comparison showed</h2><p>The adaptive rule gave a higher mean ROC AUC than the fixed and random settings tested on Surface Crack and Magnetic Tile. We also evaluated image-level detection on KolektorSDD2. Similarities within a mini-batch share samples, so in the paper we used the p-value as a training rule.</p></section></div></article>
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Research</a><h1>An Adaptive Contrastive Learning-Based Robust Surface Defect Detection Model for Noisy Datasets</h1><p class="metadata">2026 · IEEE Access · Vol. 14, pp. 177782–177797 · First author</p><p class="source-link"><a href="https://doi.org/10.1109/ACCESS.2026.3752900">Read the paper</a></p></header><div class="article-body"><section><h2>Temperature for positive pairs</h2><p>A production image labeled normal may still contain a defect. We made two augmented views of each training image. We compared their cosine similarity with the similarities between those views and the rest of the mini-batch. The p-value from a two-sided one-sample t-test picked one of two InfoNCE temperatures. At the lower temperature, difficult negative pairs have a stronger effect on training.</p></section>
+<section><h2>Scoring new images</h2><p>After training, we used k-nearest neighbors on the encoder features before the projection layer. Each image got one anomaly score. Locating the faulty region within an image would need a separate evaluation.</p></section>
+<section><h2>What the temperature comparison showed</h2><p>The adaptive rule gave a higher mean ROC AUC than the fixed and random settings tested on Surface Crack and Magnetic Tile. We also evaluated image-level detection on KolektorSDD2. Similarities within a mini-batch share samples, so in the paper we used the p-value as a training rule.</p></section></div></article>
     </main>
     <footer>
       <a href="#top">Back to top</a>

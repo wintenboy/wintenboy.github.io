@@ -9,9 +9,9 @@
   <title>Adaptive Model Selection for Time-Series Classification with Language Model | Seungyeol Ryu</title>
   <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/research/informs-2026/">
   <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/research/informs-2026/">
-  <link rel="stylesheet" href="../../assets/site.css?v=bf9473147892">
-  <link rel="stylesheet" href="../../assets/projects.css?v=bf9473147892">
-  <script src="../../assets/site.js?v=bf9473147892" defer></script>
+  <link rel="stylesheet" href="../../assets/site.css?v=402801096a52">
+  <link rel="stylesheet" href="../../assets/projects.css?v=402801096a52">
+  <script src="../../assets/site.js?v=402801096a52" defer></script>
 </head>
 <body id="top">
   <div class="reading-progress" aria-hidden="true"></div>
@@ -20,6 +20,7 @@
     <header class="masthead">
       <a class="wordmark" href="../../index.html" lang="ko">류승열</a>
       <nav class="language-switch" aria-label="Language">
+        <span class="language-indicator" aria-hidden="true"></span>
         <a href="index.html" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a>
         <a href="../../ko/research/informs-2026/index.html" lang="ko" hreflang="ko">한국어</a>
       </nav>
@@ -33,8 +34,8 @@
     </header>
 
     <main id="main">
-      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Research</a><h1>Adaptive Model Selection for Time-Series Classification with Language Model</h1><p class="metadata">2026 · INFORMS Annual Meeting · November, San Francisco, CA · Presenter</p><p class="source-link"><a href="https://www.informs.org/Meetings-Conferences/INFORMS-Conference-Calendar/2026-INFORMS-Annual-Meeting">Conference information</a></p></header><div class="article-body"><section><h2 data-motion-title="words">Picking a classifier for each input</h2><p>A classifier can rank first on a dataset and still miss a series that another model gets right. The router reads dataset metadata, tokens made from the series, and a text description. It picks a pre-trained classifier, which then predicts the class.</p></section>
-<section><h2 data-motion-title="words">Training the router</h2><p>Several classifiers can get the same example right. We used Partial Cross-Entropy and Reinforcement Learning from Calibrated Decision to train the router on those examples. At INFORMS I compared this with running one classifier per dataset across 18 UCR 2019 datasets.</p></section></div></article>
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← Research</a><h1>Adaptive Model Selection for Time-Series Classification with Language Model</h1><p class="metadata">2026 · INFORMS Annual Meeting · November, San Francisco, CA · Presenter</p><p class="source-link"><a href="https://www.informs.org/Meetings-Conferences/INFORMS-Conference-Calendar/2026-INFORMS-Annual-Meeting">Conference information</a></p></header><div class="article-body"><section><h2>Picking a classifier for each input</h2><p>A classifier can rank first on a dataset and still miss a series that another model gets right. The router reads dataset metadata, tokens made from the series, and a text description. It picks a pre-trained classifier, which then predicts the class.</p></section>
+<section><h2>Training the router</h2><p>Several classifiers can get the same example right. We used Partial Cross-Entropy and Reinforcement Learning from Calibrated Decision to train the router on those examples. At INFORMS I compared this with running one classifier per dataset across 18 UCR 2019 datasets.</p></section></div></article>
     </main>
     <footer>
       <a href="#top">Back to top</a>

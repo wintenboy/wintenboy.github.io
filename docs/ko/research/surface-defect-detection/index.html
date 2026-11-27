@@ -9,9 +9,9 @@
   <title>노이즈가 섞인 데이터셋을 위한 강건한 적응형 대조 학습 기반 표면 결함 탐지 모델 | 류승열</title>
   <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/research/surface-defect-detection/">
   <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/research/surface-defect-detection/">
-  <link rel="stylesheet" href="../../../assets/site.css?v=bf9473147892">
-  <link rel="stylesheet" href="../../../assets/projects.css?v=bf9473147892">
-  <script src="../../../assets/site.js?v=bf9473147892" defer></script>
+  <link rel="stylesheet" href="../../../assets/site.css?v=402801096a52">
+  <link rel="stylesheet" href="../../../assets/projects.css?v=402801096a52">
+  <script src="../../../assets/site.js?v=402801096a52" defer></script>
 </head>
 <body id="top">
   <div class="reading-progress" aria-hidden="true"></div>
@@ -20,6 +20,7 @@
     <header class="masthead">
       <a class="wordmark" href="../../index.html" lang="ko">류승열</a>
       <nav class="language-switch" aria-label="언어">
+        <span class="language-indicator" aria-hidden="true"></span>
         <a href="../../../research/surface-defect-detection/index.html" lang="en" hreflang="en" aria-label="English">EN</a>
         <a href="index.html" lang="ko" hreflang="ko" aria-current="page">한국어</a>
       </nav>
@@ -33,9 +34,9 @@
     </header>
 
     <main id="main">
-      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← 연구</a><h1>노이즈가 섞인 데이터셋을 위한 강건한 적응형 대조 학습 기반 표면 결함 탐지 모델</h1><p class="metadata">2026 · IEEE Access · 14권, 177782–177797쪽 · 제1저자</p><p class="source-link"><a href="https://doi.org/10.1109/ACCESS.2026.3752900">논문 보기</a></p></header><div class="article-body"><section><h2 data-motion-title="words">이미지 쌍마다 온도 고르기</h2><p>공장에서 정상으로 분류한 학습 이미지에도 불량이 섞일 수 있습니다. 한 학습 이미지를 무작위로 두 번 증강해 양성 쌍을 만들었습니다. 증강 이미지 각각이 배치 안의 다른 이미지와 이루는 쌍의 코사인 유사도를 구해 양성 쌍과 비교했습니다. 양측 단일 표본 t-검정의 p값으로 두 InfoNCE 온도 중 하나를 골랐습니다. 낮은 온도에서는 서로 다른데도 모델이 비슷하게 보는 이미지 쌍이 학습에 더 크게 반영됩니다.</p></section>
-<section><h2 data-motion-title="words">이미지 한 장에 이상 점수 매기기</h2><p>학습이 끝나면 투영층에 들어가기 전의 인코더 특성에 k-최근접 이웃(k-NN)을 적용했습니다. 이미지 한 장에 이상 점수 하나를 매겼습니다. 결함 위치를 찾는 문제는 별도의 평가가 필요합니다.</p></section>
-<section><h2 data-motion-title="words">온도 선택 규칙의 비교</h2><p>Surface Crack과 Magnetic Tile에서 온도를 쌍마다 고르는 방법을 고정 온도 및 무작위 선택과 비교했습니다. 실험한 설정 가운데 쌍마다 온도를 고르는 방법의 평균 ROC AUC가 가장 높았습니다. KolektorSDD2에서도 이미지 단위 검출을 평가했습니다. 미니배치의 여러 유사도 계산에 같은 표본이 들어가므로 p값은 학습 중 온도를 고르는 기준으로 사용했습니다.</p></section></div></article>
+      <article class="detail-page"><header class="route-heading"><a class="back-link" href="../index.html">← 연구</a><h1>노이즈가 섞인 데이터셋을 위한 강건한 적응형 대조 학습 기반 표면 결함 탐지 모델</h1><p class="metadata">2026 · IEEE Access · 14권, 177782–177797쪽 · 제1저자</p><p class="source-link"><a href="https://doi.org/10.1109/ACCESS.2026.3752900">논문 보기</a></p></header><div class="article-body"><section><h2>이미지 쌍마다 온도 고르기</h2><p>공장에서 정상으로 분류한 학습 이미지에도 불량이 섞일 수 있습니다. 한 학습 이미지를 무작위로 두 번 증강해 양성 쌍을 만들었습니다. 증강 이미지 각각이 배치 안의 다른 이미지와 이루는 쌍의 코사인 유사도를 구해 양성 쌍과 비교했습니다. 양측 단일 표본 t-검정의 p값으로 두 InfoNCE 온도 중 하나를 골랐습니다. 낮은 온도에서는 서로 다른데도 모델이 비슷하게 보는 이미지 쌍이 학습에 더 크게 반영됩니다.</p></section>
+<section><h2>이미지 한 장에 이상 점수 매기기</h2><p>학습이 끝나면 투영층에 들어가기 전의 인코더 특성에 k-최근접 이웃(k-NN)을 적용했습니다. 이미지 한 장에 이상 점수 하나를 매겼습니다. 결함 위치를 찾는 문제는 별도의 평가가 필요합니다.</p></section>
+<section><h2>온도 선택 규칙의 비교</h2><p>Surface Crack과 Magnetic Tile에서 온도를 쌍마다 고르는 방법을 고정 온도 및 무작위 선택과 비교했습니다. 실험한 설정 가운데 쌍마다 온도를 고르는 방법의 평균 ROC AUC가 가장 높았습니다. KolektorSDD2에서도 이미지 단위 검출을 평가했습니다. 미니배치의 여러 유사도 계산에 같은 표본이 들어가므로 p값은 학습 중 온도를 고르는 기준으로 사용했습니다.</p></section></div></article>
     </main>
     <footer>
       <a href="#top">맨 위로</a>

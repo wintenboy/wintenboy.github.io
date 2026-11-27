@@ -9,9 +9,9 @@
   <title>Predicting plate-tip warping during rolling | Seungyeol Ryu</title>
   <link rel="alternate" hreflang="en" href="https://wintenboy.github.io/projects/posco/">
   <link rel="alternate" hreflang="ko" href="https://wintenboy.github.io/ko/projects/posco/">
-  <link rel="stylesheet" href="../../assets/site.css?v=bf9473147892">
-  <link rel="stylesheet" href="../../assets/projects.css?v=bf9473147892">
-  <script src="../../assets/site.js?v=bf9473147892" defer></script>
+  <link rel="stylesheet" href="../../assets/site.css?v=402801096a52">
+  <link rel="stylesheet" href="../../assets/projects.css?v=402801096a52">
+  <script src="../../assets/site.js?v=402801096a52" defer></script>
 </head>
 <body id="top">
   <div class="reading-progress" aria-hidden="true"></div>
@@ -20,6 +20,7 @@
     <header class="masthead">
       <a class="wordmark" href="../../index.html" lang="ko">류승열</a>
       <nav class="language-switch" aria-label="Language">
+        <span class="language-indicator" aria-hidden="true"></span>
         <a href="index.html" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a>
         <a href="../../ko/projects/posco/index.html" lang="ko" hreflang="ko">한국어</a>
       </nav>
@@ -40,8 +41,8 @@
               <span class="project-visual-action">View full size</span>
             </a>
             <figcaption>From the POSCO project presentation. A labeled frame is segmented to extract the plate’s lower edge.</figcaption>
-          </figure><div class="article-body"><section><h2 data-motion-title="words">Measuring the direction of the bend</h2><p>I helped select usable frames and extract the plate’s lower edge. In the pipeline shown here, the team labeled plates in CVAT and used YOLO11-seg for segmentation. The entry and exit cameras face different directions, so we flipped the entry images. We kept the sign of the curvature to distinguish an upward bend from a downward one.</p></section>
-<section><h2 data-motion-title="words">Two passes ahead</h2><p>Entry and exit images came from different collection dates, so consecutive passes of the same plate were hard to pair. We matched frames from the same side of the line, two passes apart. I helped build the support vector regression model using the image-derived warping index and process measurements such as rolling speed and plate thickness.</p></section></div></article>
+          </figure><div class="article-body"><section><h2>Measuring the direction of the bend</h2><p>I helped select usable frames and extract the plate’s lower edge. In the pipeline shown here, the team labeled plates in CVAT and used YOLO11-seg for segmentation. The entry and exit cameras face different directions, so we flipped the entry images. We kept the sign of the curvature to distinguish an upward bend from a downward one.</p></section>
+<section><h2>Two passes ahead</h2><p>Entry and exit images came from different collection dates, so consecutive passes of the same plate were hard to pair. We matched frames from the same side of the line, two passes apart. I helped build the support vector regression model using the image-derived warping index and process measurements such as rolling speed and plate thickness.</p></section></div></article>
     </main>
     <footer>
       <a href="#top">Back to top</a>
